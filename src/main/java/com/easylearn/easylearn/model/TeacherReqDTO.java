@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.Email;
+
 @Getter
 @Setter
 @Builder // It does not work unless, there is a @AllArgsConstructor.
@@ -12,6 +14,10 @@ import lombok.Setter;
 public class TeacherReqDTO {
     private String lastName;
     private String firstName;
-    private String emailAddress;
+
+    @Email(message = "Invalid email address")
+    private String email;
+
+
     private String password;
 }
