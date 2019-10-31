@@ -1,5 +1,7 @@
 package com.easylearn.easylearn.entity;
 
+import com.easylearn.easylearn.model.enums.ParentType;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -10,22 +12,19 @@ public class Parent {
     private Long id;
 
     @Column(nullable = false)
-    private String fatherFirstName;
+    private String firstName;
 
     @Column(nullable = false)
-    private String fatherLastName;
-
-    @Column(nullable = false)
-    private String motherFirstName;
-
-    @Column(nullable = false)
-    private String motherLastName;
+    private String lastName;
 
     @Column(unique = true, nullable = false)
     private String email;
 
     @Column(nullable = false)
     private String password;
+
+    @Enumerated(value = EnumType.STRING)
+    private ParentType type;
 
     @OneToMany(mappedBy = "parent")
     private Set<Student> students;
