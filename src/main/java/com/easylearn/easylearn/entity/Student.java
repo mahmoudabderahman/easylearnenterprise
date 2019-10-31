@@ -1,18 +1,10 @@
 package com.easylearn.easylearn.entity;
 
-import lombok.*;
-
 import javax.persistence.*;
 import java.util.Set;
 
-@Getter
-@Setter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-
 @Entity
-public class Teacher {
+public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto Increament
@@ -30,6 +22,12 @@ public class Teacher {
     @Column(nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "teacher")
+    @ManyToMany(mappedBy = "students", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    private Set<Appointment> appointments;
+
+    @ManyToMany(mappedBy = "students", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Set<Course> courses;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Parent parent;
 }

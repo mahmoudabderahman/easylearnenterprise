@@ -1,28 +1,25 @@
 package com.easylearn.easylearn.entity;
 
-import lombok.*;
-
 import javax.persistence.*;
 import java.util.Set;
 
-@Getter
-@Setter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-
 @Entity
-public class Teacher {
-
+public class Parent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto Increament
     private Long id;
 
     @Column(nullable = false)
-    private String firstName;
+    private String fatherFirstName;
 
     @Column(nullable = false)
-    private String lastName;
+    private String fatherLastName;
+
+    @Column(nullable = false)
+    private String motherFirstName;
+
+    @Column(nullable = false)
+    private String motherLastName;
 
     @Column(unique = true, nullable = false)
     private String email;
@@ -30,6 +27,6 @@ public class Teacher {
     @Column(nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "teacher")
-    private Set<Course> courses;
+    @OneToMany(mappedBy = "parent")
+    private Set<Student> students;
 }
