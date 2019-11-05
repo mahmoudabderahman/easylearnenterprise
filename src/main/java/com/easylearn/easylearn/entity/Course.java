@@ -16,6 +16,11 @@ public class Course {
 
     private int grade;
 
+    private String content;
+
+    @Column(nullable = false)
+    private String description;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private Teacher teacher;
 
