@@ -32,13 +32,8 @@ public class TeacherController {
         return null;
     }
 
-    @PutMapping(path = "/{teacherId}")
-    public ResponseEntity<TeacherRespDTO> findTeacherById(@PathVariable Long teacherId, @RequestBody TeacherReqDTO request) {
-        return null;
-    }
-
     @DeleteMapping(path = "/{teacherId}")
-    public void deleteTeacherById(@PathVariable Long teacherId) {
+    public void deleteTeacher(@PathVariable Long teacherId) {
 
     }
 }

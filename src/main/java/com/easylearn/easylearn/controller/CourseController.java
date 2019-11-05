@@ -33,13 +33,8 @@ public class CourseController {
         return null;
     }
 
-    @PutMapping(path = "/{courseCode}")
-    public ResponseEntity<CourseRespDTO> findCourseByCourseCode(@PathVariable String courseCode, @RequestBody CourseReqDTO request) {
-        return null;
-    }
-
     @DeleteMapping(path = "/{courseCode}")
-    public void deleteCourseByCourseCode(@PathVariable String courseCode) {
+    public void deleteCourse(@PathVariable String courseCode) {
 
     }
 }

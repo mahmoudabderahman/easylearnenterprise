@@ -1,11 +1,6 @@
 package com.easylearn.easylearn.model;
 
-import com.easylearn.easylearn.entity.Appointment;
-import com.easylearn.easylearn.entity.Student;
-import com.easylearn.easylearn.entity.Teacher;
 
-import java.util.HashSet;
-import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,7 +16,4 @@ public class CourseReqDTO {
     private int grade;
     private String content;
     private String description;
-    private Teacher teacher;
-    private Set<Appointment> appointments;
-    private Set<Student> students;
 }

@@ -28,4 +28,5 @@ public class Parent {
 
     @OneToMany(mappedBy = "parent")
     private Set<Student> students;
+
 }

@@ -1,5 +1,6 @@
 package com.easylearn.easylearn.model;
 
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,10 +10,8 @@ import lombok.Setter;
 @Setter
 @Builder // It does not work unless, there is a @AllArgsConstructor.
 @AllArgsConstructor
-public class CourseRespDTO {
-    private String courseCode;
-    private String name;
-    private int grade;
-    private String content;
-    private String description;
+public class AppointmentReqDTO {
+    private Date startDate;
+    private Date endDate;
+    private int roomNumber;
 }

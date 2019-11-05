@@ -1,9 +1,17 @@
 package com.easylearn.easylearn.entity;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 
 @Entity
 public class Appointment {
@@ -30,4 +38,6 @@ public class Appointment {
             inverseJoinColumns = {@JoinColumn(name = "student_id")}
     )
     private Set<Student> students = new HashSet<>();
+
+
 }
