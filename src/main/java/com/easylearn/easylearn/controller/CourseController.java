@@ -1,6 +1,5 @@
 package com.easylearn.easylearn.controller;
 
-import com.easylearn.easylearn.entity.Course;
 import com.easylearn.easylearn.model.CourseReqDTO;
 import com.easylearn.easylearn.model.CourseRespDTO;
 import com.easylearn.easylearn.service.CourseService;
@@ -23,7 +22,7 @@ public class CourseController {
         return courseService.createCourse(request);
     }
 
-    @GetMapping(path = "/{couseCode}")
+    @GetMapping(path = "/{courseCode}")
     public ResponseEntity<CourseRespDTO> findCourseById(@PathVariable String courseCode) {
         return null;
     }

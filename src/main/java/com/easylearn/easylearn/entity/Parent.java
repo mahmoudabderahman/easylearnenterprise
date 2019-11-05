@@ -1,9 +1,16 @@
 package com.easylearn.easylearn.entity;
 
 import com.easylearn.easylearn.model.enums.ParentType;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
+
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 
 @Entity
 public class Parent {
