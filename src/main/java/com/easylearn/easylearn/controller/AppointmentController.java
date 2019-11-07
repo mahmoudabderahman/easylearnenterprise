@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "/api/v1/appointments/")
+@RequestMapping(path = "/api/v1/appointments")
 public class AppointmentController {
     private AppointmentService appointmentService;
 
@@ -19,8 +19,7 @@ public class AppointmentController {
     }
 
     @PostMapping
-    public ResponseEntity<AppointmentRespDTO> createAppointment(@RequestBody AppointmentReqDTO request)
-    {
+    public ResponseEntity<AppointmentRespDTO> createAppointment(@RequestBody AppointmentReqDTO request) {
         return appointmentService.createAppointment(request);
     }
 
@@ -37,8 +36,7 @@ public class AppointmentController {
     }
 
     @DeleteMapping(path = "/{appointmentId}")
-    public void deleteAppointment(@PathVariable Long appointmentId)
-    {
+    public void deleteAppointment(@PathVariable Long appointmentId) {
 
     }
 }
