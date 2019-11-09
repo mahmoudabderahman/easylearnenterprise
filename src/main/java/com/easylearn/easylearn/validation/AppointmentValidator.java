@@ -9,13 +9,14 @@ import org.springframework.stereotype.Component;
 @Log4j2
 @Component
 public final class AppointmentValidator extends BaseValidator<Appointment> {
-    private AppointmentRepository appointmentRespository;
+
+    private AppointmentRepository appointmentRepository;
 
     @Autowired
-    public AppointmentValidator(AppointmentRepository appointmentRespository)
+    public AppointmentValidator(AppointmentRepository appointmentRepository)
     {
         super(Appointment.class);
-        this.appointmentRespository = appointmentRespository;
+        this.appointmentRepository = appointmentRepository;
     }
 }
 /*
