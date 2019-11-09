@@ -39,6 +39,8 @@ public class AppointmentService  {
         AppointmentRespDTO response = appointmentMapper.mapToDTO(appointment);
         log.trace(" *** END OF SAVING APPOINTMENT *** ");
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        //Workout workout = repository.findById(workoutId)
+         //       .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "The workout with id: " + workoutId + " doesn't exist"));
     }
 
     /*
