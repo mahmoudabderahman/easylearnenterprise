@@ -72,7 +72,7 @@ public class StudentService {
         return response;
     }
 
-    public ResponseEntity deleteAppointment(Long studentId)
+    public ResponseEntity deleteStudent(Long studentId)
     {
         log.info(" *** START OF DELETING STUDENT BY ID *** ");
         Student student = studentValidator.validateExistence(studentId);

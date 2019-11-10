@@ -6,10 +6,8 @@ import com.easylearn.easylearn.model.AppointmentReqDTO;
 import com.easylearn.easylearn.model.AppointmentRespDTO;
 import com.easylearn.easylearn.repository.AppointmentRepository;
 import com.easylearn.easylearn.validation.AppointmentValidator;
-import jdk.internal.jline.internal.Log;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -84,7 +82,7 @@ public class AppointmentService {
 
     public ResponseEntity deleteAppointment(Long appointmentId)
     {
-        Log.info(" *** START OF DELETING APPOINTMENT BY ID *** ");
+        log.info(" *** START OF DELETING APPOINTMENT BY ID *** ");
         Appointment appointment = appointmentValidator.validateExistence(appointmentId);
         appointmentRepository.delete(appointment);
         log.info(" *** END OF DELETING APPOINTMENT BY ID *** ");

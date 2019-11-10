@@ -13,7 +13,7 @@ public class AppointmentController {
     private AppointmentService appointmentService;
 
     @Autowired
-    public AppointmentController(AppointmentService appointmentService)
+    public AppointmentController(AppointmentService appointmentService )
     {
         this.appointmentService = appointmentService;
     }
@@ -24,19 +24,19 @@ public class AppointmentController {
     }
 
     @GetMapping(path = "/{appointmentId}")
-    public ResponseEntity<AppointmentRespDTO> findAppointmentById(@PathVariable Long appointmentId)
+    public AppointmentRespDTO findAppointmentById(@PathVariable Long appointmentId)
     {
-        return null;
+        return appointmentService.findAppointmentById(appointmentId);
     }
 
     @GetMapping
-    public ResponseEntity<AppointmentRespDTO> findAllAppointments()
+    public ResponseEntity findAllAppointments()
     {
-        return null;
+        return appointmentService.findAllAppointments();
     }
 
     @DeleteMapping(path = "/{appointmentId}")
-    public void deleteAppointment(@PathVariable Long appointmentId) {
-
+    public ResponseEntity deleteAppointment(@PathVariable Long appointmentId) {
+        return appointmentService.deleteAppointment(appointmentId);
     }
 }

@@ -23,17 +23,18 @@ public class CourseController {
     }
 
     @GetMapping(path = "/{courseCode}")
-    public ResponseEntity<CourseRespDTO> findCourseById(@PathVariable String courseCode) {
-        return null;
+    public CourseRespDTO findCourseById(@PathVariable String courseCode) {
+
+        return courseService.findCourseById(courseCode);
     }
 
     @GetMapping
-    public ResponseEntity<CourseRespDTO> findAllCourses() {
-        return null;
+    public ResponseEntity findAllCourses() {
+        return courseService.findAllCourses();
     }
 
     @DeleteMapping(path = "/{courseCode}")
-    public void deleteCourse(@PathVariable String courseCode) {
-
+    public ResponseEntity deleteCourse(@PathVariable String courseCode) {
+        return courseService.deleteCourse(courseCode);
     }
 }

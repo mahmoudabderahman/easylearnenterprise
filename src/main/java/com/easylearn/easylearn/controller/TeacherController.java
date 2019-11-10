@@ -23,17 +23,17 @@ public class TeacherController {
     }
 
     @GetMapping(path = "/{teacherId}")
-    public ResponseEntity<TeacherRespDTO> findTeacherById(@PathVariable Long teacherId) {
-        return null;
+    public TeacherRespDTO findTeacherById(@PathVariable Long teacherId) {
+        return teacherService.findTeacherById(teacherId);
     }
 
     @GetMapping
-    public ResponseEntity<TeacherRespDTO> findAllTeachers() {
-        return null;
+    public ResponseEntity findAllTeachers() {
+        return teacherService.findAllTeachers();
     }
 
     @DeleteMapping(path = "/{teacherId}")
-    public void deleteTeacher(@PathVariable Long teacherId) {
-
+    public ResponseEntity deleteTeacher(@PathVariable Long teacherId) {
+        return teacherService.deleteTeacher(teacherId);
     }
 }

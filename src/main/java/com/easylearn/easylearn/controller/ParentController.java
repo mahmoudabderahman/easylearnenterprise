@@ -25,17 +25,19 @@ public class ParentController {
     }
 
     @GetMapping(path = "/{parentId}")
-    public ResponseEntity<ParentRespDTO> findParentById(@PathVariable Long parentId)
+    public ParentRespDTO findParentById(@PathVariable Long parentId)
     {
-        return null;
+        return parentService.findParentById(parentId);
     }
 
     @GetMapping
-    public ResponseEntity<ParentRespDTO> findAllParents() {return null;}
+    public ResponseEntity findAllParents() {
+        return parentService.findAllParents();
+    }
 
     @DeleteMapping(path = "/{parentId}")
-    public void deleteParent(@PathVariable Long parentId)
+    public ResponseEntity deleteParent(@PathVariable Long parentId)
     {
-
+        return parentService.deleteParent(parentId);
     }
 }

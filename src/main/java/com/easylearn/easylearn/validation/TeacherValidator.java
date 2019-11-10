@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Log4j2
 @Component
-public final class TeacherValidator extends BaseValidator<Teacher> {
+public  class TeacherValidator extends BaseValidator<Teacher> {
 
     private TeacherRepository teacherRepository;
 
