@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(path = "/api/v1/students")
 public class StudentController {
@@ -33,6 +35,18 @@ public class StudentController {
     @GetMapping
     public ResponseEntity findAllStudents() {
         return studentService.findAllStudents();
+    }
+
+    /**
+     * API to update a specific workout
+     *
+     * @param studentId used to get the studentId
+     * @param request   used to get the request body
+     * @return StudentRespDTO
+     */
+    @PutMapping(path = "/{studentId}")
+    public StudentRespDTO updateStudent(@PathVariable Long studentId, @Valid @RequestBody StudentReqDTO request) {
+        return studentService.updateStudent(studentId, request);
     }
 
     @DeleteMapping(path = "/{studentId}")

@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(path = "/api/v1/parents")
 public class ParentController {
@@ -33,6 +35,18 @@ public class ParentController {
     @GetMapping
     public ResponseEntity findAllParents() {
         return parentService.findAllParents();
+    }
+
+    /**
+     * API to update a specific workout
+     *
+     * @param parentId used to get the parentId
+     * @param request   used to get the request body
+     * @return ParentRespDTO
+     */
+    @PutMapping(path = "/{parentId}")
+    public ParentRespDTO updateParent(@PathVariable Long parentId, @Valid @RequestBody ParentReqDTO request) {
+        return parentService.updateParent(parentId, request);
     }
 
     @DeleteMapping(path = "/{parentId}")

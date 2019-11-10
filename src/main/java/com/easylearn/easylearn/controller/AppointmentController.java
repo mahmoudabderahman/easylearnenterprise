@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(path = "/api/v1/appointments")
 public class AppointmentController {
@@ -33,6 +35,18 @@ public class AppointmentController {
     public ResponseEntity findAllAppointments()
     {
         return appointmentService.findAllAppointments();
+    }
+
+    /**
+     * API to update a specific workout
+     *
+     * @param appointmentId used to get the appointmentId
+     * @param request   used to get the request body
+     * @return AppointmentRespDTO
+     */
+    @PutMapping(path = "/{appointmentId}")
+    public AppointmentRespDTO updateAppointment(@PathVariable Long appointmentId, @Valid @RequestBody AppointmentReqDTO request) {
+        return appointmentService.updateAppointment(appointmentId, request);
     }
 
     @DeleteMapping(path = "/{appointmentId}")
