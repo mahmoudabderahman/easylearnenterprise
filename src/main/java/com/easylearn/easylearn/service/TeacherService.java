@@ -1,10 +1,12 @@
 package com.easylearn.easylearn.service;
 
+import com.easylearn.easylearn.entity.Course;
 import com.easylearn.easylearn.entity.Teacher;
 import com.easylearn.easylearn.mapper.TeacherMapper;
 import com.easylearn.easylearn.model.TeacherReqDTO;
 import com.easylearn.easylearn.model.TeacherRespDTO;
 import com.easylearn.easylearn.repository.TeacherRepository;
+import com.easylearn.easylearn.validation.CourseValidator;
 import com.easylearn.easylearn.validation.TeacherValidator;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +25,14 @@ public class TeacherService {
     private final TeacherRepository teacherRepository;
     private final TeacherMapper teacherMapper;
     private final TeacherValidator teacherValidator;
+    private final CourseValidator courseValidator;
 
     @Autowired
-    public TeacherService(TeacherRepository teacherRepository, TeacherMapper teacherMapper, TeacherValidator teacherValidator) {
+    public TeacherService(TeacherRepository teacherRepository, TeacherMapper teacherMapper, TeacherValidator teacherValidator, CourseValidator courseValidator) {
         this.teacherRepository = teacherRepository;
         this.teacherMapper = teacherMapper;
         this.teacherValidator = teacherValidator;
+        this.courseValidator = courseValidator;
     }
 
     public ResponseEntity<TeacherRespDTO> createTeacher(TeacherReqDTO request) {
@@ -68,6 +72,19 @@ public class TeacherService {
         teacherRepository.save(teacher);
         TeacherRespDTO response = teacherMapper.mapToDTO(teacher);
         log.info(" *** END OF UPDATING TEACHER BY ID *** ");
+        return response;
+    }
+
+    public TeacherRespDTO assignTeacherToCourse(Long teacherId, String courseCode)
+    {
+        log.info(" *** START OF ASSIGNING TEACHER TO COURSE BY ID *** ");
+        Teacher teacher = teacherValidator.validateExistence(teacherId);
+        Course course = courseValidator.validateExistence(courseCode);
+        teacher.addCourse(course);
+        course.setTeacher(teacher);
+        teacherRepository.save(teacher);
+        TeacherRespDTO response = teacherMapper.mapToDTO(teacher);
+        log.info(" *** END OF ASSIGNING TEACHER TO COURSE BY ID *** ");
         return response;
     }
 

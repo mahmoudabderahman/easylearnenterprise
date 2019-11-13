@@ -3,6 +3,7 @@ package com.easylearn.easylearn.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -31,7 +32,10 @@ public class Teacher {
     private String password;
 
     @OneToMany(mappedBy = "teacher")
-    private Set<Course> courses;
+    private Set<Course> courses = new HashSet<>();
 
-
+    public void addCourse(Course course)
+    {
+        courses.add(course);
+    }
 }

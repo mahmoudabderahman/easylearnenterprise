@@ -42,10 +42,16 @@ public class TeacherController {
      * @return TeacherRespDTO
      */
     @PutMapping(path = "/{teacherId}")
-    public TeacherRespDTO updateStudent(@PathVariable Long teacherId, @Valid @RequestBody TeacherReqDTO request) {
+    public TeacherRespDTO updateTeacher(@PathVariable Long teacherId, @Valid @RequestBody TeacherReqDTO request) {
         return teacherService.updateTeacher(teacherId, request);
     }
 
+
+    @PutMapping(path = "/{courseCode}/{teacherId}")
+    public TeacherRespDTO assignTeacherToCourse( @PathVariable Long teacherId, @PathVariable String courseCode)
+    {
+        return teacherService.assignTeacherToCourse(teacherId, courseCode);
+    }
     @DeleteMapping(path = "/{teacherId}")
     public ResponseEntity deleteTeacher(@PathVariable Long teacherId) {
         return teacherService.deleteTeacher(teacherId);
