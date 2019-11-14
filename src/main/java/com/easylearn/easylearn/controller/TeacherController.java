@@ -46,12 +46,12 @@ public class TeacherController {
         return teacherService.updateTeacher(teacherId, request);
     }
 
-
-    @PutMapping(path = "/{courseCode}/{teacherId}")
+    @PutMapping(path = "/{teacherId}/courses/{courseCode}")
     public TeacherRespDTO assignTeacherToCourse( @PathVariable Long teacherId, @PathVariable String courseCode)
     {
         return teacherService.assignTeacherToCourse(teacherId, courseCode);
     }
+
     @DeleteMapping(path = "/{teacherId}")
     public ResponseEntity deleteTeacher(@PathVariable Long teacherId) {
         return teacherService.deleteTeacher(teacherId);

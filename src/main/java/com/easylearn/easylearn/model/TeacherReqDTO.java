@@ -1,9 +1,6 @@
 package com.easylearn.easylearn.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.Email;
 
@@ -17,7 +14,6 @@ public class TeacherReqDTO {
 
     @Email(message = "Invalid email address")
     private String email;
-
 
     private String password;
 }
