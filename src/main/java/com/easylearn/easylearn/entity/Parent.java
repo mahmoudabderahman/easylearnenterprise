@@ -4,6 +4,7 @@ import com.easylearn.easylearn.model.enums.ParentType;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -34,6 +35,10 @@ public class Parent {
     private ParentType type;
 
     @OneToMany(mappedBy = "parent")
-    private Set<Student> students;
+    private Set<Student> students = new HashSet<>();
 
+    public void addStudent(Student student)
+    {
+        students.add(student);
+    }
 }

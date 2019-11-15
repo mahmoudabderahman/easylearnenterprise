@@ -33,7 +33,7 @@ public class Course {
     private Teacher teacher;
 
     @OneToMany(mappedBy = "course")
-    private Set<Appointment> appointments;
+    private Set<Appointment> appointments = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(
@@ -43,5 +43,13 @@ public class Course {
     )
     private Set<Student> students = new HashSet<>();
 
+    public void addAppointment(Appointment appointment)
+    {
+        this.appointments.add(appointment);
+    }
 
+    public void addStudent(Student student)
+    {
+        this.students.add(student);
+    }
 }

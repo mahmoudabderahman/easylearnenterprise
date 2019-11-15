@@ -3,6 +3,7 @@ package com.easylearn.easylearn.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -31,13 +32,20 @@ public class Student {
     private String password;
 
     @ManyToMany(mappedBy = "students", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    private Set<Appointment> appointments;
+    private Set<Appointment> appointments = new HashSet<>();
 
     @ManyToMany(mappedBy = "students", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    private Set<Course> courses;
+    private Set<Course> courses = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Parent parent;
 
+    public void addAppointment(Appointment appointment)
+    {
+        this.appointments.add(appointment);
+    }
 
+    public void addCourse(Course course) {
+        this.courses.add(course);
+    }
 }

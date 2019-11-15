@@ -47,6 +47,12 @@ public class CourseController {
         return courseService.updateCourse(courseCode, request);
     }
 
+    @PutMapping(path = "/{courseCode}/appointments/{appointmentId}")
+    public CourseRespDTO assignCourseToAppointment( @PathVariable String courseCode, @PathVariable Long appointmentId)
+    {
+        return courseService.assignCourseToAppointment(courseCode, appointmentId);
+    }
+
     @DeleteMapping(path = "/{courseCode}")
     public ResponseEntity deleteCourse(@PathVariable String courseCode) {
         return courseService.deleteCourse(courseCode);

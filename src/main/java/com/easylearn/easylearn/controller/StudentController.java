@@ -49,6 +49,24 @@ public class StudentController {
         return studentService.updateStudent(studentId, request);
     }
 
+    @PutMapping(path = "/{studentId}/parents/{parentId}")
+    public StudentRespDTO assignStudentToParent( @PathVariable Long studentId, @PathVariable Long parentId)
+    {
+        return studentService.assignStudentToParent(studentId, parentId);
+    }
+
+    @PutMapping(path = "/{studentId}/appointments/{appointmentId}")
+    public StudentRespDTO assignStudentToAppointment( @PathVariable Long studentId, @PathVariable Long appointmentId)
+    {
+        return studentService.assignStudentToAppointment(studentId, appointmentId);
+    }
+
+    @PutMapping(path = "/{studentId}/courses/{courseCode}")
+    public StudentRespDTO assignStudentToCourse( @PathVariable Long studentId, @PathVariable String courseCode)
+    {
+        return studentService.assignStudentToCourse(studentId, courseCode);
+    }
+
     @DeleteMapping(path = "/{studentId}")
     public ResponseEntity deleteStudent(@PathVariable Long studentId)
     {

@@ -1,10 +1,16 @@
 package com.easylearn.easylearn.service;
 
+import com.easylearn.easylearn.entity.Appointment;
+import com.easylearn.easylearn.entity.Course;
+import com.easylearn.easylearn.entity.Parent;
 import com.easylearn.easylearn.entity.Student;
 import com.easylearn.easylearn.mapper.StudentMapper;
 import com.easylearn.easylearn.model.StudentReqDTO;
 import com.easylearn.easylearn.model.StudentRespDTO;
 import com.easylearn.easylearn.repository.StudentRepository;
+import com.easylearn.easylearn.validation.AppointmentValidator;
+import com.easylearn.easylearn.validation.CourseValidator;
+import com.easylearn.easylearn.validation.ParentValidator;
 import com.easylearn.easylearn.validation.StudentValidator;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +29,17 @@ public class StudentService {
     private final StudentRepository studentRepository;
     private final StudentMapper studentMapper;
     private final StudentValidator studentValidator;
+    private final ParentValidator parentValidator;
+    private final AppointmentValidator appointmentValidator;
+    private final CourseValidator courseValidator;
 
     @Autowired
-    public StudentService(StudentRepository studentRepository, StudentMapper studentMapper, StudentValidator studentValidator){this.studentRepository = studentRepository;
+    public StudentService(StudentRepository studentRepository, StudentMapper studentMapper, StudentValidator studentValidator, ParentValidator parentValidator, AppointmentValidator appointmentValidator, CourseValidator courseValidator){this.studentRepository = studentRepository;
         this.studentMapper = studentMapper;
         this.studentValidator = studentValidator;
+        this.parentValidator = parentValidator;
+        this.appointmentValidator = appointmentValidator;
+        this.courseValidator = courseValidator;
     }
 
     public ResponseEntity<StudentRespDTO> createStudent(StudentReqDTO request)
@@ -69,6 +81,45 @@ public class StudentService {
         studentRepository.save(student);
         StudentRespDTO response = studentMapper.mapToDTO(student);
         log.info(" *** END OF UPDATING STUDENT BY ID *** ");
+        return response;
+    }
+
+    public StudentRespDTO assignStudentToParent(Long studentId, Long parentId)
+    {
+        log.info(" *** START OF ASSIGNING STUDENT TO PARENT BY ID *** ");
+        Student student = studentValidator.validateExistence(studentId);
+        Parent parent = parentValidator.validateExistence(parentId);
+        student.setParent(parent);
+        parent.addStudent(student);
+        studentRepository.save(student);
+        StudentRespDTO response = studentMapper.mapToDTO(student);
+        log.info(" *** END OF ASSIGNING STUDENT TO PARENT BY ID *** ");
+        return response;
+    }
+
+    public StudentRespDTO assignStudentToAppointment(Long studentId, Long appointmentId)
+    {
+        log.info(" *** START OF ASSIGNING STUDENT TO APPOINTMENT BY ID *** ");
+        Student student = studentValidator.validateExistence(studentId);
+        Appointment appointment = appointmentValidator.validateExistence(appointmentId);
+        student.addAppointment(appointment);
+        appointment.addStudent(student);
+        studentRepository.save(student);
+        StudentRespDTO response = studentMapper.mapToDTO(student);
+        log.info(" *** END OF ASSIGNING STUDENT TO APPOINTMENT BY ID *** ");
+        return response;
+    }
+
+    public StudentRespDTO assignStudentToCourse(Long studentId, String courseCode)
+    {
+        log.info(" *** START OF ASSIGNING STUDENT TO COURSE BY ID *** ");
+        Student student = studentValidator.validateExistence(studentId);
+        Course course = courseValidator.validateExistence(courseCode);
+        student.addCourse(course);
+        course.addStudent(student);
+        studentRepository.save(student);
+        StudentRespDTO response = studentMapper.mapToDTO(student);
+        log.info(" *** END OF ASSIGNING STUDENT TO COURSE BY ID *** ");
         return response;
     }
 
