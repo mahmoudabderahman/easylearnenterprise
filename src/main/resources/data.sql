@@ -1,3 +1,4 @@
+
 insert into STUDENT(email, first_name, last_name, password) VALUES('lukas.konstantin@easylearn.mis.com', 'Lukas', 'Konstantin', '123456')
 insert into STUDENT(email, first_name, last_name, password) VALUES('ben.jonas@easylearn.mis.com', 'Ben', 'Jonas', '123456')
 insert into STUDENT(email, first_name, last_name, password) VALUES('elias.niklas@easylearn.mis.com', 'Elias', 'Niklas', '123456')
@@ -35,4 +36,5 @@ insert into TEACHER(email, first_name, last_name, password) VALUES('Nadine.Mark@
 insert into TEACHER(email, first_name, last_name, password) VALUES('Matti.Martin@easylearn.mis.com', 'Matti', 'Martin', '123456')
 insert into TEACHER(email, first_name, last_name, password) VALUES('Morris.Miran@easylearn.mis.com', 'Morris', 'Miran', '123456')
 insert into TEACHER(email, first_name, last_name, password) VALUES('Nancy.Niklas@easylearn.mis.com', 'Nancy', 'Niklas', '123456')
+
 
