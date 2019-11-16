@@ -35,6 +35,7 @@ public class CourseController {
         return courseService.findAllCourses();
     }
 
+
     /**
      * API to update a specific workout
      *

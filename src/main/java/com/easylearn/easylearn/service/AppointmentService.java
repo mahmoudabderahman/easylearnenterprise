@@ -45,8 +45,6 @@ public class AppointmentService {
         AppointmentRespDTO response = appointmentMapper.mapToDTO(appointment);
         log.info(" *** END OF SAVING APPOINTMENT *** ");
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
-        //Workout workout = repository.findById(workoutId)
-        //       .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "The workout with id: " + workoutId + " doesn't exist"));
     }
 
     public AppointmentRespDTO findAppointmentById(Long appointmentId) {
@@ -66,6 +64,18 @@ public class AppointmentService {
         Set<AppointmentRespDTO> appointmentsResponse = new HashSet<>(appointments.size());
         appointments.forEach(appointment -> appointmentsResponse.add(appointmentMapper.mapToDTO(appointment)));
         log.info(" *** END OF FINDING ALL APPOINTMENTS *** ");
+        return ResponseEntity.ok(appointmentsResponse);
+    }
+
+    public ResponseEntity<Set<AppointmentRespDTO>> findAllCoursesAppointments() {
+        log.info(" *** START OF FINDING ALL COURSES IN APPOINTMENTS *** ");
+        Set<Appointment> appointments = appointmentRepository.findAll();
+        if (appointments.isEmpty())
+            return ResponseEntity.noContent().build();
+
+        Set<AppointmentRespDTO> appointmentsResponse = new HashSet<>(appointments.size());
+        appointments.forEach(appointment -> appointmentsResponse.add(appointmentMapper.mapToDTO(appointment)));
+        log.info(" *** END OF FINDING ALL COURSES IN APPOINTMENTS *** ");
         return ResponseEntity.ok(appointmentsResponse);
     }
 

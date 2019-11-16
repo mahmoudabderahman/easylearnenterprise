@@ -3,6 +3,7 @@ package com.easylearn.easylearn.mapper;
 import com.easylearn.easylearn.entity.Appointment;
 import com.easylearn.easylearn.model.AppointmentReqDTO;
 import com.easylearn.easylearn.model.AppointmentRespDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,6 +13,12 @@ import java.util.Set;
 @Component
 @Transactional
 public class AppointmentMapper implements ObjectMapper<Appointment, AppointmentReqDTO, AppointmentRespDTO> {
+    private final CourseMapper courseMapper;
+
+    @Autowired
+    public AppointmentMapper(CourseMapper courseMapper) {
+        this.courseMapper = courseMapper;
+    }
 
     @Override
     public Appointment mapToEntity(AppointmentReqDTO request) {
@@ -37,6 +44,7 @@ public class AppointmentMapper implements ObjectMapper<Appointment, AppointmentR
                 .startDate(appointment.getStartDate())
                 .endDate(appointment.getEndDate())
                 .roomNumber(appointment.getRoomNumber())
+                .course((appointment.getCourse() != null) ? courseMapper.mapToDTO(appointment.getCourse()) : null)
                 .build();
     }
 

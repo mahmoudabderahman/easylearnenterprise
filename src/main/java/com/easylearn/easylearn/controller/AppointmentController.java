@@ -37,6 +37,12 @@ public class AppointmentController {
         return appointmentService.findAllAppointments();
     }
 
+    @GetMapping("x")
+    public ResponseEntity findAllCoursesAppointments()
+    {
+        return appointmentService.findAllCoursesAppointments();
+    }
+
     /**
      * API to update a specific workout
      *
