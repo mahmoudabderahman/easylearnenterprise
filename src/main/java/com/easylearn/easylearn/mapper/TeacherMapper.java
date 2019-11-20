@@ -20,6 +20,7 @@ public class TeacherMapper implements ObjectMapper<Teacher, TeacherReqDTO, Teach
                 .lastName(request.getLastName())
                 .email(request.getEmail())
                 .password(request.getPassword())
+                .userType(request.getUserType())
                 .build();
     }
 
@@ -29,6 +30,8 @@ public class TeacherMapper implements ObjectMapper<Teacher, TeacherReqDTO, Teach
         teacher.setLastName(request.getLastName());
         teacher.setEmail(request.getEmail());
         teacher.setPassword(request.getPassword());
+        teacher.setUserType(request.getUserType()
+        );
         return teacher;
     }
 
@@ -40,6 +43,7 @@ public class TeacherMapper implements ObjectMapper<Teacher, TeacherReqDTO, Teach
                 .lastName(teacher.getLastName())
                 .email(teacher.getEmail())
                 .password(teacher.getPassword())
+                .userType(teacher.getUserType())
                 .build();
     }
 

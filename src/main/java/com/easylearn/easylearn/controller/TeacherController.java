@@ -56,4 +56,5 @@ public class TeacherController {
     public ResponseEntity deleteTeacher(@PathVariable Long teacherId) {
         return teacherService.deleteTeacher(teacherId);
     }
+
 }

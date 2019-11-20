@@ -3,9 +3,11 @@ package com.easylearn.easylearn.mapper;
 import com.easylearn.easylearn.entity.Parent;
 import com.easylearn.easylearn.model.ParentReqDTO;
 import com.easylearn.easylearn.model.ParentRespDTO;
+
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.Transient;
 import java.util.HashSet;
 import java.util.Set;
 // firstName, lastName, email, password
@@ -22,6 +24,7 @@ public class ParentMapper implements ObjectMapper<Parent, ParentReqDTO, ParentRe
                 .email(request.getEmail())
                 .password(request.getPassword())
                 .type(request.getType())
+                .userType(request.getUserType())
                 .build();
     }
 
@@ -32,6 +35,7 @@ public class ParentMapper implements ObjectMapper<Parent, ParentReqDTO, ParentRe
         parent.setEmail(request.getEmail());
         parent.setPassword(request.getPassword());
         parent.setType(request.getType());
+        parent.setUserType(request.getUserType());
         return parent;
     }
 
@@ -44,6 +48,7 @@ public class ParentMapper implements ObjectMapper<Parent, ParentReqDTO, ParentRe
                 .email(parent.getEmail())
                 .password(parent.getPassword())
                 .type(parent.getType())
+                .userType(parent.getUserType())
                 .build();
     }
 

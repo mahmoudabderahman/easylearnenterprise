@@ -3,6 +3,8 @@ package com.easylearn.easylearn.model;
 
 
 import javax.validation.constraints.Email;
+
+import com.easylearn.easylearn.model.enums.UserType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,4 +24,6 @@ public class StudentReqDTO {
     private String email;
 
     private String password;
+    private UserType userType;
+
 }

@@ -41,3 +41,10 @@ spring:
     hibernate:
       ddl-auto: create-drop
     show-sql: true
+
+#
+#  security:
+#    user:
+#      name: 7arbya
+#      password: admin
+

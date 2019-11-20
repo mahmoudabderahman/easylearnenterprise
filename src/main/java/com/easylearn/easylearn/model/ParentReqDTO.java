@@ -4,6 +4,7 @@ import com.easylearn.easylearn.model.enums.ParentType;
 
 import javax.validation.constraints.Email;
 
+import com.easylearn.easylearn.model.enums.UserType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,4 +26,7 @@ public class ParentReqDTO {
     private String password;
 
     private ParentType type;
+
+    private UserType userType;
+
 }

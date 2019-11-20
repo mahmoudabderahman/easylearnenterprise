@@ -3,6 +3,7 @@ package com.easylearn.easylearn.mapper;
 import com.easylearn.easylearn.entity.Student;
 import com.easylearn.easylearn.model.StudentReqDTO;
 import com.easylearn.easylearn.model.StudentRespDTO;
+
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +14,8 @@ import java.util.Set;
 @Component
 @Transactional
 public class StudentMapper implements ObjectMapper<Student, StudentReqDTO, StudentRespDTO> {
+
+
     @Override
     public Student mapToEntity(StudentReqDTO request) {
         return Student.builder()
@@ -20,6 +23,7 @@ public class StudentMapper implements ObjectMapper<Student, StudentReqDTO, Stude
                 .lastName(request.getLastName())
                 .email(request.getEmail())
                 .password(request.getPassword())
+                .userType(request.getUserType())
                 .build();
     }
 
@@ -29,6 +33,7 @@ public class StudentMapper implements ObjectMapper<Student, StudentReqDTO, Stude
         student.setLastName(request.getLastName());
         student.setEmail(request.getEmail());
         student.setPassword(request.getPassword());
+        student.setUserType(request.getUserType());
         return student;
     }
 
@@ -40,6 +45,7 @@ public class StudentMapper implements ObjectMapper<Student, StudentReqDTO, Stude
                 .lastName(student.getLastName())
                 .email(student.getEmail())
                 .password(student.getPassword())
+                .userType(student.getUserType())
                 .build();
     }
 

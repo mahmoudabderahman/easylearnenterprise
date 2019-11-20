@@ -1,10 +1,9 @@
 package com.easylearn.easylearn.mapper;
 
-
-
 import java.util.Set;
 
 public interface ObjectMapper<T , E, F> {
+
 
     T mapToEntity(E request);
 

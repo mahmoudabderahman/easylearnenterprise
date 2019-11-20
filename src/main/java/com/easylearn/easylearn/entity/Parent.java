@@ -1,44 +1,43 @@
 package com.easylearn.easylearn.entity;
 
 import com.easylearn.easylearn.model.enums.ParentType;
+import com.easylearn.easylearn.model.enums.UserType;
 import lombok.*;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.OneToMany;
 import java.util.HashSet;
 import java.util.Set;
 
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-
 @Entity
-public class Parent {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto Increament
-    private Long id;
-
-    @Column(nullable = false)
-    private String firstName;
-
-    @Column(nullable = false)
-    private String lastName;
-
-    @Column(unique = true, nullable = false)
-    private String email;
-
-    @Column(nullable = false)
-    private String password;
+public class Parent extends User {
 
     @Enumerated(value = EnumType.STRING)
     private ParentType type;
 
+    @Enumerated(value = EnumType.STRING)
+    private UserType userType = UserType.TEACHER;
+
     @OneToMany(mappedBy = "parent")
     private Set<Student> students = new HashSet<>();
 
-    public void addStudent(Student student)
-    {
+    public void addStudent(Student student) {
         students.add(student);
     }
+
+    @Builder
+    public Parent(Long id, String firstName, String lastName, String email, String password, Set<Role> roles, ParentType type, UserType userType, Set<Student> students) {
+        super(id, firstName, lastName, email, password, roles);
+        this.type = type;
+        this.userType = userType;
+        this.students = students;
+    }
 }
+

@@ -2,6 +2,7 @@ package com.easylearn.easylearn.model;
 
 import com.easylearn.easylearn.model.enums.ParentType;
 
+import com.easylearn.easylearn.model.enums.UserType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,4 +24,7 @@ public class ParentRespDTO {
     private String password;
 
     private ParentType type;
+
+    private UserType userType;
+
 }

@@ -1,5 +1,6 @@
 package com.easylearn.easylearn.entity;
 
+import com.easylearn.easylearn.model.enums.UserType;
 import lombok.*;
 
 import javax.persistence.*;
@@ -8,28 +9,16 @@ import java.util.Set;
 
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 
 @Entity
-public class Student {
+public class Student extends User{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto Increament
-    private Long id;
 
-    @Column(nullable = false)
-    private String firstName;
+    @Enumerated(value = EnumType.STRING)
+    private UserType userType = UserType.STUDENT;
 
-    @Column(nullable = false)
-    private String lastName;
-
-    @Column(unique = true, nullable = false)
-    private String email;
-
-    @Column(nullable = false)
-    private String password;
 
     @ManyToMany(mappedBy = "students", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Set<Appointment> appointments = new HashSet<>();
@@ -47,5 +36,14 @@ public class Student {
 
     public void addCourse(Course course) {
         this.courses.add(course);
+    }
+
+    @Builder
+    public Student(Long id, String firstName, String lastName, String email, String password, Set<Role> roles, UserType userType, Set<Appointment> appointments, Set<Course> courses, Parent parent) {
+        super(id, firstName, lastName, email, password, roles);
+        this.userType = userType;
+        this.appointments = appointments;
+        this.courses = courses;
+        this.parent = parent;
     }
 }
