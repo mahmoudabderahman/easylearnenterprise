@@ -3,7 +3,6 @@ package com.easylearn.easylearn.entity;
 import com.easylearn.easylearn.model.enums.ParentType;
 import com.easylearn.easylearn.model.enums.UserType;
 import lombok.*;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -33,8 +32,9 @@ public class Parent extends User {
     }
 
     @Builder
-    public Parent(Long id, String firstName, String lastName, String email, String password, Set<Role> roles, ParentType type, UserType userType, Set<Student> students) {
-        super(id, firstName, lastName, email, password, roles);
+
+    public Parent(Long id, String firstName, String lastName, String email, String password, ParentType type, UserType userType, Set<Student> students) {
+        super(id, firstName, lastName, email, password);
         this.type = type;
         this.userType = userType;
         this.students = students;

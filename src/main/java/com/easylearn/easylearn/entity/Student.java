@@ -39,8 +39,9 @@ public class Student extends User{
     }
 
     @Builder
-    public Student(Long id, String firstName, String lastName, String email, String password, Set<Role> roles, UserType userType, Set<Appointment> appointments, Set<Course> courses, Parent parent) {
-        super(id, firstName, lastName, email, password, roles);
+
+    public Student(Long id, String firstName, String lastName, String email, String password, UserType userType, Set<Appointment> appointments, Set<Course> courses, Parent parent) {
+        super(id, firstName, lastName, email, password);
         this.userType = userType;
         this.appointments = appointments;
         this.courses = courses;

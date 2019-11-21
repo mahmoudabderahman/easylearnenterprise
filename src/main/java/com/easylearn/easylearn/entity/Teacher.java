@@ -2,7 +2,6 @@ package com.easylearn.easylearn.entity;
 
 import com.easylearn.easylearn.model.enums.UserType;
 import lombok.*;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -30,8 +29,8 @@ public class Teacher extends User {
     }
 
     @Builder
-    public Teacher(Long id, String firstName, String lastName, String email, String password, Set<Role> roles, UserType userType, Set<Course> courses) {
-        super(id, firstName, lastName, email, password, roles);
+    public Teacher(Long id, String firstName, String lastName, String email, String password, UserType userType, Set<Course> courses) {
+        super(id, firstName, lastName, email, password);
         this.userType = userType;
         this.courses = courses;
     }
