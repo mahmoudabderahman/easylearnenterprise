@@ -20,7 +20,7 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @PostMapping
+    @PostMapping(path = "create")
     public ResponseEntity<StudentRespDTO> createStudent(@RequestBody StudentReqDTO request)
     {
         return studentService.createStudent(request);
@@ -44,24 +44,24 @@ public class StudentController {
      * @param request   used to get the request body
      * @return StudentRespDTO
      */
-    @PutMapping(path = "/{studentId}")
+    @PutMapping(path = "update/{studentId}")
     public StudentRespDTO updateStudent(@PathVariable Long studentId, @Valid @RequestBody StudentReqDTO request) {
         return studentService.updateStudent(studentId, request);
     }
 
-    @PutMapping(path = "/{studentId}/parents/{parentId}")
+    @PutMapping(path = "update/{studentId}/parents/{parentId}")
     public StudentRespDTO assignStudentToParent( @PathVariable Long studentId, @PathVariable Long parentId)
     {
         return studentService.assignStudentToParent(studentId, parentId);
     }
 
-    @PutMapping(path = "/{studentId}/appointments/{appointmentId}")
+    @PutMapping(path = "update/{studentId}/appointments/{appointmentId}")
     public StudentRespDTO assignStudentToAppointment( @PathVariable Long studentId, @PathVariable Long appointmentId)
     {
         return studentService.assignStudentToAppointment(studentId, appointmentId);
     }
 
-    @PutMapping(path = "/{studentId}/courses/{courseCode}")
+    @PutMapping(path = "update/{studentId}/courses/{courseCode}")
     public StudentRespDTO assignStudentToCourse( @PathVariable Long studentId, @PathVariable String courseCode)
     {
         return studentService.assignStudentToCourse(studentId, courseCode);
