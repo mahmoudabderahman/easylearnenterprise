@@ -45,10 +45,10 @@ public class CourseService {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    public CourseRespDTO findCourseById(String courseCode)
+    public CourseRespDTO findCourseById(Long courseId)
     {
         log.info(" *** START OF FINDING COURSE BY ID *** ");
-        Course course = courseValidator.validateExistence(courseCode);
+        Course course = courseValidator.validateExistence(courseId);
         CourseRespDTO response = courseMapper.mapToDTO(course);
         log.info(" *** END OF FINDING COURSE BY ID *** ");
         return response;
@@ -66,9 +66,9 @@ public class CourseService {
 
     }
 
-    public CourseRespDTO updateCourse(String courseCode, CourseReqDTO request) {
+    public CourseRespDTO updateCourse(Long courseId, CourseReqDTO request) {
         log.info(" *** START OF UPDATING COURSE BY ID *** ");
-        Course course = courseValidator.validateExistence(courseCode);
+        Course course = courseValidator.validateExistence(courseId);
         course = courseMapper.mapToEntity(course, request);
         courseRepository.save(course);
         CourseRespDTO response = courseMapper.mapToDTO(course);
@@ -76,9 +76,9 @@ public class CourseService {
         return response;
     }
 
-    public CourseRespDTO assignCourseToAppointment(String courseCode, Long appointmentId) {
+    public CourseRespDTO assignCourseToAppointment(Long courseId, Long appointmentId) {
         log.info(" *** START OF ASSIGNING COURSE TO APPOINTMENT BY ID *** ");
-        Course course = courseValidator.validateExistence(courseCode);
+        Course course = courseValidator.validateExistence(courseId);
         Appointment appointment = appointmentValidator.validateExistence(appointmentId);
         course.addAppointment(appointment);
         appointment.setCourse(course);
@@ -88,10 +88,10 @@ public class CourseService {
         return response;
     }
 
-    public ResponseEntity deleteCourse(String courseCode)
+    public ResponseEntity deleteCourse(Long courseId)
     {
         log.info(" *** START OF DELETING COURSE BY ID *** ");
-        Course course = courseValidator.validateExistence(courseCode);
+        Course course = courseValidator.validateExistence(courseId);
         courseRepository.delete(course);
         log.info(" *** END OF DELETING COURSE BY ID *** ");
         return ResponseEntity.noContent().build();

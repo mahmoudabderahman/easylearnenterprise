@@ -36,6 +36,7 @@ public class CourseMapper implements ObjectMapper<Course, CourseReqDTO, CourseRe
     @Override
     public CourseRespDTO mapToDTO(Course course) {
         return CourseRespDTO.builder()
+                .id(course.getId())
                 .courseCode(course.getCourseCode())
                 .name(course.getName())
                 .grade(course.getGrade())

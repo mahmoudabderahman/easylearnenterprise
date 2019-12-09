@@ -16,6 +16,9 @@ import java.util.Set;
 public class Course {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto Increament
+    private Long id;
+
     @Column(unique = true, nullable = false)
     private String courseCode;
 

@@ -10,6 +10,7 @@ import lombok.Setter;
 @Builder // It does not work unless, there is a @AllArgsConstructor.
 @AllArgsConstructor
 public class CourseRespDTO {
+    private Long id;
     private String courseCode;
     private String name;
     private int grade;
