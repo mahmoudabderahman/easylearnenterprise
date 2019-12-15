@@ -12,6 +12,7 @@ import java.util.Set;
 @Component
 @Transactional
 public class CourseMapper implements ObjectMapper<Course, CourseReqDTO, CourseRespDTO> {
+    // create
     @Override
     public Course mapToEntity(CourseReqDTO request) {
         return Course.builder()
@@ -22,6 +23,7 @@ public class CourseMapper implements ObjectMapper<Course, CourseReqDTO, CourseRe
                 .description(request.getDescription())
                 .build();
     }
+    // update
 // courseCode, name, grade, content, description
     @Override
     public Course mapToEntity(Course course, CourseReqDTO request) {
@@ -32,6 +34,7 @@ public class CourseMapper implements ObjectMapper<Course, CourseReqDTO, CourseRe
         course.setDescription(request.getDescription());
         return course;
     }
+
 
     @Override
     public CourseRespDTO mapToDTO(Course course) {

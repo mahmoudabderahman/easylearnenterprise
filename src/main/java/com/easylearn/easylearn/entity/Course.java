@@ -32,12 +32,15 @@ public class Course {
     @Column(nullable = false)
     private String description;
 
+    // LAZY is used in OneToMany relationships, because we get only the existed relationships.
     @ManyToOne(fetch = FetchType.LAZY)
     private Teacher teacher;
+
 
     @OneToMany(mappedBy = "course")
     private Set<Appointment> appointments = new HashSet<>();
 
+    // EAGER is used in ManyToMany relationships, because we get all the relationships.
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "course_student",
