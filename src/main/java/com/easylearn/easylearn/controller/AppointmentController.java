@@ -66,7 +66,7 @@ public class AppointmentController {
     }
 
     /**
-     * API to update a specific workout
+     * API to update a specific appointment
      *
      * @param appointmentId used to get the appointmentId
      * @param request   used to get the request body
