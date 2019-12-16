@@ -59,7 +59,7 @@ public class AppointmentController {
         return appointmentService.findAllAppointments();
     }
 
-    @GetMapping
+    @GetMapping("x")
     public ResponseEntity findAllCoursesAppointments()
     {
         return appointmentService.findAllCoursesAppointments();
