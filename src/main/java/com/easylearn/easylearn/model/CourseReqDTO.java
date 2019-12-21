@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-@Setter
 @Builder // It does not work unless, there is a @AllArgsConstructor.
 @AllArgsConstructor
 public class CourseReqDTO {

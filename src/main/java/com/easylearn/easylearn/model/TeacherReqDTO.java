@@ -6,7 +6,6 @@ import lombok.*;
 import javax.validation.constraints.Email;
 
 @Getter
-@Setter
 @Builder // It does not work unless, there is a @AllArgsConstructor.
 @AllArgsConstructor
 public class TeacherReqDTO {
