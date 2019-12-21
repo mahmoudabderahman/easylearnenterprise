@@ -14,11 +14,11 @@ public class EasylearnApplication {
     public static void main(String[] args) {
         SpringApplication.run(EasylearnApplication.class, args);
     }
-
+    /*
     @PostConstruct
     public void init(){
         // Setting Spring Boot SetTimeZone
         TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
     }
-
+    */
 }

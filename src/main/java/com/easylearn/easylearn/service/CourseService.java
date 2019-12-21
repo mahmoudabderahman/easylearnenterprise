@@ -76,12 +76,13 @@ public class CourseService {
         return response;
     }
 
-    public CourseRespDTO assignCourseToAppointment(Long courseId, Long appointmentId) {
+    public CourseRespDTO assignAppointmentsToCourse(Long courseId, Set<Long> appointmentIds) {
         log.info(" *** START OF ASSIGNING COURSE TO APPOINTMENT BY ID *** ");
+        Set<Appointment> appointments = new HashSet<>();
         Course course = courseValidator.validateExistence(courseId);
-        Appointment appointment = appointmentValidator.validateExistence(appointmentId);
-        course.addAppointment(appointment);
-        appointment.setCourse(course);
+        appointmentIds.forEach(appointmentId -> appointments.add(appointmentValidator.validateExistence(appointmentId)));
+        course.addAppointments(appointments);
+        //appointment.setCourse(course);
         courseRepository.save(course);
         CourseRespDTO response = courseMapper.mapToDTO(course);
         log.info(" *** END OF ASSIGNING COURSE TO APPOINTMENT BY ID *** ");

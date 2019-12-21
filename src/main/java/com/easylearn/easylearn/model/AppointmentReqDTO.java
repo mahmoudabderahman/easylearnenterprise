@@ -1,5 +1,6 @@
 package com.easylearn.easylearn.model;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +12,7 @@ import lombok.Setter;
 @Builder // It does not work unless, there is a @AllArgsConstructor.
 @AllArgsConstructor
 public class AppointmentReqDTO {
-    private Date startDate;
-    private Date endDate;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
     private int roomNumber;
 }

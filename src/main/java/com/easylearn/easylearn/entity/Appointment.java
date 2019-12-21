@@ -3,6 +3,7 @@ package com.easylearn.easylearn.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,11 +21,9 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto Increament
     private Long id;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date startDate;
+    private LocalDateTime startDate;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date endDate;
+    private LocalDateTime endDate;
 
     private int roomNumber;
 
@@ -37,7 +36,7 @@ public class Appointment {
             joinColumns = {@JoinColumn(name = "appointment_id")},
             inverseJoinColumns = {@JoinColumn(name = "student_id")}
     )
-    private Set<Student> students = new HashSet<>();
+    private Set<Student> students;
 
 
     public void addStudent(Student student) {

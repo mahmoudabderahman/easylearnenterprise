@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Getter
@@ -17,8 +18,8 @@ import java.util.Date;
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class AppointmentRespDTO {
     private Long id;
-    private Date startDate;
-    private Date endDate;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
     private int roomNumber;
     private CourseRespDTO course;
 }

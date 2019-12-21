@@ -2,6 +2,7 @@ package com.easylearn.easylearn.entity;
 
 import com.easylearn.easylearn.model.enums.UserType;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -11,7 +12,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
+@SuperBuilder
 @Entity
 public class Student extends User{
 
@@ -21,10 +22,10 @@ public class Student extends User{
 
 
     @ManyToMany(mappedBy = "students", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    private Set<Appointment> appointments = new HashSet<>();
+    private Set<Appointment> appointments;
 
     @ManyToMany(mappedBy = "students", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    private Set<Course> courses = new HashSet<>();
+    private Set<Course> courses;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Parent parent;
@@ -38,13 +39,5 @@ public class Student extends User{
         this.courses.add(course);
     }
 
-    @Builder
 
-    public Student(Long id, String firstName, String lastName, String email, String password, UserType userType, Set<Appointment> appointments, Set<Course> courses, Parent parent) {
-        super(id, firstName, lastName, email, password);
-        this.userType = userType;
-        this.appointments = appointments;
-        this.courses = courses;
-        this.parent = parent;
-    }
 }

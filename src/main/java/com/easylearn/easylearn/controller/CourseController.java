@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Set;
 
 @RestController
 @RequestMapping(path = "/api/v1/courses")
@@ -48,10 +49,10 @@ public class CourseController {
         return courseService.updateCourse(courseId, request);
     }
 
-    @PutMapping(path = "/{courseId}/appointments/{appointmentId}")
-    public CourseRespDTO assignCourseToAppointment( @PathVariable Long courseId, @PathVariable Long appointmentId)
+    @PostMapping(path = "/{courseId}/appointments")
+    public CourseRespDTO assignAppointmentsToCourse( @PathVariable Long courseId, @RequestBody Set<Long> appointmentIds)
     {
-        return courseService.assignCourseToAppointment(courseId, appointmentId);
+        return courseService.assignAppointmentsToCourse(courseId, appointmentIds);
     }
 
     @DeleteMapping(path = "/{courseId}")

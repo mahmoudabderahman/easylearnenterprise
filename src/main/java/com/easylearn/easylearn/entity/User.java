@@ -1,6 +1,7 @@
 package com.easylearn.easylearn.entity;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 
@@ -10,6 +11,7 @@ import java.util.Set;
 
 @Getter
 @Setter
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 

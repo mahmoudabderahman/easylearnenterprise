@@ -3,6 +3,7 @@ package com.easylearn.easylearn.entity;
 import com.easylearn.easylearn.model.enums.ParentType;
 import com.easylearn.easylearn.model.enums.UserType;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -16,6 +17,8 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@SuperBuilder
+
 public class Parent extends User {
 
     @Enumerated(value = EnumType.STRING)
@@ -25,19 +28,11 @@ public class Parent extends User {
     private UserType userType = UserType.TEACHER;
 
     @OneToMany(mappedBy = "parent")
-    private Set<Student> students = new HashSet<>();
+    private Set<Student> students;
 
     public void addStudent(Student student) {
         students.add(student);
     }
 
-    @Builder
-
-    public Parent(Long id, String firstName, String lastName, String email, String password, ParentType type, UserType userType, Set<Student> students) {
-        super(id, firstName, lastName, email, password);
-        this.type = type;
-        this.userType = userType;
-        this.students = students;
-    }
 }
 

@@ -1,6 +1,7 @@
 package com.easylearn.easylearn.entity;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -37,8 +38,8 @@ public class Course {
     private Teacher teacher;
 
 
-    @OneToMany(mappedBy = "course")
-    private Set<Appointment> appointments = new HashSet<>();
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    private Set<Appointment> appointments;
 
     // EAGER is used in ManyToMany relationships, because we get all the relationships.
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
@@ -47,12 +48,18 @@ public class Course {
             joinColumns = {@JoinColumn(name = "course_id")},
             inverseJoinColumns = {@JoinColumn(name = "student_id")}
     )
-    private Set<Student> students = new HashSet<>();
+    private Set<Student> students;
 
     public void addAppointment(Appointment appointment)
     {
         this.appointments.add(appointment);
     }
+
+    public void addAppointments(Set<Appointment> appointments)
+    {
+        this.appointments.addAll(appointments);
+    }
+
 
     public void addStudent(Student student)
     {
