@@ -8,11 +8,17 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import java.time.LocalDateTime;
+
 @ControllerAdvice // All controllers is being advised by this controller
 public final class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(ResponseStatusException.class)
     public ResponseEntity<Object> handleBadRequest(ResponseStatusException ex) {
-        ApiError apiError =  ApiError.builder().status(HttpStatus.BAD_REQUEST).message(ex.getMessage()).build();
+        ApiError apiError =  ApiError.builder().status(HttpStatus.BAD_REQUEST)
+                .message(ex.getMessage())
+                .timestamp(LocalDateTime.now())
+                .build();
+
         return new ResponseEntity<>(apiError, apiError.getStatus());
     }
 }

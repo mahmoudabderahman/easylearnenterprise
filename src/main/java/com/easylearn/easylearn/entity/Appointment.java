@@ -30,7 +30,7 @@ public class Appointment {
     @ManyToOne(fetch = FetchType.LAZY)
     private Course course;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
             name = "appointment_student",
             joinColumns = {@JoinColumn(name = "appointment_id")},

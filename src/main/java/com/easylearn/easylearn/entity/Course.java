@@ -42,7 +42,7 @@ public class Course {
     private Set<Appointment> appointments;
 
     // EAGER is used in ManyToMany relationships, because we get all the relationships.
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
             name = "course_student",
             joinColumns = {@JoinColumn(name = "course_id")},
