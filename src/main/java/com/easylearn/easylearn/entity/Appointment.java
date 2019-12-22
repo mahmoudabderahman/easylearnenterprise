@@ -27,7 +27,7 @@ public class Appointment {
 
     private int roomNumber;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Course course;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)

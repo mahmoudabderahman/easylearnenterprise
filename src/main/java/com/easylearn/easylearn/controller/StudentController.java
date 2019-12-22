@@ -11,10 +11,9 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping(path = "/api/v1/students")
-public class StudentController {
+final class StudentController {
     private StudentService studentService;
 
-    @Autowired
     public StudentController(StudentService studentService)
     {
         this.studentService = studentService;
@@ -49,11 +48,7 @@ public class StudentController {
         return studentService.updateStudent(studentId, request);
     }
 
-    @PutMapping(path = "/{studentId}/parents/{parentId}")
-    public StudentRespDTO assignStudentToParent( @PathVariable Long studentId, @PathVariable Long parentId)
-    {
-        return studentService.assignStudentToParent(studentId, parentId);
-    }
+
 
     @PutMapping(path = "/{studentId}/appointments/{appointmentId}")
     public StudentRespDTO assignStudentToAppointment( @PathVariable Long studentId, @PathVariable Long appointmentId)

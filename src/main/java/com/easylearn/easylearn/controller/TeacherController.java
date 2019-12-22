@@ -11,8 +11,8 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping(path = "/api/v1/teachers")
-public class TeacherController {
-    private TeacherService teacherService;
+final class TeacherController {
+    final TeacherService teacherService;
 
     @Autowired
     public TeacherController(TeacherService teacherService) {

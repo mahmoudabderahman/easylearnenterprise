@@ -82,6 +82,12 @@ public class CourseService {
         Course course = courseValidator.validateExistence(courseId);
         appointmentIds.forEach(appointmentId -> appointments.add(appointmentValidator.validateExistence(appointmentId)));
         course.addAppointments(appointments);
+        /*
+        for (Appointment appointment: appointments) {
+            Appointment app = appointmentValidator.validateExistence(appointment);
+            app.setCourse(course);
+        }
+        */
         //appointment.setCourse(course);
         courseRepository.save(course);
         CourseRespDTO response = courseMapper.mapToDTO(course);

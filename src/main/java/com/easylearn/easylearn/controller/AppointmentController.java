@@ -15,14 +15,13 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping(path = "/api/v1/appointments")
-public class AppointmentController {
-    private AppointmentService appointmentService;
+final class AppointmentController {
+    private final AppointmentService appointmentService;
 
     /**
      * Main Constructor
      * @param appointmentService is an instance from the AppointmentService class in Services package.
      */
-    @Autowired
     public AppointmentController(AppointmentService appointmentService )
     {
         this.appointmentService = appointmentService;

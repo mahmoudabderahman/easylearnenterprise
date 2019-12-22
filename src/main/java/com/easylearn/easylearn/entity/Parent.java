@@ -5,10 +5,7 @@ import com.easylearn.easylearn.model.enums.UserType;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,7 +24,8 @@ public class Parent extends User {
     @Enumerated(value = EnumType.STRING)
     private UserType userType = UserType.TEACHER;
 
-    @OneToMany(mappedBy = "parent")
+    @JoinColumn(name = "parent_id")
+    @OneToMany(cascade = CascadeType.ALL)
     private Set<Student> students;
 
     public void addStudent(Student student) {

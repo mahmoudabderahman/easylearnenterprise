@@ -84,18 +84,7 @@ public class StudentService {
         return response;
     }
 
-    public StudentRespDTO assignStudentToParent(Long studentId, Long parentId)
-    {
-        log.info(" *** START OF ASSIGNING STUDENT TO PARENT BY ID *** ");
-        Student student = studentValidator.validateExistence(studentId);
-        Parent parent = parentValidator.validateExistence(parentId);
-        student.setParent(parent);
-        parent.addStudent(student);
-        studentRepository.save(student);
-        StudentRespDTO response = studentMapper.mapToDTO(student);
-        log.info(" *** END OF ASSIGNING STUDENT TO PARENT BY ID *** ");
-        return response;
-    }
+
 
     public StudentRespDTO assignStudentToAppointment(Long studentId, Long appointmentId)
     {

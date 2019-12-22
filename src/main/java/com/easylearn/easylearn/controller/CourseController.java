@@ -12,10 +12,9 @@ import java.util.Set;
 
 @RestController
 @RequestMapping(path = "/api/v1/courses")
-public class CourseController {
-    private CourseService courseService;
+final class CourseController {
+    private final CourseService courseService;
 
-    @Autowired
     public CourseController(CourseService courseService) {
         this.courseService = courseService;
     }

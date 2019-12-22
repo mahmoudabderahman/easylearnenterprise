@@ -20,7 +20,6 @@ public class Student extends User{
     @Enumerated(value = EnumType.STRING)
     private UserType userType = UserType.STUDENT;
 
-
     @ManyToMany(mappedBy = "students", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Set<Appointment> appointments;
 
