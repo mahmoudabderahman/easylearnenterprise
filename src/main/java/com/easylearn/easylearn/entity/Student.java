@@ -16,7 +16,7 @@ import java.util.Set;
 @Entity
 public class Student extends User{
 
-
+    @Builder.Default
     @Enumerated(value = EnumType.STRING)
     private UserType userType = UserType.STUDENT;
 
