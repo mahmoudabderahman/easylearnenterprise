@@ -8,12 +8,15 @@ import com.easylearn.easylearn.repository.AppointmentRepository;
 import com.easylearn.easylearn.validation.AppointmentValidator;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Log4j2
@@ -55,13 +58,13 @@ public class AppointmentService {
         return response;
     }
 
-    public ResponseEntity<Set<AppointmentRespDTO>> findAllAppointments() {
+    public ResponseEntity<List<AppointmentRespDTO>> findAllAppointments() {
         log.info(" *** START OF FINDING ALL APPOINTMENTS *** ");
-        Set<Appointment> appointments = appointmentRepository.findAll();
+        Set<Appointment> appointments = appointmentRepository.findAll(Sort.by( "startDate"));
         if (appointments.isEmpty())
             return ResponseEntity.noContent().build();
 
-        Set<AppointmentRespDTO> appointmentsResponse = new HashSet<>(appointments.size());
+        List<AppointmentRespDTO> appointmentsResponse = new ArrayList<>(appointments.size());
         appointments.forEach(appointment -> appointmentsResponse.add(appointmentMapper.mapToDTO(appointment)));
         log.info(" *** END OF FINDING ALL APPOINTMENTS *** ");
         return ResponseEntity.ok(appointmentsResponse);
@@ -69,7 +72,7 @@ public class AppointmentService {
 
     public ResponseEntity<Set<AppointmentRespDTO>> findAllCoursesAppointments() {
         log.info(" *** START OF FINDING ALL COURSES IN APPOINTMENTS *** ");
-        Set<Appointment> appointments = appointmentRepository.findAll();
+        Set<Appointment> appointments = appointmentRepository.findAll(Sort.by( "startDate"));
         if (appointments.isEmpty())
             return ResponseEntity.noContent().build();
 
