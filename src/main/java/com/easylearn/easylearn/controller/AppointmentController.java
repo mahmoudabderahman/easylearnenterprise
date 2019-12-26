@@ -6,12 +6,14 @@ package com.easylearn.easylearn.controller;
 
 import com.easylearn.easylearn.model.AppointmentReqDTO;
 import com.easylearn.easylearn.model.AppointmentRespDTO;
+import com.easylearn.easylearn.model.StudentRespDTO;
 import com.easylearn.easylearn.service.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Set;
 
 @RestController
 @RequestMapping(path = "/api/v1/appointments")
@@ -53,15 +55,15 @@ final class AppointmentController {
      * @return
      */
     @GetMapping
-    public ResponseEntity findAllAppointments()
+    public ResponseEntity findAllAppointments(@RequestParam(required = false) Long courseId)
     {
-        return appointmentService.findAllAppointments();
+        return appointmentService.findAllAppointments(courseId);
     }
 
-    @GetMapping("x")
-    public ResponseEntity findAllCoursesAppointments()
+    @PostMapping(path = "/{appointmentId}/students")
+    public AppointmentRespDTO assignStudentsToAppointment(@PathVariable Long appointmentId, @RequestBody Set<Long> studentIds)
     {
-        return appointmentService.findAllCoursesAppointments();
+        return appointmentService.assignStudentsToAppointment(appointmentId, studentIds);
     }
 
     /**

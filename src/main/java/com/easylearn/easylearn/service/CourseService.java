@@ -2,12 +2,15 @@ package com.easylearn.easylearn.service;
 
 import com.easylearn.easylearn.entity.Appointment;
 import com.easylearn.easylearn.entity.Course;
+import com.easylearn.easylearn.entity.Student;
 import com.easylearn.easylearn.mapper.CourseMapper;
 import com.easylearn.easylearn.model.CourseReqDTO;
 import com.easylearn.easylearn.model.CourseRespDTO;
+import com.easylearn.easylearn.model.StudentRespDTO;
 import com.easylearn.easylearn.repository.CourseRepository;
 import com.easylearn.easylearn.validation.AppointmentValidator;
 import com.easylearn.easylearn.validation.CourseValidator;
+import com.easylearn.easylearn.validation.StudentValidator;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,13 +29,15 @@ public class CourseService {
     private final CourseMapper courseMapper;
     private final CourseValidator courseValidator;
     private final AppointmentValidator appointmentValidator;
+    private final StudentValidator studentValidator;
 
     @Autowired
-    public CourseService(CourseRepository courseRepository, CourseMapper courseMapper, CourseValidator courseValidator, AppointmentValidator appointmentValidator) {
+    public CourseService(CourseRepository courseRepository, CourseMapper courseMapper, CourseValidator courseValidator, AppointmentValidator appointmentValidator, StudentValidator studentValidator) {
         this.courseRepository = courseRepository;
         this.courseMapper = courseMapper;
         this.courseValidator = courseValidator;
         this.appointmentValidator = appointmentValidator;
+        this.studentValidator = studentValidator;
     }
 
     public ResponseEntity<CourseRespDTO> createCourse(CourseReqDTO request) {
@@ -92,6 +97,19 @@ public class CourseService {
         courseRepository.save(course);
         CourseRespDTO response = courseMapper.mapToDTO(course);
         log.info(" *** END OF ASSIGNING COURSE TO APPOINTMENT BY ID *** ");
+        return response;
+    }
+
+    public CourseRespDTO assignStudentsToCourse(Long courseId, Set<Long> studentIds)
+    {
+        log.info(" *** START OF ASSIGNING STUDENTS TO COURSE BY ID *** ");
+        Course course = courseValidator.validateExistence(courseId);
+        Set<Student> students = new HashSet<>();
+        studentIds.forEach(studentId -> students.add(studentValidator.validateExistence(studentId)));
+        course.addStudents(students);
+        courseRepository.save(course);
+        CourseRespDTO response = courseMapper.mapToDTO(course);
+        log.info(" *** END OF ASSIGNING STUDENTS TO COURSE BY ID *** ");
         return response;
     }
 

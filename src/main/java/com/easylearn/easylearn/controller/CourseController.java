@@ -2,6 +2,7 @@ package com.easylearn.easylearn.controller;
 
 import com.easylearn.easylearn.model.CourseReqDTO;
 import com.easylearn.easylearn.model.CourseRespDTO;
+import com.easylearn.easylearn.model.StudentRespDTO;
 import com.easylearn.easylearn.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -52,6 +53,12 @@ final class CourseController {
     public CourseRespDTO assignAppointmentsToCourse( @PathVariable Long courseId, @RequestBody Set<Long> appointmentIds)
     {
         return courseService.assignAppointmentsToCourse(courseId, appointmentIds);
+    }
+
+    @PostMapping(path = "/{courseId}/students")
+    public CourseRespDTO assignStudentsToCourse(@PathVariable Long courseId, @RequestBody Set<Long> studentsIds)
+    {
+        return courseService.assignStudentsToCourse(courseId, studentsIds);
     }
 
     @DeleteMapping(path = "/{courseId}")

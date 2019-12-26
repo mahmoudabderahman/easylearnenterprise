@@ -10,5 +10,5 @@ import java.util.Set;
 public interface AppointmentRepository extends BaseRepository<Appointment, Long> {
 
     Set<Appointment> findAll(Sort sort);
-
+    Set<Appointment> findAllByCourseId(Long courseId, Sort sort);
 }

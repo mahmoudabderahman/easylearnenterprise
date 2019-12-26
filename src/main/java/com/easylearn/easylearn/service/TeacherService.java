@@ -75,13 +75,12 @@ public class TeacherService {
         return response;
     }
 
-    public TeacherRespDTO assignTeacherToCourse(Long teacherId, String courseCode)
+    public TeacherRespDTO assignTeacherToCourse(Long teacherId, Long courseId)
     {
         log.info(" *** START OF ASSIGNING TEACHER TO COURSE BY ID *** ");
         Teacher teacher = teacherValidator.validateExistence(teacherId);
-        Course course = courseValidator.validateExistence(courseCode);
+        Course course = courseValidator.validateExistence(courseId);
         teacher.addCourse(course);
-        course.setTeacher(teacher);
         teacherRepository.save(teacher);
         TeacherRespDTO response = teacherMapper.mapToDTO(teacher);
         log.info(" *** END OF ASSIGNING TEACHER TO COURSE BY ID *** ");

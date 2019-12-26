@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Set;
 
 @RestController
 @RequestMapping(path = "/api/v1/parents")
@@ -49,10 +50,10 @@ final class ParentController {
         return parentService.updateParent(parentId, request);
     }
 
-    @PostMapping(path = "/{parentId}/students/{studentId}")
-    public StudentRespDTO assignStudentToParent(@PathVariable Long studentId, @PathVariable Long parentId)
+    @PostMapping(path = "/{parentId}/students")
+    public ParentRespDTO assignStudentToParent(@PathVariable Long parentId, @RequestBody Set<Long> studentIds)
     {
-        return parentService.assignStudentToParent(studentId, parentId);
+        return parentService.assignStudentsToParent(parentId, studentIds);
     }
 
     @DeleteMapping(path = "/{parentId}")

@@ -32,5 +32,6 @@ public class Parent extends User {
         students.add(student);
     }
 
+    public void addStudents(Set<Student> students) {this.students.addAll(students);}
 }
 

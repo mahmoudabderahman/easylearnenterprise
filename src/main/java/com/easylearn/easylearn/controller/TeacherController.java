@@ -46,10 +46,10 @@ final class TeacherController {
         return teacherService.updateTeacher(teacherId, request);
     }
 
-    @PutMapping(path = "/{teacherId}/courses/{courseCode}")
-    public TeacherRespDTO assignTeacherToCourse( @PathVariable Long teacherId, @PathVariable String courseCode)
+    @PostMapping(path = "/{teacherId}/courses/{courseId}")
+    public TeacherRespDTO assignTeacherToCourse( @PathVariable Long teacherId, @PathVariable Long courseId)
     {
-        return teacherService.assignTeacherToCourse(teacherId, courseCode);
+        return teacherService.assignTeacherToCourse(teacherId, courseId);
     }
 
     @DeleteMapping(path = "/{teacherId}")

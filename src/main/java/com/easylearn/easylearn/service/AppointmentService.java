@@ -1,11 +1,14 @@
 package com.easylearn.easylearn.service;
 
 import com.easylearn.easylearn.entity.Appointment;
+import com.easylearn.easylearn.entity.Student;
 import com.easylearn.easylearn.mapper.AppointmentMapper;
 import com.easylearn.easylearn.model.AppointmentReqDTO;
 import com.easylearn.easylearn.model.AppointmentRespDTO;
+import com.easylearn.easylearn.model.StudentRespDTO;
 import com.easylearn.easylearn.repository.AppointmentRepository;
 import com.easylearn.easylearn.validation.AppointmentValidator;
+import com.easylearn.easylearn.validation.StudentValidator;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -26,13 +29,15 @@ public class AppointmentService {
     private final AppointmentRepository appointmentRepository;
     private final AppointmentMapper appointmentMapper;
     private final AppointmentValidator appointmentValidator;
+    private final StudentValidator studentValidator;
 
 
     @Autowired
-    public AppointmentService(AppointmentRepository appointmentRepository, AppointmentMapper appointmentMapper, AppointmentValidator appointmentValidator) {
+    public AppointmentService(AppointmentRepository appointmentRepository, AppointmentMapper appointmentMapper, AppointmentValidator appointmentValidator, StudentValidator studentValidator) {
         this.appointmentRepository = appointmentRepository;
         this.appointmentMapper = appointmentMapper;
         this.appointmentValidator = appointmentValidator;
+        this.studentValidator = studentValidator;
     }
 
     /**
@@ -58,9 +63,16 @@ public class AppointmentService {
         return response;
     }
 
-    public ResponseEntity<List<AppointmentRespDTO>> findAllAppointments() {
+    public ResponseEntity<List<AppointmentRespDTO>> findAllAppointments(Long courseId) {
         log.info(" *** START OF FINDING ALL APPOINTMENTS *** ");
-        Set<Appointment> appointments = appointmentRepository.findAll(Sort.by( "startDate"));
+        Set<Appointment> appointments;
+        if (courseId != null) {
+            appointments = appointmentRepository.findAllByCourseId(courseId, Sort.by( "startDate"));
+        }
+        else {
+            appointments = appointmentRepository.findAll(Sort.by( "startDate"));
+        }
+
         if (appointments.isEmpty())
             return ResponseEntity.noContent().build();
 
@@ -70,17 +82,20 @@ public class AppointmentService {
         return ResponseEntity.ok(appointmentsResponse);
     }
 
-    public ResponseEntity<Set<AppointmentRespDTO>> findAllCoursesAppointments() {
-        log.info(" *** START OF FINDING ALL COURSES IN APPOINTMENTS *** ");
-        Set<Appointment> appointments = appointmentRepository.findAll(Sort.by( "startDate"));
-        if (appointments.isEmpty())
-            return ResponseEntity.noContent().build();
-
-        Set<AppointmentRespDTO> appointmentsResponse = new HashSet<>(appointments.size());
-        appointments.forEach(appointment -> appointmentsResponse.add(appointmentMapper.mapToDTO(appointment)));
-        log.info(" *** END OF FINDING ALL COURSES IN APPOINTMENTS *** ");
-        return ResponseEntity.ok(appointmentsResponse);
+    public AppointmentRespDTO assignStudentsToAppointment(Long appointmentId, Set<Long> studentIds)
+    {
+        log.info(" *** START OF ASSIGNING STUDENTS TO APPOINTMENT BY ID *** ");
+        Appointment appointment = appointmentValidator.validateExistence(appointmentId);
+        Set<Student> students = new HashSet<>();
+        studentIds.forEach(studentId -> students.add(studentValidator.validateExistence(studentId)));
+        appointment.addStudents(students);
+        appointmentRepository.save(appointment);
+        AppointmentRespDTO response = appointmentMapper.mapToDTO(appointment);
+        log.info(" *** END OF ASSIGNING STUDENTS TO APPOINTMENT BY ID *** ");
+        return response;
     }
+
+
 
     public AppointmentRespDTO updateAppointment(Long appointmentId, AppointmentReqDTO request)
     {

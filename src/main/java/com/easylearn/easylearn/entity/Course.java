@@ -60,9 +60,14 @@ public class Course {
         this.appointments.addAll(appointments);
     }
 
-
     public void addStudent(Student student)
     {
         this.students.add(student);
     }
+
+    public void addStudents(Set<Student> students)
+    {
+        this.students.addAll(students);
+    }
+
 }

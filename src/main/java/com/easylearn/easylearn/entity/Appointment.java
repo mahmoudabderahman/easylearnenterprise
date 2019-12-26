@@ -42,4 +42,9 @@ public class Appointment {
     public void addStudent(Student student) {
         students.add(student);
     }
+
+    public void addStudents(Set<Student> students) {
+        this.students.addAll(students);
+    }
+
 }

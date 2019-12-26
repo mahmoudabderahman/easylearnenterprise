@@ -82,15 +82,18 @@ public class ParentService {
         return response;
     }
 
-    public StudentRespDTO assignStudentToParent(Long studentId, Long parentId)
+    public ParentRespDTO assignStudentsToParent(Long parentId, Set<Long> studentIds)
     {
-        log.info(" *** START OF ASSIGNING STUDENT TO PARENT BY ID *** ");
+        log.info(" *** START OF ASSIGNING STUDENTS TO PARENT BY ID *** ");
         Parent parent = parentValidator.validateExistence(parentId);
-        Student student = studentValidator.validateExistence(studentId);
-        student.setParent(parent);
-        studentRepository.save(student);
-        StudentRespDTO response = studentMapper.mapToDTO(student);
-        log.info(" *** END OF ASSIGNING STUDENT TO PARENT BY ID *** ");
+        Set<Student> students = new HashSet<>();
+        //Student student = studentValidator.validateExistence(studentId);
+        studentIds.forEach(studentId ->students.add(studentValidator.validateExistence(studentId)));
+        parent.addStudents(students);
+        //student.setParent(parent);
+        parentRepository.save(parent);
+        ParentRespDTO response = parentMapper.mapToDTO(parent);
+        log.info(" *** END OF ASSIGNING STUDENTS TO PARENT BY ID *** ");
         return response;
     }
 

@@ -84,34 +84,6 @@ public class StudentService {
         return response;
     }
 
-
-
-    public StudentRespDTO assignStudentToAppointment(Long studentId, Long appointmentId)
-    {
-        log.info(" *** START OF ASSIGNING STUDENT TO APPOINTMENT BY ID *** ");
-        Student student = studentValidator.validateExistence(studentId);
-        Appointment appointment = appointmentValidator.validateExistence(appointmentId);
-        student.addAppointment(appointment);
-        appointment.addStudent(student);
-        studentRepository.save(student);
-        StudentRespDTO response = studentMapper.mapToDTO(student);
-        log.info(" *** END OF ASSIGNING STUDENT TO APPOINTMENT BY ID *** ");
-        return response;
-    }
-
-    public StudentRespDTO assignStudentToCourse(Long studentId, String courseCode)
-    {
-        log.info(" *** START OF ASSIGNING STUDENT TO COURSE BY ID *** ");
-        Student student = studentValidator.validateExistence(studentId);
-        Course course = courseValidator.validateExistence(courseCode);
-        student.addCourse(course);
-        course.addStudent(student);
-        studentRepository.save(student);
-        StudentRespDTO response = studentMapper.mapToDTO(student);
-        log.info(" *** END OF ASSIGNING STUDENT TO COURSE BY ID *** ");
-        return response;
-    }
-
     public ResponseEntity deleteStudent(Long studentId)
     {
         log.info(" *** START OF DELETING STUDENT BY ID *** ");
