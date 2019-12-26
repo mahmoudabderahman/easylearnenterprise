@@ -51,7 +51,7 @@ final class ParentController {
     }
 
     @PostMapping(path = "/{parentId}/students")
-    public ParentRespDTO assignStudentToParent(@PathVariable Long parentId, @RequestBody Set<Long> studentIds)
+    public ParentRespDTO assignStudentsToParent(@PathVariable Long parentId, @RequestBody Set<Long> studentIds)
     {
         return parentService.assignStudentsToParent(parentId, studentIds);
     }
