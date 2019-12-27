@@ -29,7 +29,7 @@ public class Parent extends User {
     private Set<Student> students;
 
     public void addStudent(Student student) {
-        students.add(student);
+        this.students.add(student);
     }
 
     public void addStudents(Set<Student> students) {this.students.addAll(students);}

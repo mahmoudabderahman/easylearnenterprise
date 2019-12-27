@@ -75,15 +75,17 @@ public class TeacherService {
         return response;
     }
 
-    public TeacherRespDTO assignTeacherToCourse(Long teacherId, Long courseId)
+    public TeacherRespDTO assignCoursesToTeacher(Long teacherId, Set<Long> courseIds)
     {
-        log.info(" *** START OF ASSIGNING TEACHER TO COURSE BY ID *** ");
+        log.info(" *** START OF ASSIGNING TEACHERS TO COURSE BY ID *** ");
         Teacher teacher = teacherValidator.validateExistence(teacherId);
-        Course course = courseValidator.validateExistence(courseId);
-        teacher.addCourse(course);
+        Set<Course> courses = new HashSet<>();
+        courseIds.forEach(courseId -> courses.add(courseValidator.validateExistence(courseId)));
+        //Course course = courseValidator.validateExistence(courseId);
+        teacher.addCourses(courses);
         teacherRepository.save(teacher);
         TeacherRespDTO response = teacherMapper.mapToDTO(teacher);
-        log.info(" *** END OF ASSIGNING TEACHER TO COURSE BY ID *** ");
+        log.info(" *** END OF ASSIGNING TEACHERS TO COURSE BY ID *** ");
         return response;
     }
 

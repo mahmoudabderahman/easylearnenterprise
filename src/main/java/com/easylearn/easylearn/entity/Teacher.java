@@ -24,8 +24,11 @@ public class Teacher extends User {
     private Set<Course> courses;
 
     public void addCourse(Course course) {
-        courses.add(course);
+        this.courses.add(course);
     }
 
+    public void addCourses(Set<Course> courses) {
+        this.courses.addAll(courses);
+    }
 
 }

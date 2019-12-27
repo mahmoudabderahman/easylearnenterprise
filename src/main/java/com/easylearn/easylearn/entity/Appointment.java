@@ -40,7 +40,7 @@ public class Appointment {
 
 
     public void addStudent(Student student) {
-        students.add(student);
+        this.students.add(student);
     }
 
     public void addStudents(Set<Student> students) {

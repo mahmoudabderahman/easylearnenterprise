@@ -70,7 +70,7 @@ public class AppointmentService {
             appointments = appointmentRepository.findAllByCourseId(courseId, Sort.by( "startDate"));
         }
         else {
-            appointments = appointmentRepository.findAll(Sort.by( "startDate"));
+            appointments = appointmentRepository.findAllByCourseIdNull(Sort.by( "startDate"));
         }
 
         if (appointments.isEmpty())

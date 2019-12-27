@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Set;
 
 @RestController
 @RequestMapping(path = "/api/v1/teachers")
@@ -42,14 +43,14 @@ final class TeacherController {
      * @return TeacherRespDTO
      */
     @PutMapping(path = "/{teacherId}")
-    public TeacherRespDTO updateTeacher(@PathVariable Long teacherId, @Valid @RequestBody TeacherReqDTO request) {
+    public TeacherRespDTO updateTeacher(@PathVariable Long teacherId, @RequestBody TeacherReqDTO request) {
         return teacherService.updateTeacher(teacherId, request);
     }
 
-    @PostMapping(path = "/{teacherId}/courses/{courseId}")
-    public TeacherRespDTO assignTeacherToCourse( @PathVariable Long teacherId, @PathVariable Long courseId)
+    @PostMapping(path = "/{teacherId}/courses")
+    public TeacherRespDTO assignCoursesToTeacher( @PathVariable Long teacherId, @RequestBody Set<Long> courseIds)
     {
-        return teacherService.assignTeacherToCourse(teacherId, courseId);
+        return teacherService.assignCoursesToTeacher(teacherId, courseIds);
     }
 
     @DeleteMapping(path = "/{teacherId}")
