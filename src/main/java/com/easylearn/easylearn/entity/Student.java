@@ -20,10 +20,10 @@ public class Student extends User{
     @Enumerated(value = EnumType.STRING)
     private UserType userType = UserType.STUDENT;
 
-    @ManyToMany(mappedBy = "students", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "students", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private Set<Appointment> appointments;
 
-    @ManyToMany(mappedBy = "students", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "students", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private Set<Course> courses;
 
     @ManyToOne(fetch = FetchType.LAZY)

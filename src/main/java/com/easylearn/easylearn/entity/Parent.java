@@ -25,7 +25,7 @@ public class Parent extends User {
     private UserType userType = UserType.TEACHER;
 
     @JoinColumn(name = "parent_id")
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.PERSIST)
     private Set<Student> students;
 
     public void addStudent(Student student) {

@@ -38,11 +38,11 @@ public class Course {
     private Teacher teacher;
 
     @JoinColumn(name = "course_id")
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.PERSIST)
     private Set<Appointment> appointments;
 
     // EAGER is used in ManyToMany relationships, because we get all the relationships.
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "course_student",
             joinColumns = {@JoinColumn(name = "course_id")},
