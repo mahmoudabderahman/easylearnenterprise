@@ -13,12 +13,15 @@ import com.easylearn.easylearn.validation.CourseValidator;
 import com.easylearn.easylearn.validation.StudentValidator;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Log4j2
@@ -59,13 +62,20 @@ public class CourseService {
         return response;
     }
 
-    public ResponseEntity<Set<CourseRespDTO>> findAllCourses(){
+    public ResponseEntity<List<CourseRespDTO>> findAllCourses(Long teacherId){
         log.info(" *** START OF FINDING ALL COURSES *** ");
-        Set<Course> courses = courseRepository.findAll();
+        Set<Course> courses;// = courseRepository.findAll(Sort.by("courseCode"));
+        if (teacherId != null) {
+            courses = courseRepository.findAllByTeacherId(teacherId, Sort.by("courseCode"));
+        }
+        else
+        {
+            courses = courseRepository.findAllByTeacherIdNull(Sort.by("courseCode"));
+        }
         if(courses.isEmpty())
             return ResponseEntity.noContent().build();
 
-        Set<CourseRespDTO> coursesResponse = new HashSet<>(courses.size());
+        List<CourseRespDTO> coursesResponse = new ArrayList<>(courses.size());
         courses.forEach(course -> coursesResponse.add(courseMapper.mapToDTO(course)));
         return ResponseEntity.ok(coursesResponse);
 

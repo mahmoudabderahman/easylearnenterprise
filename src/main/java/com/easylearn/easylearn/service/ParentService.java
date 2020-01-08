@@ -13,12 +13,16 @@ import com.easylearn.easylearn.validation.ParentValidator;
 import com.easylearn.easylearn.validation.StudentValidator;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.validation.constraints.Max;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Log4j2
@@ -59,13 +63,13 @@ public class ParentService {
         return response;
     }
 
-    public ResponseEntity<Set<ParentRespDTO>> findAllParents() {
+    public ResponseEntity<List<ParentRespDTO>> findAllParents() {
         log.info(" *** START OF FINDING ALL PARENTS *** ");
-        Set<Parent> parents = parentRepository.findAll();
+        Set<Parent> parents = parentRepository.findAll(Sort.by("lastName"));
         if (parents.isEmpty())
             return ResponseEntity.noContent().build();
 
-        Set<ParentRespDTO> parentsResponse = new HashSet<>(parents.size());
+        List<ParentRespDTO> parentsResponse = new ArrayList<>(parents.size());
         parents.forEach(parent -> parentsResponse.add(parentMapper.mapToDTO(parent)));
         log.info(" *** END OF FINDING ALL PARENTS *** ");
         return ResponseEntity.ok(parentsResponse);

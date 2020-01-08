@@ -14,12 +14,15 @@ import com.easylearn.easylearn.validation.ParentValidator;
 import com.easylearn.easylearn.validation.StudentValidator;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Log4j2
@@ -61,13 +64,13 @@ public class StudentService {
         return response;
     }
 
-    public ResponseEntity<Set<StudentRespDTO>> findAllStudents() {
+    public ResponseEntity<List<StudentRespDTO>> findAllStudents() {
         log.info(" *** START OF FINDING ALL STUDENTS *** ");
-        Set<Student> students = studentRepository.findAll();
+        Set<Student> students = studentRepository.findAll(Sort.by("lastName"));
         if (students.isEmpty())
             return ResponseEntity.noContent().build();
 
-        Set<StudentRespDTO> studentsResponse = new HashSet<>(students.size());
+        List<StudentRespDTO> studentsResponse = new ArrayList<>(students.size());
         students.forEach(student -> studentsResponse.add(studentMapper.mapToDTO(student)));
         log.info(" *** END OF FINDING ALL STUDENTS *** ");
         return ResponseEntity.ok(studentsResponse);

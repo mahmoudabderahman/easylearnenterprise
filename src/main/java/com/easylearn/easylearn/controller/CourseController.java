@@ -32,8 +32,8 @@ final class CourseController {
     }
 
     @GetMapping
-    public ResponseEntity findAllCourses() {
-        return courseService.findAllCourses();
+    public ResponseEntity findAllCourses(@RequestParam(required = false) Long teacherId) {
+        return courseService.findAllCourses(teacherId);
     }
 
 
