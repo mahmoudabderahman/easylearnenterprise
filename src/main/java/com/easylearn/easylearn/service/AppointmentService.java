@@ -1,3 +1,7 @@
+/**
+ * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * Appointment Service class is where the specifications required for requests declared.
+ */
 package com.easylearn.easylearn.service;
 
 import com.easylearn.easylearn.entity.Appointment;
@@ -63,23 +67,44 @@ public class AppointmentService {
         return response;
     }
 
-    public ResponseEntity<List<AppointmentRespDTO>> findAllAppointments(Long courseId) {
+    public ResponseEntity<List<AppointmentRespDTO>> findAllAppointmentsAllocatedByCourse(Long courseId) {
         log.info(" *** START OF FINDING ALL APPOINTMENTS *** ");
         Set<Appointment> appointments;
-        if (courseId != null) {
-            appointments = appointmentRepository.findAllByCourseId(courseId, Sort.by( "startDate"));
-        }
-        else {
+        if (courseId == null) {
+            System.out.println("While courseId is null");
             appointments = appointmentRepository.findAllByCourseIdNull(Sort.by( "startDate"));
         }
-
+        else {
+            appointments = appointmentRepository.findAllByCourseId(courseId, Sort.by( "startDate"));
+        }
         if (appointments.isEmpty())
             return ResponseEntity.noContent().build();
-
         List<AppointmentRespDTO> appointmentsResponse = new ArrayList<>(appointments.size());
         appointments.forEach(appointment -> appointmentsResponse.add(appointmentMapper.mapToDTO(appointment)));
         log.info(" *** END OF FINDING ALL APPOINTMENTS *** ");
         return ResponseEntity.ok(appointmentsResponse);
+    }
+
+    public ResponseEntity<List<AppointmentRespDTO>> findAll() {
+        log.info(" *** START OF FINDING ALL APPOINTMENTS *** ");
+        Set<Appointment> appointments = appointmentRepository.findAll(Sort.by("startDate"));
+        if (appointments.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        List<AppointmentRespDTO> appointmentResponse = new ArrayList<>(appointments.size());
+        appointments.forEach(appointment -> appointmentResponse.add(appointmentMapper.mapToDTO(appointment)));
+        log.info(" *** END OF FINDING ALL APPOINTMENTS *** ");
+        return ResponseEntity.ok(appointmentResponse);
+        //Set<Student> students = studentRepository.findAll(Sort.by("lastName"));
+        /*
+        if (appointments.isEmpty())
+            return ResponseEntity.noContent().build();
+
+        List<StudentRespDTO> studentsResponse = new ArrayList<>(students.size());
+        students.forEach(student -> studentsResponse.add(studentMapper.mapToDTO(student)));
+        log.info(" *** END OF FINDING ALL STUDENTS *** ");
+        return ResponseEntity.ok(studentsResponse);
+        */
     }
 
     public AppointmentRespDTO assignStudentsToAppointment(Long appointmentId, Set<Long> studentIds)
@@ -94,8 +119,6 @@ public class AppointmentService {
         log.info(" *** END OF ASSIGNING STUDENTS TO APPOINTMENT BY ID *** ");
         return response;
     }
-
-
 
     public AppointmentRespDTO updateAppointment(Long appointmentId, AppointmentReqDTO request)
     {

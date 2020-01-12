@@ -6,9 +6,7 @@ package com.easylearn.easylearn.controller;
 
 import com.easylearn.easylearn.model.AppointmentReqDTO;
 import com.easylearn.easylearn.model.AppointmentRespDTO;
-import com.easylearn.easylearn.model.StudentRespDTO;
 import com.easylearn.easylearn.service.AppointmentService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,9 +28,9 @@ final class AppointmentController {
     }
 
     /**
-     * createAppointment method, which is responsible for creating a new Appointment (HTTP POST)
+     * createAppointment method, which is responsible for creating a new Appointment
      * @param request is the content of the request passed to the POST method.
-     * @return HTTP code 201 if successfully created and other codes for other behaviors.
+     * @return the body of the response.
      */
     @PostMapping
     public ResponseEntity<AppointmentRespDTO> createAppointment(@RequestBody AppointmentReqDTO request) {
@@ -40,9 +38,9 @@ final class AppointmentController {
     }
 
     /**
-     * findAppointmentById method, which is responsible for getting an appointment by its id (HTTP GET)
+     * findAppointmentById method, which is responsible for getting an appointment by its id
      * @param appointmentId is the id of the appointment, which will be returned back
-     * @return HTTP code 200 and the appointment data as ResponseEntity, if successfully returned back and others code for other behaviors.
+     * @return the appointment which was called.
      */
     @GetMapping(path = "/{appointmentId}")
     public AppointmentRespDTO findAppointmentById(@PathVariable Long appointmentId)
@@ -50,16 +48,35 @@ final class AppointmentController {
         return appointmentService.findAppointmentById(appointmentId);
     }
 
+
     /**
-     * findAllAppointments method, which is responsible for getting all appointments stored in the database (HTTP GET)
-     * @return
+     * findAllAppointmentsAllocatedByCourse method, which is responsible for getting all appointments
+     * that are allocated to a course, while assigning courseId, it will return only the appointments
+     * that are assigned to this course.
+     * @param courseId is passed to get the appointments that are allocated to this course.
+     * @return list of appointments which were allocated to a course.
      */
     @GetMapping
-    public ResponseEntity findAllAppointments(@RequestParam(required = false) Long courseId)
-    {
-        return appointmentService.findAllAppointments(courseId);
+    public ResponseEntity findAllAppointmentsAllocatedByCourse(@RequestParam(required = false) Long courseId) {
+        return appointmentService.findAllAppointmentsAllocatedByCourse(courseId);
     }
 
+    /**
+     * findAllAppointments method, which is responsible for getting all appointments, regardless
+     * if these appointments are allocated to a course.
+     * @return list of appointments
+     */
+    @GetMapping(value = "/*")
+    public ResponseEntity findAllAppointments() {
+        return appointmentService.findAll();
+    }
+
+    /**
+     * assignStudentsToAppointment method, which is responsible for assigning students to an appointment
+     * @param appointmentId the id of the appointment, which these students will be assigned to
+     * @param studentIds list of student ids, which will be assigned to this appointment
+     * @return the body of the response.
+     */
     @PostMapping(path = "/{appointmentId}/students")
     public AppointmentRespDTO assignStudentsToAppointment(@PathVariable Long appointmentId, @RequestBody Set<Long> studentIds)
     {
@@ -67,17 +84,21 @@ final class AppointmentController {
     }
 
     /**
-     * API to update a specific appointment
-     *
-     * @param appointmentId used to get the appointmentId
-     * @param request   used to get the request body
-     * @return AppointmentRespDTO
+     * updateAppointment method, which is responsible for updating a specific appointment
+     * @param appointmentId the id of the appointment, which will be updated
+     * @param request is the content of the request passed to the PUT method.
+     * @return the body of the response.
      */
     @PutMapping(path = "/{appointmentId}")
     public AppointmentRespDTO updateAppointment(@PathVariable Long appointmentId, @Valid @RequestBody AppointmentReqDTO request) {
         return appointmentService.updateAppointment(appointmentId, request);
     }
 
+    /**
+     * deleteAppointment method, which is responsible for deleting a specific appointment
+     * @param appointmentId the id of the appointment, which will be deleted.
+     * @return the body of the response.
+     */
     @DeleteMapping(path = "/{appointmentId}")
     public ResponseEntity deleteAppointment(@PathVariable Long appointmentId) {
         return appointmentService.deleteAppointment(appointmentId);

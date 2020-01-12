@@ -1,11 +1,13 @@
+/**
+ * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * Appointment Entity is where all appointment specifications are declared.
+ */
 package com.easylearn.easylearn.entity;
 
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -37,11 +39,6 @@ public class Appointment {
             inverseJoinColumns = {@JoinColumn(name = "student_id")}
     )
     private Set<Student> students;
-
-
-    public void addStudent(Student student) {
-        this.students.add(student);
-    }
 
     public void addStudents(Set<Student> students) {
         this.students.addAll(students);

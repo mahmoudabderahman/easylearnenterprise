@@ -1,3 +1,7 @@
+/**
+ * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * Appointment Response Data Transfer Object is where the specifications required for responses declared.
+ */
 package com.easylearn.easylearn.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
