@@ -1,3 +1,9 @@
+/**
+ * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * Appointment Validator class is where the code responsible for implementing the appointment validator methods
+ * implemented.
+ * Extends the BaseValidator class.
+ */
 package com.easylearn.easylearn.validation;
 
 import com.easylearn.easylearn.entity.Appointment;

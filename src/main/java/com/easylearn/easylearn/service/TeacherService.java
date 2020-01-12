@@ -66,7 +66,26 @@ public class TeacherService {
         log.info(" *** END OF FINDING ALL TEACHERS *** ");
         return ResponseEntity.ok(teachersResponse);
     }
-
+    /*
+    public ResponseEntity<List<TeacherRespDTO>> findAllTeachersAllocatedToCourse(Long courseId) {
+        log.info(" *** START OF FINDING ALL TEACHERS ALLOCATED TO COURSE *** ");
+        Set<Teacher> teachers;
+        if (courseId == null) {
+            teachers = teacherRepository.findAllByCourseIdNul(Sort.by("lastName"));
+        }
+        else
+        {
+            teachers = teacherRepository.findAllByCourseIdNotNull(courseId, Sort.by("lastName"));
+        }
+        if (teachers.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        List<TeacherRespDTO> teachersResponse = new ArrayList<>(teachers.size());
+        teachers.forEach(teacher -> teachersResponse.add(teacherMapper.mapToDTO(teacher)));
+        log.info(" *** END OF FINDING ALL TEACHERS ALLOCATED TO A COURSE *** ");
+        return ResponseEntity.ok(teachersResponse);
+    }
+    */
     public TeacherRespDTO updateTeacher(Long teacherId, TeacherReqDTO request)
     {
         log.info(" *** START OF UPDATING TEACHER BY ID *** ");

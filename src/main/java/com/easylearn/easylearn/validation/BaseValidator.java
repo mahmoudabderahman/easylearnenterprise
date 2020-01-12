@@ -1,3 +1,7 @@
+/**
+ * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * Base Validator class is where the code responsible for implementing the validation implemented.
+ */
 package com.easylearn.easylearn.validation;
 
 import lombok.extern.log4j.Log4j2;
@@ -23,6 +27,12 @@ public abstract class BaseValidator<T> {
         this.clazz = clazz;
     }
 
+    /**
+     * validateExistence method, which is responsible for checking if this entity
+     * with this primary key value exists.
+     * @param primaryKey
+     * @return the entity if it exists and error message if not.
+     */
     public T validateExistence(Object primaryKey) {
         log.info(" *** VALIDATING {} EXISTENCE *** ", clazz.getSimpleName());
         return Optional.ofNullable(entityManager.find(clazz, primaryKey))

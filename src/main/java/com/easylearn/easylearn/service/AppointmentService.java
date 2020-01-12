@@ -1,6 +1,7 @@
 /**
  * @Author: Mahmoud Abdelrahman, Steve Titinang
- * Appointment Service class is where the specifications required for requests declared.
+ * Appointment Service class is where the code responsible for implementing the appointment controller methods
+ * implemented.
  */
 package com.easylearn.easylearn.service;
 
@@ -45,9 +46,9 @@ public class AppointmentService {
     }
 
     /**
-     * Method to create a new appointment
-     *
-     * @param request used to get the request body
+     * createAppointment method, which is responsible for creating a new appointment using
+     * the mapper and repository classes.
+     * @param request is the body of the appointment data transfer object request.
      * @return ResponseEntity<AppointmentRespDTO>
      */
     public ResponseEntity<AppointmentRespDTO> createAppointment(AppointmentReqDTO request) {
@@ -59,6 +60,12 @@ public class AppointmentService {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
+    /**
+     * findAppointmentById method, which is responsible for finding an appointment by passing to
+     * it and id.
+     * @param appointmentId is the id of the appointment to find.
+     * @return AppointmentRespDTO
+     */
     public AppointmentRespDTO findAppointmentById(Long appointmentId) {
         log.info(" *** START OF FINDING APPOINTMENT BY ID *** ");
         Appointment appointment = appointmentValidator.validateExistence(appointmentId);
@@ -67,8 +74,14 @@ public class AppointmentService {
         return response;
     }
 
+    /**
+     * findAllAppointmentsAllocatedByCourse method, which is responsible for getting appointments
+     * that are already in a relationship with a course.
+     * @param courseId is the id of the course, to get the appointments, that are passed to.
+     * @return List of ResponseEntity<AppointmentRespDTO>
+     */
     public ResponseEntity<List<AppointmentRespDTO>> findAllAppointmentsAllocatedByCourse(Long courseId) {
-        log.info(" *** START OF FINDING ALL APPOINTMENTS *** ");
+        log.info(" *** START OF FINDING ALL APPOINTMENTS ALLOCATED BY A COURSE *** ");
         Set<Appointment> appointments;
         if (courseId == null) {
             System.out.println("While courseId is null");
@@ -81,10 +94,14 @@ public class AppointmentService {
             return ResponseEntity.noContent().build();
         List<AppointmentRespDTO> appointmentsResponse = new ArrayList<>(appointments.size());
         appointments.forEach(appointment -> appointmentsResponse.add(appointmentMapper.mapToDTO(appointment)));
-        log.info(" *** END OF FINDING ALL APPOINTMENTS *** ");
+        log.info(" *** END OF FINDING ALL APPOINTMENTS ALLOCATED BY A COURSE*** ");
         return ResponseEntity.ok(appointmentsResponse);
     }
 
+    /**
+     * findAll method, which is responsible for getting all appointments stored.
+     * @return List of ResponseEntity<AppointmentRespDTO>
+     */
     public ResponseEntity<List<AppointmentRespDTO>> findAll() {
         log.info(" *** START OF FINDING ALL APPOINTMENTS *** ");
         Set<Appointment> appointments = appointmentRepository.findAll(Sort.by("startDate"));
@@ -95,18 +112,15 @@ public class AppointmentService {
         appointments.forEach(appointment -> appointmentResponse.add(appointmentMapper.mapToDTO(appointment)));
         log.info(" *** END OF FINDING ALL APPOINTMENTS *** ");
         return ResponseEntity.ok(appointmentResponse);
-        //Set<Student> students = studentRepository.findAll(Sort.by("lastName"));
-        /*
-        if (appointments.isEmpty())
-            return ResponseEntity.noContent().build();
-
-        List<StudentRespDTO> studentsResponse = new ArrayList<>(students.size());
-        students.forEach(student -> studentsResponse.add(studentMapper.mapToDTO(student)));
-        log.info(" *** END OF FINDING ALL STUDENTS *** ");
-        return ResponseEntity.ok(studentsResponse);
-        */
     }
 
+    /**
+     * assignStudentsToAppointment method, which is responsible for assigning
+     * students to appointment.
+     * @param appointmentId is the id of the appointment, which a list of students will be allocated to.
+     * @param studentIds are the ids of the students, which will be allocated to this course.
+     * @return AppointmentRespDTO
+     */
     public AppointmentRespDTO assignStudentsToAppointment(Long appointmentId, Set<Long> studentIds)
     {
         log.info(" *** START OF ASSIGNING STUDENTS TO APPOINTMENT BY ID *** ");
@@ -120,6 +134,12 @@ public class AppointmentService {
         return response;
     }
 
+    /**
+     * updateAppointment method, which is responsible for updating a specific appointment.
+     * @param appointmentId is the id of the appointment that will be updated.
+     * @param request is the body of request.
+     * @return response
+     */
     public AppointmentRespDTO updateAppointment(Long appointmentId, AppointmentReqDTO request)
     {
         log.info(" *** START OF UPDATING APPOINTMENT BY ID *** ");
@@ -131,6 +151,11 @@ public class AppointmentService {
         return response;
     }
 
+    /**
+     * deleteAppointment method, which is responsible for deleting an appointment
+     * @param appointmentId is the id of the appointment, that should be deleted
+     * @return ResponseEntity
+     */
     public ResponseEntity deleteAppointment(Long appointmentId)
     {
         log.info(" *** START OF DELETING APPOINTMENT BY ID *** ");
@@ -139,4 +164,5 @@ public class AppointmentService {
         log.info(" *** END OF DELETING APPOINTMENT BY ID *** ");
         return ResponseEntity.noContent().build();
     }
+
 }

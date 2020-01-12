@@ -37,6 +37,7 @@ final class CourseController {
     }
 
 
+
     /**
      * API to update a specific workout
      *

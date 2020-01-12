@@ -1,4 +1,7 @@
-
+/**
+ * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * Base Repository Interface is where storage, retrieval and search behavior is declared.
+ */
 package com.easylearn.easylearn.repository;
 
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;

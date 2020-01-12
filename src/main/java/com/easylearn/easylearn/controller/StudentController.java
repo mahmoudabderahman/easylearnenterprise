@@ -31,9 +31,14 @@ final class StudentController {
         return studentService.findStudentById(studentId);
     }
 
-    @GetMapping
+    @GetMapping(value = "/*")
     public ResponseEntity findAllStudents() {
         return studentService.findAllStudents();
+    }
+
+    @GetMapping
+    public ResponseEntity findAllStudentsAllocatedToParent(@RequestParam(required = false) Long parentId) {
+        return studentService.findAllStudentsAllocatedToParent(parentId);
     }
 
     /**
