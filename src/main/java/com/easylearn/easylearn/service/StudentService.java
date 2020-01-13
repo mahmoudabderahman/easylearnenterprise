@@ -64,7 +64,7 @@ public class StudentService {
         return response;
     }
 
-    public ResponseEntity<List<StudentRespDTO>> findAllStudentsAllocatedToParent(Long parentId) {
+    public ResponseEntity<List<StudentRespDTO>> findAllStudents(Long parentId) {
         log.info(" *** START OF FINDING ALL STUDENTS THAT ARE ALLOCATED TO PARENT *** ");
         Set<Student> students;
         if (parentId == null) {
@@ -79,18 +79,6 @@ public class StudentService {
         List<StudentRespDTO> studentsResponse = new ArrayList<>(students.size());
         students.forEach(student -> {studentsResponse.add(studentMapper.mapToDTO(student));});
         log.info(" *** END OF FINDING ALL STUDENTS THAT ARE ALLOCATED TO PARENT *** ");
-        return ResponseEntity.ok(studentsResponse);
-    }
-
-    public ResponseEntity<List<StudentRespDTO>> findAllStudents() {
-        log.info(" *** START OF FINDING ALL STUDENTS *** ");
-        Set<Student> students = studentRepository.findAll(Sort.by("lastName"));
-        if (students.isEmpty())
-            return ResponseEntity.noContent().build();
-
-        List<StudentRespDTO> studentsResponse = new ArrayList<>(students.size());
-        students.forEach(student -> studentsResponse.add(studentMapper.mapToDTO(student)));
-        log.info(" *** END OF FINDING ALL STUDENTS *** ");
         return ResponseEntity.ok(studentsResponse);
     }
 

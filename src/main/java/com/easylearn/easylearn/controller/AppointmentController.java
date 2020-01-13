@@ -57,19 +57,10 @@ final class AppointmentController {
      * @return list of appointments which were allocated to a course.
      */
     @GetMapping
-    public ResponseEntity findAllAppointmentsAllocatedByCourse(@RequestParam(required = false) Long courseId) {
-        return appointmentService.findAllAppointmentsAllocatedByCourse(courseId);
+    public ResponseEntity findAllAppointments(@RequestParam(required = false) Long courseId, @RequestParam(required = false) Boolean ideal) {
+        return appointmentService.findAllAppointments(courseId, ideal);
     }
 
-    /**
-     * findAllAppointments method, which is responsible for getting all appointments, regardless
-     * if these appointments are allocated to a course.
-     * @return list of appointments
-     */
-    @GetMapping(value = "/*")
-    public ResponseEntity findAllAppointments() {
-        return appointmentService.findAll();
-    }
 
     /**
      * assignStudentsToAppointment method, which is responsible for assigning students to an appointment
