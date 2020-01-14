@@ -32,8 +32,11 @@ final class StudentController {
     }
 
     @GetMapping
-    public ResponseEntity findAllStudents(@RequestParam(required = false) Long parentId) {
-        return studentService.findAllStudents(parentId);
+    public ResponseEntity findAllStudents(@RequestParam(required = false) Long parentId,
+                                          @RequestParam(required = false) Boolean parentAllocated,
+                                          @RequestParam(required = false) Boolean appointmentsAllocated,
+                                          @RequestParam(required = false) Boolean courseAllocated) {
+        return studentService.findAllStudents(parentId, parentAllocated, appointmentsAllocated, courseAllocated);
     }
 
     /**

@@ -33,7 +33,7 @@ public class UserController {
         users = new HashSet<>();
         users.addAll(teacherService.findAllTeachers().getBody());
         users.addAll(parentService.findAllParents().getBody());
-        users.addAll(studentService.findAllStudents().getBody());
+        //users.addAll(studentService.findAllStudents().getBody());
         return users;
     }
 }

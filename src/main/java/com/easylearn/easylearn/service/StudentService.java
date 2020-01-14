@@ -64,18 +64,29 @@ public class StudentService {
         return response;
     }
 
-    public ResponseEntity<List<StudentRespDTO>> findAllStudents(Long parentId) {
+    public ResponseEntity<List<StudentRespDTO>> findAllStudents(Long parentId, Boolean parentAllocated, Boolean appointmentAllocated, Boolean courseAllocated) {
         log.info(" *** START OF FINDING ALL STUDENTS THAT ARE ALLOCATED TO PARENT *** ");
         Set<Student> students;
-        if (parentId == null) {
-            students = studentRepository.findAllByParentIdNull(Sort.by("lastName"));
+        if (parentId != null && (parentAllocated != null && parentAllocated)) {
+            students = studentRepository.findAllByParentIdNotNull(parentId, Sort.by("lastName"));
+        }
+        else if(parentId == null && (parentAllocated != null && parentAllocated)){
+            students = studentRepository.findAllByParentIdNull( Sort.by("lastName"));
+        }
+        else if (appointmentAllocated != null && appointmentAllocated) {
+            students = studentRepository.findAllByAppointmentsNull(Sort.by("lastName"));
+        }
+
+        else if (courseAllocated != null && courseAllocated) {
+            students = studentRepository.findAllByCoursesNull(Sort.by("lastName"));
         }
         else {
-            students = studentRepository.findAllByParentIdNotNull(parentId, Sort.by("lastName"));
+            students = studentRepository.findAll(Sort.by("lastName"));
         }
         if (students.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
+
         List<StudentRespDTO> studentsResponse = new ArrayList<>(students.size());
         students.forEach(student -> {studentsResponse.add(studentMapper.mapToDTO(student));});
         log.info(" *** END OF FINDING ALL STUDENTS THAT ARE ALLOCATED TO PARENT *** ");
