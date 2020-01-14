@@ -33,10 +33,12 @@ final class StudentController {
 
     @GetMapping
     public ResponseEntity findAllStudents(@RequestParam(required = false) Long parentId,
+                                          @RequestParam(required = false) Long appointmentId,
+                                          @RequestParam(required = false) Long courseId,
                                           @RequestParam(required = false) Boolean parentAllocated,
                                           @RequestParam(required = false) Boolean appointmentsAllocated,
                                           @RequestParam(required = false) Boolean courseAllocated) {
-        return studentService.findAllStudents(parentId, parentAllocated, appointmentsAllocated, courseAllocated);
+        return studentService.findAllStudents(parentId, appointmentId, courseId, parentAllocated, appointmentsAllocated, courseAllocated);
     }
 
     /**
@@ -50,12 +52,6 @@ final class StudentController {
     public StudentRespDTO updateStudent(@PathVariable Long studentId, @Valid @RequestBody StudentReqDTO request) {
         return studentService.updateStudent(studentId, request);
     }
-
-
-
-
-
-
 
     @DeleteMapping(path = "/{studentId}")
     public ResponseEntity deleteStudent(@PathVariable Long studentId)

@@ -1,8 +1,6 @@
 package com.easylearn.easylearn.service;
 
-import com.easylearn.easylearn.entity.Appointment;
-import com.easylearn.easylearn.entity.Course;
-import com.easylearn.easylearn.entity.Parent;
+
 import com.easylearn.easylearn.entity.Student;
 import com.easylearn.easylearn.mapper.StudentMapper;
 import com.easylearn.easylearn.model.StudentReqDTO;
@@ -21,7 +19,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -64,21 +61,36 @@ public class StudentService {
         return response;
     }
 
-    public ResponseEntity<List<StudentRespDTO>> findAllStudents(Long parentId, Boolean parentAllocated, Boolean appointmentAllocated, Boolean courseAllocated) {
+    public ResponseEntity<List<StudentRespDTO>> findAllStudents(Long parentId,
+                                                                Long appointmentId,
+                                                                Long courseId,
+                                                                Boolean parentAllocated,
+                                                                Boolean appointmentAllocated,
+                                                                Boolean courseAllocated
+                                                                ) {
         log.info(" *** START OF FINDING ALL STUDENTS THAT ARE ALLOCATED TO PARENT *** ");
         Set<Student> students;
         if (parentId != null && (parentAllocated != null && parentAllocated)) {
-            students = studentRepository.findAllByParentIdNotNull(parentId, Sort.by("lastName"));
+            System.out.println("ParentId not null = " + parentId);
+            students = studentRepository.findAllByParentId(parentId, Sort.by("lastName"));
         }
-        else if(parentId == null && (parentAllocated != null && parentAllocated)){
-            students = studentRepository.findAllByParentIdNull( Sort.by("lastName"));
+        else if(parentId == null && (parentAllocated != null && !parentAllocated)){
+            students = studentRepository.findAllByParentIdNull(Sort.by("lastName"));
         }
-        else if (appointmentAllocated != null && appointmentAllocated) {
-            students = studentRepository.findAllByAppointmentsNull(Sort.by("lastName"));
+        else if (appointmentId != null && (appointmentAllocated != null && appointmentAllocated)) {
+            students = studentRepository.findAllByAppointmentIdNotNull(appointmentId);
         }
-
-        else if (courseAllocated != null && courseAllocated) {
-            students = studentRepository.findAllByCoursesNull(Sort.by("lastName"));
+        else if (appointmentId != null && (appointmentAllocated != null && !appointmentAllocated))
+        {
+            System.out.println("appointmentId not null = " + appointmentId);
+            students = studentRepository.findAllStudentsNotInAppointment(appointmentId);
+        }
+        else if (courseId != null && (courseAllocated != null && courseAllocated)) {
+            students = studentRepository.findAllByCourseIdNotNull(courseId);
+        }
+        else if (courseId != null && (courseAllocated != null && !courseAllocated)) {
+            System.out.println("courseId not null = " + courseId);
+            students = studentRepository.findAllStudentsNotInCourse(courseId);
         }
         else {
             students = studentRepository.findAll(Sort.by("lastName"));
@@ -86,7 +98,6 @@ public class StudentService {
         if (students.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
-
         List<StudentRespDTO> studentsResponse = new ArrayList<>(students.size());
         students.forEach(student -> {studentsResponse.add(studentMapper.mapToDTO(student));});
         log.info(" *** END OF FINDING ALL STUDENTS THAT ARE ALLOCATED TO PARENT *** ");

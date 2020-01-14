@@ -101,21 +101,6 @@ public class AppointmentService {
         return ResponseEntity.ok(appointmentsResponse);
     }
 
-    /**
-     * findAll method, which is responsible for getting all appointments stored.
-     * @return List of ResponseEntity<AppointmentRespDTO>
-     */
-    public ResponseEntity<List<AppointmentRespDTO>> findAll() {
-        log.info(" *** START OF FINDING ALL APPOINTMENTS *** ");
-        Set<Appointment> appointments = appointmentRepository.findAll(Sort.by("startDate"));
-        if (appointments.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-        List<AppointmentRespDTO> appointmentResponse = new ArrayList<>(appointments.size());
-        appointments.forEach(appointment -> appointmentResponse.add(appointmentMapper.mapToDTO(appointment)));
-        log.info(" *** END OF FINDING ALL APPOINTMENTS *** ");
-        return ResponseEntity.ok(appointmentResponse);
-    }
 
     /**
      * assignStudentsToAppointment method, which is responsible for assigning
