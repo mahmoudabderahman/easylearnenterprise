@@ -20,7 +20,7 @@ public class Teacher extends User {
     private UserType userType = UserType.PARENT;
 
     @JoinColumn(name = "teacher_id")
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     private Set<Course> courses;
 
     public void addCourse(Course course) {

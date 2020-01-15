@@ -34,7 +34,7 @@ public class Course {
     private String description;
 
     // LAZY is used in OneToMany relationships, because we get only the existed relationships.
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private Teacher teacher;
 
     @JoinColumn(name = "course_id")
