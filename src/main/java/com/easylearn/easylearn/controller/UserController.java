@@ -8,17 +8,19 @@ import com.easylearn.easylearn.service.TeacherService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @RestController
 @RequestMapping(path = "/api/v1/users")
 public class UserController {
-    private final TeacherService teacherService;
-    private final StudentService studentService;
-    private final ParentService parentService;
+    private TeacherService teacherService;
+    private StudentService studentService;
+    private ParentService parentService;
 
-    private Set users;
+    private List users;
 
     public UserController(TeacherService teacherService, StudentService studentService, ParentService parentService) {
         this.teacherService = teacherService;
@@ -27,13 +29,21 @@ public class UserController {
 
     }
 
+    public UserController() {
+
+    }
+
 
     @GetMapping
-    public Set<ResponseEntity> findAllUsers() {
-        users = new HashSet<>();
+    public List<ResponseEntity> findAllUsers() {
+        users = new ArrayList();
         users.addAll(teacherService.findAllTeachers().getBody());
         users.addAll(parentService.findAllParents().getBody());
-        //users.addAll(studentService.findAllStudents().getBody());
+        users.addAll(studentService.findAllStudents(null, null, null, null, null, null).getBody());
         return users;
+    }
+
+    public List getUsers() {
+        return this.users;
     }
 }
