@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 public class JwtInMemoryUserDetailsService implements UserDetailsService{
     static List<JwtUserDetails> inMemoryUserList = new ArrayList<>();
 
+
     /*
     static {
         inMemoryUserList.add(new JwtUserDetails(1L, "in28minutes",
@@ -26,10 +27,11 @@ public class JwtInMemoryUserDetailsService implements UserDetailsService{
     }
     */
 
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserController userController = new UserController();
-        inMemoryUserList.addAll(userController.getUsers());
+        //UserController userController = new UserController();
+        //inMemoryUserList.addAll(userController.getUsers());
         System.out.println("Number of users: " + inMemoryUserList.size());
         Optional<JwtUserDetails> findFirst = inMemoryUserList.stream()
                 .filter(user -> user.getUsername().equals(username)).findFirst();

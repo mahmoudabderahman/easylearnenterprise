@@ -10,7 +10,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import org.springframework.security.core.userdetails.UserDetails;
 
 public class JwtUserDetails implements UserDetails {
     private static final long serialVersionUID = 5155720064139820502L;
