@@ -18,7 +18,7 @@ public class UserController {
     private final StudentService studentService;
     private final ParentService parentService;
 
-    private  Set users;
+    private Set users;
 
     public UserController(TeacherService teacherService, StudentService studentService, ParentService parentService) {
         this.teacherService = teacherService;

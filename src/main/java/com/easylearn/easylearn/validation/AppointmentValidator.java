@@ -19,8 +19,7 @@ public class AppointmentValidator extends BaseValidator<Appointment> {
     private AppointmentRepository appointmentRepository;
 
     @Autowired
-    public AppointmentValidator(AppointmentRepository appointmentRepository)
-    {
+    public AppointmentValidator(AppointmentRepository appointmentRepository) {
         super(Appointment.class);
         this.appointmentRepository = appointmentRepository;
     }

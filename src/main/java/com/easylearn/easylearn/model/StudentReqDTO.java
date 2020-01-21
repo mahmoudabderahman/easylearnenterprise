@@ -1,7 +1,6 @@
 package com.easylearn.easylearn.model;
 
 
-
 import javax.validation.constraints.Email;
 
 import com.easylearn.easylearn.model.enums.UserType;

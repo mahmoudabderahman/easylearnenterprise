@@ -16,20 +16,17 @@ import java.util.Set;
 final class ParentController {
     private final ParentService parentService;
 
-    public ParentController(ParentService parentService)
-    {
+    public ParentController(ParentService parentService) {
         this.parentService = parentService;
     }
 
     @PostMapping
-    public ResponseEntity<ParentRespDTO> createParent(@RequestBody ParentReqDTO request)
-    {
+    public ResponseEntity<ParentRespDTO> createParent(@RequestBody ParentReqDTO request) {
         return parentService.createParent(request);
     }
 
     @GetMapping(path = "/{parentId}")
-    public ParentRespDTO findParentById(@PathVariable Long parentId)
-    {
+    public ParentRespDTO findParentById(@PathVariable Long parentId) {
         return parentService.findParentById(parentId);
     }
 
@@ -42,7 +39,7 @@ final class ParentController {
      * API to update a specific workout
      *
      * @param parentId used to get the parentId
-     * @param request   used to get the request body
+     * @param request  used to get the request body
      * @return ParentRespDTO
      */
     @PutMapping(path = "/{parentId}")
@@ -51,14 +48,12 @@ final class ParentController {
     }
 
     @PostMapping(path = "/{parentId}/students")
-    public ParentRespDTO assignStudentsToParent(@PathVariable Long parentId, @RequestBody Set<Long> studentIds)
-    {
+    public ParentRespDTO assignStudentsToParent(@PathVariable Long parentId, @RequestBody Set<Long> studentIds) {
         return parentService.assignStudentsToParent(parentId, studentIds);
     }
 
     @DeleteMapping(path = "/{parentId}")
-    public ResponseEntity deleteParent(@PathVariable Long parentId)
-    {
+    public ResponseEntity deleteParent(@PathVariable Long parentId) {
         return parentService.deleteParent(parentId);
     }
 }

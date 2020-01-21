@@ -1,4 +1,5 @@
 package com.easylearn.easylearn.model;
+
 import com.easylearn.easylearn.model.enums.UserType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

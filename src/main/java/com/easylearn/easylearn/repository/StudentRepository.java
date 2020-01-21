@@ -30,7 +30,7 @@ public interface StudentRepository extends BaseRepository<Student, Long> {
     Set<Student> findAllByAppointmentIdNotNull(@Param("apptId") Long appointmentId);
 
     @Query(value = "select * from student s WHERE(s.id not in (Select student_id from course_student where course_student.course_id = :courseId)) order by s.last_name", nativeQuery = true)
-    Set<Student> findAllStudentsNotInCourse(@Param("courseId")  Long courseId);
+    Set<Student> findAllStudentsNotInCourse(@Param("courseId") Long courseId);
 
     @Query(value = "select * from student s WHERE(s.id in (Select student_id from course_student where course_student.course_id = :courseId)) order by s.last_name", nativeQuery = true)
     Set<Student> findAllByCourseIdNotNull(@Param("courseId") Long courseId);

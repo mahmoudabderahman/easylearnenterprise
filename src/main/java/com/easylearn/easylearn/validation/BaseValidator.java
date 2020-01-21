@@ -30,6 +30,7 @@ public abstract class BaseValidator<T> {
     /**
      * validateExistence method, which is responsible for checking if this entity
      * with this primary key value exists.
+     *
      * @param primaryKey
      * @return the entity if it exists and error message if not.
      */

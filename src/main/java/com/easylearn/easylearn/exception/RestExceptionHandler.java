@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 public final class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(ResponseStatusException.class)
     public ResponseEntity<Object> handleBadRequest(ResponseStatusException ex) {
-        ApiError apiError =  ApiError.builder().status(HttpStatus.BAD_REQUEST)
+        ApiError apiError = ApiError.builder().status(HttpStatus.BAD_REQUEST)
                 .message(ex.getMessage())
                 .timestamp(LocalDateTime.now())
                 .build();

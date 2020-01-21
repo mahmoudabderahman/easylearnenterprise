@@ -75,8 +75,7 @@ public class ParentService {
         return ResponseEntity.ok(parentsResponse);
     }
 
-    public ParentRespDTO updateParent(Long parentId, ParentReqDTO request)
-    {
+    public ParentRespDTO updateParent(Long parentId, ParentReqDTO request) {
         log.info(" *** START OF UPDATING PARENT BY ID *** ");
         Parent parent = parentValidator.validateExistence(parentId);
         parent = parentMapper.mapToEntity(parent, request);
@@ -86,13 +85,12 @@ public class ParentService {
         return response;
     }
 
-    public ParentRespDTO assignStudentsToParent(Long parentId, Set<Long> studentIds)
-    {
+    public ParentRespDTO assignStudentsToParent(Long parentId, Set<Long> studentIds) {
         log.info(" *** START OF ASSIGNING STUDENTS TO PARENT BY ID *** ");
         Parent parent = parentValidator.validateExistence(parentId);
         Set<Student> students = new HashSet<>();
         //Student student = studentValidator.validateExistence(studentId);
-        studentIds.forEach(studentId ->students.add(studentValidator.validateExistence(studentId)));
+        studentIds.forEach(studentId -> students.add(studentValidator.validateExistence(studentId)));
         parent.addStudents(students);
         //student.setParent(parent);
         parentRepository.save(parent);
@@ -101,7 +99,7 @@ public class ParentService {
         return response;
     }
 
-    public ResponseEntity deleteParent(Long parentId){
+    public ResponseEntity deleteParent(Long parentId) {
         log.info(" *** START OF DELETING PARENT BY ID *** ");
         Parent parent = parentValidator.validateExistence(parentId);
         parentRepository.delete(parent);

@@ -20,15 +20,16 @@ final class AppointmentController {
 
     /**
      * Main Constructor
+     *
      * @param appointmentService is an instance from the AppointmentService class in Services package.
      */
-    public AppointmentController(AppointmentService appointmentService )
-    {
+    public AppointmentController(AppointmentService appointmentService) {
         this.appointmentService = appointmentService;
     }
 
     /**
      * createAppointment method, which is responsible for creating a new Appointment
+     *
      * @param request is the content of the request passed to the POST method.
      * @return the body of the response.
      */
@@ -39,12 +40,12 @@ final class AppointmentController {
 
     /**
      * findAppointmentById method, which is responsible for getting an appointment by its id
+     *
      * @param appointmentId is the id of the appointment, which will be returned back
      * @return the appointment which was called.
      */
     @GetMapping(path = "/{appointmentId}")
-    public AppointmentRespDTO findAppointmentById(@PathVariable Long appointmentId)
-    {
+    public AppointmentRespDTO findAppointmentById(@PathVariable Long appointmentId) {
         return appointmentService.findAppointmentById(appointmentId);
     }
 
@@ -53,6 +54,7 @@ final class AppointmentController {
      * findAllAppointmentsAllocatedByCourse method, which is responsible for getting all appointments
      * that are allocated to a course, while assigning courseId, it will return only the appointments
      * that are assigned to this course.
+     *
      * @param courseId is passed to get the appointments that are allocated to this course.
      * @return list of appointments which were allocated to a course.
      */
@@ -64,20 +66,21 @@ final class AppointmentController {
 
     /**
      * assignStudentsToAppointment method, which is responsible for assigning students to an appointment
+     *
      * @param appointmentId the id of the appointment, which these students will be assigned to
-     * @param studentIds list of student ids, which will be assigned to this appointment
+     * @param studentIds    list of student ids, which will be assigned to this appointment
      * @return the body of the response.
      */
     @PostMapping(path = "/{appointmentId}/students")
-    public AppointmentRespDTO assignStudentsToAppointment(@PathVariable Long appointmentId, @RequestBody Set<Long> studentIds)
-    {
+    public AppointmentRespDTO assignStudentsToAppointment(@PathVariable Long appointmentId, @RequestBody Set<Long> studentIds) {
         return appointmentService.assignStudentsToAppointment(appointmentId, studentIds);
     }
 
     /**
      * updateAppointment method, which is responsible for updating a specific appointment
+     *
      * @param appointmentId the id of the appointment, which will be updated
-     * @param request is the content of the request passed to the PUT method.
+     * @param request       is the content of the request passed to the PUT method.
      * @return the body of the response.
      */
     @PutMapping(path = "/{appointmentId}")
@@ -87,6 +90,7 @@ final class AppointmentController {
 
     /**
      * deleteAppointment method, which is responsible for deleting a specific appointment
+     *
      * @param appointmentId the id of the appointment, which will be deleted.
      * @return the body of the response.
      */

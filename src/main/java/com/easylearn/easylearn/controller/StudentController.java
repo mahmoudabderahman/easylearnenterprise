@@ -14,20 +14,17 @@ import javax.validation.Valid;
 final class StudentController {
     private StudentService studentService;
 
-    public StudentController(StudentService studentService)
-    {
+    public StudentController(StudentService studentService) {
         this.studentService = studentService;
     }
 
     @PostMapping
-    public ResponseEntity<StudentRespDTO> createStudent(@RequestBody StudentReqDTO request)
-    {
+    public ResponseEntity<StudentRespDTO> createStudent(@RequestBody StudentReqDTO request) {
         return studentService.createStudent(request);
     }
 
     @GetMapping(path = "/{studentId}")
-    public StudentRespDTO findStudentById(@PathVariable Long studentId)
-    {
+    public StudentRespDTO findStudentById(@PathVariable Long studentId) {
         return studentService.findStudentById(studentId);
     }
 
@@ -54,8 +51,7 @@ final class StudentController {
     }
 
     @DeleteMapping(path = "/{studentId}")
-    public ResponseEntity deleteStudent(@PathVariable Long studentId)
-    {
+    public ResponseEntity deleteStudent(@PathVariable Long studentId) {
         return studentService.deleteStudent(studentId);
     }
 }

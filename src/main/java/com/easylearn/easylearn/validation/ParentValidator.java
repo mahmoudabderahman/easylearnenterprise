@@ -8,12 +8,11 @@ import org.springframework.stereotype.Component;
 
 @Log4j2
 @Component
-public class ParentValidator extends BaseValidator<Parent>{
+public class ParentValidator extends BaseValidator<Parent> {
     private ParentRepository parentRepository;
 
     @Autowired
-    public ParentValidator(ParentRepository parentRepository)
-    {
+    public ParentValidator(ParentRepository parentRepository) {
         super(Parent.class);
         this.parentRepository = parentRepository;
     }

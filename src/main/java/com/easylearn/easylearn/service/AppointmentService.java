@@ -47,6 +47,7 @@ public class AppointmentService {
     /**
      * createAppointment method, which is responsible for creating a new appointment using
      * the mapper and repository classes.
+     *
      * @param request is the body of the appointment data transfer object request.
      * @return ResponseEntity<AppointmentRespDTO>
      */
@@ -62,6 +63,7 @@ public class AppointmentService {
     /**
      * findAppointmentById method, which is responsible for finding an appointment by passing to
      * it and id.
+     *
      * @param appointmentId is the id of the appointment to find.
      * @return AppointmentRespDTO
      */
@@ -76,6 +78,7 @@ public class AppointmentService {
     /**
      * findAllAppointmentsAllocatedByCourse method, which is responsible for getting appointments
      * that are already in a relationship with a course.
+     *
      * @param courseId is the id of the course, to get the appointments, that are passed to.
      * @return List of ResponseEntity<AppointmentRespDTO>
      */
@@ -84,13 +87,11 @@ public class AppointmentService {
         Set<Appointment> appointments;
         if (courseId != null) {
             System.out.println("While courseId is null");
-            appointments = appointmentRepository.findAllByCourseId(courseId, Sort.by( "startDate"));
-        }
-        else if (ideal != null && ideal) {
+            appointments = appointmentRepository.findAllByCourseId(courseId, Sort.by("startDate"));
+        } else if (ideal != null && ideal) {
             appointments = appointmentRepository.findAllByCourseIdNull(Sort.by("startDate"));
-        }
-        else {
-            appointments = appointmentRepository.findAll( Sort.by( "startDate"));
+        } else {
+            appointments = appointmentRepository.findAll(Sort.by("startDate"));
         }
         if (appointments.isEmpty())
             return ResponseEntity.noContent().build();
@@ -104,12 +105,12 @@ public class AppointmentService {
     /**
      * assignStudentsToAppointment method, which is responsible for assigning
      * students to appointment.
+     *
      * @param appointmentId is the id of the appointment, which a list of students will be allocated to.
-     * @param studentIds are the ids of the students, which will be allocated to this course.
+     * @param studentIds    are the ids of the students, which will be allocated to this course.
      * @return AppointmentRespDTO
      */
-    public AppointmentRespDTO assignStudentsToAppointment(Long appointmentId, Set<Long> studentIds)
-    {
+    public AppointmentRespDTO assignStudentsToAppointment(Long appointmentId, Set<Long> studentIds) {
         log.info(" *** START OF ASSIGNING STUDENTS TO APPOINTMENT BY ID *** ");
         Appointment appointment = appointmentValidator.validateExistence(appointmentId);
         Set<Student> students = new HashSet<>();
@@ -123,12 +124,12 @@ public class AppointmentService {
 
     /**
      * updateAppointment method, which is responsible for updating a specific appointment.
+     *
      * @param appointmentId is the id of the appointment that will be updated.
-     * @param request is the body of request.
+     * @param request       is the body of request.
      * @return response
      */
-    public AppointmentRespDTO updateAppointment(Long appointmentId, AppointmentReqDTO request)
-    {
+    public AppointmentRespDTO updateAppointment(Long appointmentId, AppointmentReqDTO request) {
         log.info(" *** START OF UPDATING APPOINTMENT BY ID *** ");
         Appointment appointment = appointmentValidator.validateExistence(appointmentId);
         appointment = appointmentMapper.mapToEntity(appointment, request);
@@ -140,11 +141,11 @@ public class AppointmentService {
 
     /**
      * deleteAppointment method, which is responsible for deleting an appointment
+     *
      * @param appointmentId is the id of the appointment, that should be deleted
      * @return ResponseEntity
      */
-    public ResponseEntity deleteAppointment(Long appointmentId)
-    {
+    public ResponseEntity deleteAppointment(Long appointmentId) {
         log.info(" *** START OF DELETING APPOINTMENT BY ID *** ");
         Appointment appointment = appointmentValidator.validateExistence(appointmentId);
         appointmentRepository.delete(appointment);

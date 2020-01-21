@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.Transient;
 import java.util.HashSet;
 import java.util.Set;
+
 // firstName, lastName, email, password
 @Component
 @Transactional

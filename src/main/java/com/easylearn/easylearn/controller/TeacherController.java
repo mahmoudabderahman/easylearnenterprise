@@ -48,8 +48,7 @@ final class TeacherController {
     }
 
     @PostMapping(path = "/{teacherId}/courses")
-    public TeacherRespDTO assignCoursesToTeacher( @PathVariable Long teacherId, @RequestBody Set<Long> courseIds)
-    {
+    public TeacherRespDTO assignCoursesToTeacher(@PathVariable Long teacherId, @RequestBody Set<Long> courseIds) {
         return teacherService.assignCoursesToTeacher(teacherId, courseIds);
     }
 

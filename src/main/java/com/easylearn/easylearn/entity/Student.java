@@ -14,7 +14,7 @@ import java.util.Set;
 @AllArgsConstructor
 @SuperBuilder
 @Entity
-public class Student extends User{
+public class Student extends User {
 
     @Builder.Default
     @Enumerated(value = EnumType.STRING)
@@ -29,8 +29,7 @@ public class Student extends User{
     @ManyToOne(fetch = FetchType.LAZY)
     private Parent parent;
 
-    public void addAppointment(Appointment appointment)
-    {
+    public void addAppointment(Appointment appointment) {
         this.appointments.add(appointment);
     }
 

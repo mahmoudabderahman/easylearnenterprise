@@ -23,6 +23,7 @@ public class CourseMapper implements ObjectMapper<Course, CourseReqDTO, CourseRe
                 .description(request.getDescription())
                 .build();
     }
+
     // update
 // courseCode, name, grade, content, description
     @Override

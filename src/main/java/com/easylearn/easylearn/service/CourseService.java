@@ -53,8 +53,7 @@ public class CourseService {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    public CourseRespDTO findCourseById(Long courseId)
-    {
+    public CourseRespDTO findCourseById(Long courseId) {
         log.info(" *** START OF FINDING COURSE BY ID *** ");
         Course course = courseValidator.validateExistence(courseId);
         CourseRespDTO response = courseMapper.mapToDTO(course);
@@ -62,20 +61,18 @@ public class CourseService {
         return response;
     }
 
-    public ResponseEntity<List<CourseRespDTO>> findAllCourses(Long teacherId, Boolean ideal){
+    public ResponseEntity<List<CourseRespDTO>> findAllCourses(Long teacherId, Boolean ideal) {
         log.info(" *** START OF FINDING ALL COURSES *** ");
         Set<Course> courses;// = courseRepository.findAll(Sort.by("courseCode"));
         if (teacherId != null) {
             courses = courseRepository.findAllByTeacherId(teacherId, Sort.by("courseCode"));
-        }
-        else if (ideal != null && ideal) {
+        } else if (ideal != null && ideal) {
 
             courses = courseRepository.findAllByTeacherIdNull(Sort.by("courseCode"));
-        }
-        else {
+        } else {
             courses = courseRepository.findAll(Sort.by("courseCode"));
         }
-        if(courses.isEmpty())
+        if (courses.isEmpty())
             return ResponseEntity.noContent().build();
 
         List<CourseRespDTO> coursesResponse = new ArrayList<>(courses.size());
@@ -113,8 +110,7 @@ public class CourseService {
         return response;
     }
 
-    public CourseRespDTO assignStudentsToCourse(Long courseId, Set<Long> studentIds)
-    {
+    public CourseRespDTO assignStudentsToCourse(Long courseId, Set<Long> studentIds) {
         log.info(" *** START OF ASSIGNING STUDENTS TO COURSE BY ID *** ");
         Course course = courseValidator.validateExistence(courseId);
         Set<Student> students = new HashSet<>();
@@ -126,8 +122,7 @@ public class CourseService {
         return response;
     }
 
-    public ResponseEntity deleteCourse(Long courseId)
-    {
+    public ResponseEntity deleteCourse(Long courseId) {
         log.info(" *** START OF DELETING COURSE BY ID *** ");
         Course course = courseValidator.validateExistence(courseId);
         courseRepository.delete(course);

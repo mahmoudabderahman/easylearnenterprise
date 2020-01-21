@@ -34,7 +34,8 @@ public class StudentService {
     private final CourseValidator courseValidator;
 
     @Autowired
-    public StudentService(StudentRepository studentRepository, StudentMapper studentMapper, StudentValidator studentValidator, ParentValidator parentValidator, AppointmentValidator appointmentValidator, CourseValidator courseValidator){this.studentRepository = studentRepository;
+    public StudentService(StudentRepository studentRepository, StudentMapper studentMapper, StudentValidator studentValidator, ParentValidator parentValidator, AppointmentValidator appointmentValidator, CourseValidator courseValidator) {
+        this.studentRepository = studentRepository;
         this.studentMapper = studentMapper;
         this.studentValidator = studentValidator;
         this.parentValidator = parentValidator;
@@ -42,8 +43,7 @@ public class StudentService {
         this.courseValidator = courseValidator;
     }
 
-    public ResponseEntity<StudentRespDTO> createStudent(StudentReqDTO request)
-    {
+    public ResponseEntity<StudentRespDTO> createStudent(StudentReqDTO request) {
         log.trace(" *** START OF SAVING STUDENT *** ");
         Student student = studentMapper.mapToEntity(request);
         student = studentRepository.save(student);
@@ -52,8 +52,7 @@ public class StudentService {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    public StudentRespDTO findStudentById(Long studentId)
-    {
+    public StudentRespDTO findStudentById(Long studentId) {
         log.info(" *** START OF FINDING STUDENT BY ID *** ");
         Student student = studentValidator.validateExistence(studentId);
         StudentRespDTO response = studentMapper.mapToDTO(student);
@@ -67,42 +66,36 @@ public class StudentService {
                                                                 Boolean parentAllocated,
                                                                 Boolean appointmentAllocated,
                                                                 Boolean courseAllocated
-                                                                ) {
+    ) {
         log.info(" *** START OF FINDING ALL STUDENTS THAT ARE ALLOCATED TO PARENT *** ");
         Set<Student> students;
         if (parentId != null && (parentAllocated != null && parentAllocated)) {
             students = studentRepository.findAllByParentId(parentId, Sort.by("lastName"));
-        }
-        else if(parentId == null && (parentAllocated != null && !parentAllocated)){
+        } else if (parentId == null && (parentAllocated != null && !parentAllocated)) {
             students = studentRepository.findAllByParentIdNull(Sort.by("lastName"));
-        }
-        else if (appointmentId != null && (appointmentAllocated != null && appointmentAllocated)) {
+        } else if (appointmentId != null && (appointmentAllocated != null && appointmentAllocated)) {
             students = studentRepository.findAllByAppointmentIdNotNull(appointmentId);
-        }
-        else if (appointmentId != null && (appointmentAllocated != null && !appointmentAllocated))
-        {
+        } else if (appointmentId != null && (appointmentAllocated != null && !appointmentAllocated)) {
             students = studentRepository.findAllStudentsNotInAppointment(appointmentId);
-        }
-        else if (courseId != null && (courseAllocated != null && courseAllocated)) {
+        } else if (courseId != null && (courseAllocated != null && courseAllocated)) {
             students = studentRepository.findAllByCourseIdNotNull(courseId);
-        }
-        else if (courseId != null && (courseAllocated != null && !courseAllocated)) {
+        } else if (courseId != null && (courseAllocated != null && !courseAllocated)) {
             students = studentRepository.findAllStudentsNotInCourse(courseId);
-        }
-        else {
+        } else {
             students = studentRepository.findAll(Sort.by("lastName"));
         }
         if (students.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
         List<StudentRespDTO> studentsResponse = new ArrayList<>(students.size());
-        students.forEach(student -> {studentsResponse.add(studentMapper.mapToDTO(student));});
+        students.forEach(student -> {
+            studentsResponse.add(studentMapper.mapToDTO(student));
+        });
         log.info(" *** END OF FINDING ALL STUDENTS THAT ARE ALLOCATED TO PARENT *** ");
         return ResponseEntity.ok(studentsResponse);
     }
 
-    public StudentRespDTO updateStudent(Long studentId, StudentReqDTO request)
-    {
+    public StudentRespDTO updateStudent(Long studentId, StudentReqDTO request) {
         log.info(" *** START OF UPDATING STUDENT BY ID *** ");
         Student student = studentValidator.validateExistence(studentId);
         student = studentMapper.mapToEntity(student, request);
@@ -112,8 +105,7 @@ public class StudentService {
         return response;
     }
 
-    public ResponseEntity deleteStudent(Long studentId)
-    {
+    public ResponseEntity deleteStudent(Long studentId) {
         log.info(" *** START OF DELETING STUDENT BY ID *** ");
         Student student = studentValidator.validateExistence(studentId);
         studentRepository.delete(student);

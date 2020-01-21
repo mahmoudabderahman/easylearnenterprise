@@ -9,6 +9,4 @@ import java.util.Set;
 @Repository
 public interface TeacherRepository extends BaseRepository<Teacher, Long> {
     Set<Teacher> findAll(Sort sort);
-    //Set<Teacher> findAllByCourseIdNul(Sort sort);
-    //Set<Teacher> findAllByCourseIdNotNull(Long courseId, Sort sort);
 }

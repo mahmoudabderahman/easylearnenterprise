@@ -37,12 +37,11 @@ final class CourseController {
     }
 
 
-
     /**
      * API to update a specific workout
      *
      * @param courseId to get the courseCode
-     * @param request   used to get the request body
+     * @param request  used to get the request body
      * @return CourseRespDTO
      */
     @PutMapping(path = "/{courseId}")
@@ -51,14 +50,12 @@ final class CourseController {
     }
 
     @PostMapping(path = "/{courseId}/appointments")
-    public CourseRespDTO assignAppointmentsToCourse( @PathVariable Long courseId, @RequestBody Set<Long> appointmentIds)
-    {
+    public CourseRespDTO assignAppointmentsToCourse(@PathVariable Long courseId, @RequestBody Set<Long> appointmentIds) {
         return courseService.assignAppointmentsToCourse(courseId, appointmentIds);
     }
 
     @PostMapping(path = "/{courseId}/students")
-    public CourseRespDTO assignStudentsToCourse(@PathVariable Long courseId, @RequestBody Set<Long> studentsIds)
-    {
+    public CourseRespDTO assignStudentsToCourse(@PathVariable Long courseId, @RequestBody Set<Long> studentsIds) {
         return courseService.assignStudentsToCourse(courseId, studentsIds);
     }
 

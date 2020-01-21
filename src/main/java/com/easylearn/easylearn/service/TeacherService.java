@@ -66,6 +66,7 @@ public class TeacherService {
         log.info(" *** END OF FINDING ALL TEACHERS *** ");
         return ResponseEntity.ok(teachersResponse);
     }
+
     /*
     public ResponseEntity<List<TeacherRespDTO>> findAllTeachersAllocatedToCourse(Long courseId) {
         log.info(" *** START OF FINDING ALL TEACHERS ALLOCATED TO COURSE *** ");
@@ -86,8 +87,7 @@ public class TeacherService {
         return ResponseEntity.ok(teachersResponse);
     }
     */
-    public TeacherRespDTO updateTeacher(Long teacherId, TeacherReqDTO request)
-    {
+    public TeacherRespDTO updateTeacher(Long teacherId, TeacherReqDTO request) {
         log.info(" *** START OF UPDATING TEACHER BY ID *** ");
         Teacher teacher = teacherValidator.validateExistence(teacherId);
         teacher = teacherMapper.mapToEntity(teacher, request);
@@ -97,8 +97,7 @@ public class TeacherService {
         return response;
     }
 
-    public TeacherRespDTO assignCoursesToTeacher(Long teacherId, Set<Long> courseIds)
-    {
+    public TeacherRespDTO assignCoursesToTeacher(Long teacherId, Set<Long> courseIds) {
         log.info(" *** START OF ASSIGNING TEACHERS TO COURSE BY ID *** ");
         Teacher teacher = teacherValidator.validateExistence(teacherId);
         Set<Course> courses = new HashSet<>();
@@ -111,8 +110,7 @@ public class TeacherService {
         return response;
     }
 
-    public ResponseEntity deleteTeacher(Long teacherId)
-    {
+    public ResponseEntity deleteTeacher(Long teacherId) {
         log.info(" *** START OF DELETING TEACHER BY ID *** ");
         Teacher teacher = teacherValidator.validateExistence(teacherId);
         teacherRepository.delete(teacher);

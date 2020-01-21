@@ -13,8 +13,7 @@ public class CourseValidator extends BaseValidator<Course> {
     private CourseRepository courseRepository;
 
     @Autowired
-    public CourseValidator(CourseRepository courseRepository)
-    {
+    public CourseValidator(CourseRepository courseRepository) {
         super(Course.class);
         this.courseRepository = courseRepository;
     }
