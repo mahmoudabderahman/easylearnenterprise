@@ -71,7 +71,6 @@ public class StudentService {
         log.info(" *** START OF FINDING ALL STUDENTS THAT ARE ALLOCATED TO PARENT *** ");
         Set<Student> students;
         if (parentId != null && (parentAllocated != null && parentAllocated)) {
-            System.out.println("ParentId not null = " + parentId);
             students = studentRepository.findAllByParentId(parentId, Sort.by("lastName"));
         }
         else if(parentId == null && (parentAllocated != null && !parentAllocated)){
@@ -82,14 +81,12 @@ public class StudentService {
         }
         else if (appointmentId != null && (appointmentAllocated != null && !appointmentAllocated))
         {
-            System.out.println("appointmentId not null = " + appointmentId);
             students = studentRepository.findAllStudentsNotInAppointment(appointmentId);
         }
         else if (courseId != null && (courseAllocated != null && courseAllocated)) {
             students = studentRepository.findAllByCourseIdNotNull(courseId);
         }
         else if (courseId != null && (courseAllocated != null && !courseAllocated)) {
-            System.out.println("courseId not null = " + courseId);
             students = studentRepository.findAllStudentsNotInCourse(courseId);
         }
         else {

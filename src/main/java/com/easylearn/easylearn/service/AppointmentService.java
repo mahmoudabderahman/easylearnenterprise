@@ -10,7 +10,6 @@ import com.easylearn.easylearn.entity.Student;
 import com.easylearn.easylearn.mapper.AppointmentMapper;
 import com.easylearn.easylearn.model.AppointmentReqDTO;
 import com.easylearn.easylearn.model.AppointmentRespDTO;
-import com.easylearn.easylearn.model.StudentRespDTO;
 import com.easylearn.easylearn.repository.AppointmentRepository;
 import com.easylearn.easylearn.validation.AppointmentValidator;
 import com.easylearn.easylearn.validation.StudentValidator;
