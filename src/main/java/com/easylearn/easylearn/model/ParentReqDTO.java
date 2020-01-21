@@ -20,12 +20,14 @@ public class ParentReqDTO {
     private String lastName;
 
     @Email(message = "Invalid email address")
-    private String email;
+    private String username;
 
     private String password;
 
     private ParentType type;
 
     private UserType userType;
+
+    private String role;
 
 }

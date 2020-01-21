@@ -34,10 +34,12 @@ public class User {
     protected String lastName;
 
     @Column(unique = true, nullable = false)
-    protected String email;
+    protected String username;
 
     @Column(nullable = false)
     protected String password;
+
+    protected String role = "ROLE_USER_2";
     /*
     @ManyToMany
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user.id"), inverseJoinColumns = @JoinColumn(name="role_id"))

@@ -19,12 +19,14 @@ public class ParentRespDTO {
 
     private String lastName;
 
-    private String email;
+    private String username;
 
     private String password;
 
     private ParentType type;
 
     private UserType userType;
+
+    private String role;
 
 }

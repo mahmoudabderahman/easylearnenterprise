@@ -22,10 +22,11 @@ public class ParentMapper implements ObjectMapper<Parent, ParentReqDTO, ParentRe
         return Parent.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
-                .email(request.getEmail())
+                .username(request.getUsername())
                 .password(request.getPassword())
                 .type(request.getType())
                 .userType(request.getUserType())
+                .role(request.getRole())
                 .build();
     }
 
@@ -33,10 +34,11 @@ public class ParentMapper implements ObjectMapper<Parent, ParentReqDTO, ParentRe
     public Parent mapToEntity(Parent parent, ParentReqDTO request) {
         parent.setFirstName(request.getFirstName());
         parent.setLastName(request.getLastName());
-        parent.setEmail(request.getEmail());
+        parent.setUsername(request.getUsername());
         parent.setPassword(request.getPassword());
         parent.setType(request.getType());
         parent.setUserType(request.getUserType());
+        parent.setRole(request.getRole());
         return parent;
     }
 
@@ -46,10 +48,11 @@ public class ParentMapper implements ObjectMapper<Parent, ParentReqDTO, ParentRe
                 .id(parent.getId())
                 .firstName(parent.getFirstName())
                 .lastName(parent.getLastName())
-                .email(parent.getEmail())
+                .username(parent.getUsername())
                 .password(parent.getPassword())
                 .type(parent.getType())
                 .userType(parent.getUserType())
+                .role(parent.getRole())
                 .build();
     }
 

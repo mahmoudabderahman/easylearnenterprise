@@ -18,9 +18,10 @@ public class TeacherMapper implements ObjectMapper<Teacher, TeacherReqDTO, Teach
         return Teacher.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
-                .email(request.getEmail())
+                .username(request.getUsername())
                 .password(request.getPassword())
                 .userType(request.getUserType())
+                .role(request.getRole())
                 .build();
     }
 
@@ -28,10 +29,10 @@ public class TeacherMapper implements ObjectMapper<Teacher, TeacherReqDTO, Teach
     public Teacher mapToEntity(Teacher teacher, TeacherReqDTO request) {
         teacher.setFirstName(request.getFirstName());
         teacher.setLastName(request.getLastName());
-        teacher.setEmail(request.getEmail());
+        teacher.setUsername(request.getUsername());
         teacher.setPassword(request.getPassword());
-        teacher.setUserType(request.getUserType()
-        );
+        teacher.setUserType(request.getUserType());
+        teacher.setRole(request.getRole());
         return teacher;
     }
 
@@ -41,9 +42,10 @@ public class TeacherMapper implements ObjectMapper<Teacher, TeacherReqDTO, Teach
                 .id(teacher.getId())
                 .firstName(teacher.getFirstName())
                 .lastName(teacher.getLastName())
-                .email(teacher.getEmail())
+                .username(teacher.getUsername())
                 .password(teacher.getPassword())
                 .userType(teacher.getUserType())
+                .role(teacher.getRole())
                 .build();
     }
 

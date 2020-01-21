@@ -21,9 +21,10 @@ public class StudentMapper implements ObjectMapper<Student, StudentReqDTO, Stude
         return Student.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
-                .email(request.getEmail())
+                .username(request.getUsername())
                 .password(request.getPassword())
                 .userType(request.getUserType())
+                .role(request.getRole())
                 .build();
     }
 
@@ -31,9 +32,10 @@ public class StudentMapper implements ObjectMapper<Student, StudentReqDTO, Stude
     public Student mapToEntity(Student student, StudentReqDTO request) {
         student.setFirstName(request.getFirstName());
         student.setLastName(request.getLastName());
-        student.setEmail(request.getEmail());
+        student.setUsername(request.getUsername());
         student.setPassword(request.getPassword());
         student.setUserType(request.getUserType());
+        student.setRole(request.getRole());
         return student;
     }
 
@@ -43,9 +45,10 @@ public class StudentMapper implements ObjectMapper<Student, StudentReqDTO, Stude
                 .id(student.getId())
                 .firstName(student.getFirstName())
                 .lastName(student.getLastName())
-                .email(student.getEmail())
+                .username(student.getUsername())
                 .password(student.getPassword())
                 .userType(student.getUserType())
+                .role(student.getRole())
                 .build();
     }
 

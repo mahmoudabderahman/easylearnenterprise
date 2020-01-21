@@ -13,10 +13,12 @@ public class TeacherReqDTO {
     private String firstName;
 
     @Email(message = "Invalid email address")
-    private String email;
+    private String username;
 
     private String password;
 
     private UserType userType;
+
+    private String role;
 
 }

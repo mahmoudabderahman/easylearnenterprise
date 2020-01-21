@@ -14,8 +14,9 @@ public class TeacherRespDTO {
     private Long id; // Was not created in Req, because it will be automatically generated while creating.
     private String lastName;
     private String firstName;
-    private String email;
+    private String username;
     private String password;
     private UserType userType;
+    private String role;
 
 }
