@@ -1,9 +1,6 @@
 package com.easylearn.easylearn.jwt;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 import com.easylearn.easylearn.controller.UserController;
 import com.easylearn.easylearn.entity.Parent;
@@ -24,8 +21,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class JwtInMemoryUserDetailsService implements UserDetailsService{
-    List<JwtUserDetails> inMemoryUserList = new ArrayList<>();
+public class JwtInMemoryUserDetailsService implements UserDetailsService {
+    Set<JwtUserDetails> inMemoryUserList;
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     @Autowired
     ParentRepository parentRepository;
@@ -48,13 +45,11 @@ public class JwtInMemoryUserDetailsService implements UserDetailsService{
     */
 
 
-
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         fillUsersList();
         System.out.println("Number of users: " + inMemoryUserList.size());
-        if (!inMemoryUserList.isEmpty()){
+        if (!inMemoryUserList.isEmpty()) {
             Optional<JwtUserDetails> findFirst = inMemoryUserList.stream()
                     .filter(user -> user.getUsername().equals(username)).findFirst();
 
@@ -68,30 +63,19 @@ public class JwtInMemoryUserDetailsService implements UserDetailsService{
     }
 
     public void fillUsersList() {
-
+        inMemoryUserList = new HashSet<>();
         Set<Parent> parents = parentRepository.findAll(Sort.by("lastName"));
         Set<Student> students = studentRepository.findAll(Sort.by("lastName"));
         Set<Teacher> teachers = teacherRepository.findAll(Sort.by("lastName"));
-        if (!parents.isEmpty()) {
-            List<Parent> parentsResponse = new ArrayList<>(parents.size());
-            parents.forEach(parent -> parentsResponse.add(parent));
-        }
-        if (!students.isEmpty()) {
-            List<Student> studentsResponse = new ArrayList<>(students.size());
-            students.forEach(student -> studentsResponse.add(student));
-        }
-        if (!teachers.isEmpty()) {
-            List<Teacher> teachersResponse = new ArrayList<>(teachers.size());
-            teachers.forEach(teacher -> teachersResponse.add(teacher));
-        }
 
-        for (Parent parent: parents) {
+
+        for (Parent parent : parents) {
             inMemoryUserList.add(new JwtUserDetails(parent.getId(), parent.getUsername(), encoder.encode(parent.getPassword()), "ROLE_USER_2"));
         }
-        for (Student student: students) {
+        for (Student student : students) {
             inMemoryUserList.add(new JwtUserDetails(student.getId(), student.getUsername(), encoder.encode(student.getPassword()), "ROLE_USER_2"));
         }
-        for (Teacher teacher: teachers) {
+        for (Teacher teacher : teachers) {
             inMemoryUserList.add(new JwtUserDetails(teacher.getId(), teacher.getUsername(), encoder.encode(teacher.getPassword()), "ROLE_USER_2"));
         }
 
