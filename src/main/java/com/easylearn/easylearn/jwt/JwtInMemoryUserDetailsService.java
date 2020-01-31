@@ -10,6 +10,8 @@ import com.easylearn.easylearn.model.ParentRespDTO;
 import com.easylearn.easylearn.repository.ParentRepository;
 import com.easylearn.easylearn.repository.StudentRepository;
 import com.easylearn.easylearn.repository.TeacherRepository;
+import com.easylearn.easylearn.repository.UserRepository;
+import com.easylearn.easylearn.service.UserService;
 import io.jsonwebtoken.Jwt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -22,6 +24,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class JwtInMemoryUserDetailsService implements UserDetailsService {
+
     Set<JwtUserDetails> inMemoryUserList;
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     @Autowired
@@ -31,6 +34,7 @@ public class JwtInMemoryUserDetailsService implements UserDetailsService {
     @Autowired
     TeacherRepository teacherRepository;
 
+    private boolean filledOneTime = false;
 
 
     /*
@@ -47,7 +51,11 @@ public class JwtInMemoryUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        fillUsersList();
+        if (!filledOneTime) {
+            fillUsersList();
+            filledOneTime = true;
+        }
+
         System.out.println("Number of users: " + inMemoryUserList.size());
         if (!inMemoryUserList.isEmpty()) {
             Optional<JwtUserDetails> findFirst = inMemoryUserList.stream()
