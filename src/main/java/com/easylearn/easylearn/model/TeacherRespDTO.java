@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.management.remote.rmi._RMIConnection_Stub;
+
 @Getter
 @Setter
 @Builder // It does not work unless, there is a @AllArgsConstructor.
@@ -18,5 +20,6 @@ public class TeacherRespDTO {
     private String password;
     private UserType userType;
     private String role;
+
 
 }
