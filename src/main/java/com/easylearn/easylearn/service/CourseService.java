@@ -61,11 +61,14 @@ public class CourseService {
         return response;
     }
 
-    public ResponseEntity<List<CourseRespDTO>> findAllCourses(Long teacherId, Boolean ideal) {
+    public ResponseEntity<List<CourseRespDTO>> findAllCourses(Long teacherId, Long studentId, Boolean ideal) {
         log.info(" *** START OF FINDING ALL COURSES *** ");
         Set<Course> courses;// = courseRepository.findAll(Sort.by("courseCode"));
         if (teacherId != null) {
             courses = courseRepository.findAllByTeacherId(teacherId, Sort.by("courseCode"));
+        } else if (studentId != null) {
+
+            courses = courseRepository.findAllByStudentsId(studentId, Sort.by("courseCode"));
         } else if (ideal != null && ideal) {
 
             courses = courseRepository.findAllByTeacherIdNull(Sort.by("courseCode"));

@@ -82,13 +82,16 @@ public class AppointmentService {
      * @param courseId is the id of the course, to get the appointments, that are passed to.
      * @return List of ResponseEntity<AppointmentRespDTO>
      */
-    public ResponseEntity<List<AppointmentRespDTO>> findAllAppointments(Long courseId, Boolean ideal) {
+    public ResponseEntity<List<AppointmentRespDTO>> findAllAppointments(Long courseId, Long studentId,  Boolean ideal) {
         log.info(" *** START OF FINDING ALL APPOINTMENTS ALLOCATED BY A COURSE *** ");
         Set<Appointment> appointments;
         if (courseId != null) {
             System.out.println("While courseId is null");
             appointments = appointmentRepository.findAllByCourseId(courseId, Sort.by("startDate"));
-        } else if (ideal != null && ideal) {
+        } else if (studentId != null) {
+            appointments = appointmentRepository.findAllAppointmentsOfStudentCourses(studentId);
+        }
+        else if (ideal != null && ideal) {
             appointments = appointmentRepository.findAllByCourseIdNull(Sort.by("startDate"));
         } else {
             appointments = appointmentRepository.findAll(Sort.by("startDate"));

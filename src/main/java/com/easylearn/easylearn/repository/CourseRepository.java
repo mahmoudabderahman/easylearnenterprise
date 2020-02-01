@@ -14,4 +14,6 @@ public interface CourseRepository extends BaseRepository<Course, Long> {
 
     Set<Course> findAll(Sort sort);
 
+    Set<Course> findAllByStudentsId(Long studentId, Sort sort);
+
 }
