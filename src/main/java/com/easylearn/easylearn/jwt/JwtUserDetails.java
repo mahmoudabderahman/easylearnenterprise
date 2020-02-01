@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import com.easylearn.easylearn.model.enums.UserType;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,12 +19,12 @@ public class JwtUserDetails implements UserDetails {
     private final String username;
     private final String password;
     private final Collection<? extends GrantedAuthority> authorities;
-
-    public JwtUserDetails(Long id, String username, String password, String role) {
+    private final UserType userType;
+    public JwtUserDetails(Long id, String username, String password, String role, UserType userType) {
         this.id = id;
         this.username = username;
         this.password = password;
-
+        this.userType = userType;
         List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
         authorities.add(new SimpleGrantedAuthority(role));
 
@@ -73,4 +74,6 @@ public class JwtUserDetails implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    public UserType getUserType() {return this.userType;}
 }

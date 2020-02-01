@@ -14,6 +14,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
@@ -37,14 +39,15 @@ public class JwtAuthenticationRestController {
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtTokenRequest authenticationRequest)
             throws AuthenticationException {
 
-        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+        Authentication authentication =  authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword()));
 
-        final UserDetails userDetails = jwtInMemoryUserDetailsService
-                .loadUserByUsername(authenticationRequest.getUsername());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        JwtUserDetails userDetails = (JwtUserDetails) authentication.getPrincipal();
+        final String token = jwtTokenUtil.generateToken(authentication);
 
-        final String token = jwtTokenUtil.generateToken(userDetails);
 
-        return ResponseEntity.ok(new JwtTokenResponse(token));
+
+        return ResponseEntity.ok(new JwtTokenResponse(token, userDetails.getId(), userDetails.getUsername(), userDetails.getUserType()));
     }
 
     @CrossOrigin
@@ -57,7 +60,7 @@ public class JwtAuthenticationRestController {
 
         if (jwtTokenUtil.canTokenBeRefreshed(token)) {
             String refreshedToken = jwtTokenUtil.refreshToken(token);
-            return ResponseEntity.ok(new JwtTokenResponse(refreshedToken));
+            return ResponseEntity.ok(new JwtTokenResponse(refreshedToken, user.getId(), user.getUsername(), user.getUserType()));
         } else {
             return ResponseEntity.badRequest().body(null);
         }
