@@ -38,13 +38,19 @@ public class JwtAuthenticationRestController {
     @RequestMapping(value = "${jwt.get.token.uri}", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtTokenRequest authenticationRequest)
             throws AuthenticationException {
+        Authentication authentication;
+        try {
+            authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword()));
+        } catch (DisabledException e) {
+            throw new AuthenticationException("USER_DISABLED", e);
+        } catch (BadCredentialsException e) {
+            throw new AuthenticationException("INVALID_CREDENTIALS", e);
+        }
 
-        Authentication authentication =  authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         JwtUserDetails userDetails = (JwtUserDetails) authentication.getPrincipal();
         final String token = jwtTokenUtil.generateToken(authentication);
-
 
 
         return ResponseEntity.ok(new JwtTokenResponse(token, userDetails.getId(), userDetails.getUsername(), userDetails.getUserType()));
@@ -66,21 +72,10 @@ public class JwtAuthenticationRestController {
         }
     }
 
-    @ExceptionHandler({ AuthenticationException.class })
+    @ExceptionHandler({AuthenticationException.class})
     public ResponseEntity<String> handleAuthenticationException(AuthenticationException e) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
     }
 
-    private void authenticate(String username, String password) {
-        Objects.requireNonNull(username);
-        Objects.requireNonNull(password);
 
-        try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-        } catch (DisabledException e) {
-            throw new AuthenticationException("USER_DISABLED", e);
-        } catch (BadCredentialsException e) {
-            throw new AuthenticationException("INVALID_CREDENTIALS", e);
-        }
-    }
 }

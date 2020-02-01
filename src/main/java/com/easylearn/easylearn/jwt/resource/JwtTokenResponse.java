@@ -11,11 +11,10 @@ public class JwtTokenResponse implements Serializable {
     private Long id;
 
 
-
     private String username;
     private UserType userType;
 
-    public JwtTokenResponse(String token, Long id, String username,  UserType userType) {
+    public JwtTokenResponse(String token, Long id, String username, UserType userType) {
         this.token = token;
         this.id = id;
         this.username = username;
@@ -41,7 +40,6 @@ public class JwtTokenResponse implements Serializable {
     public void setUsername(String username) {
         this.username = username;
     }
-
 
 
     public UserType getUserType() {

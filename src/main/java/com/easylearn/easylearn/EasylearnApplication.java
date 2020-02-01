@@ -55,6 +55,8 @@ public class EasylearnApplication {
             inMemoryUserList.add(new JwtUserDetails(teacher.getId(), teacher.getUsername(), encoder.encode(teacher.getPassword()), "ROLE_USER_2", UserType.TEACHER));
         }
 
+        inMemoryUserList.add(new JwtUserDetails(999999L, "admin@easylearn.mis.com", encoder.encode("123456"), "ROLE_USER_1", UserType.ADMIN));
+
         System.out.println("Number of users: " + inMemoryUserList.size());
 
     }
