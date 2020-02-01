@@ -3,6 +3,7 @@ package com.easylearn.easylearn.mapper;
 import com.easylearn.easylearn.entity.Teacher;
 import com.easylearn.easylearn.model.TeacherReqDTO;
 import com.easylearn.easylearn.model.TeacherRespDTO;
+import com.easylearn.easylearn.model.enums.UserType;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,8 +21,7 @@ public class TeacherMapper implements ObjectMapper<Teacher, TeacherReqDTO, Teach
                 .lastName(request.getLastName())
                 .username(request.getUsername())
                 .password(request.getPassword())
-                .userType(request.getUserType())
-                .role(request.getRole())
+                .userType(UserType.TEACHER)
                 .build();
     }
 
@@ -31,8 +31,7 @@ public class TeacherMapper implements ObjectMapper<Teacher, TeacherReqDTO, Teach
         teacher.setLastName(request.getLastName());
         teacher.setUsername(request.getUsername());
         teacher.setPassword(request.getPassword());
-        teacher.setUserType(request.getUserType());
-        teacher.setRole(request.getRole());
+        teacher.setUserType(UserType.TEACHER);
         return teacher;
     }
 
@@ -44,8 +43,7 @@ public class TeacherMapper implements ObjectMapper<Teacher, TeacherReqDTO, Teach
                 .lastName(teacher.getLastName())
                 .username(teacher.getUsername())
                 .password(teacher.getPassword())
-                .userType(teacher.getUserType())
-                .role(teacher.getRole())
+                .userType(UserType.TEACHER)
                 .build();
     }
 

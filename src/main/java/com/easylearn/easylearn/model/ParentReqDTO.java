@@ -28,6 +28,4 @@ public class ParentReqDTO {
 
     private UserType userType;
 
-    private String role;
-
 }

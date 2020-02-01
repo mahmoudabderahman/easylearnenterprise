@@ -4,6 +4,7 @@ import com.easylearn.easylearn.entity.Student;
 import com.easylearn.easylearn.model.StudentReqDTO;
 import com.easylearn.easylearn.model.StudentRespDTO;
 
+import com.easylearn.easylearn.model.enums.UserType;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,8 +24,7 @@ public class StudentMapper implements ObjectMapper<Student, StudentReqDTO, Stude
                 .lastName(request.getLastName())
                 .username(request.getUsername())
                 .password(request.getPassword())
-                .userType(request.getUserType())
-                .role(request.getRole())
+                .userType(UserType.STUDENT)
                 .build();
     }
 
@@ -34,8 +34,7 @@ public class StudentMapper implements ObjectMapper<Student, StudentReqDTO, Stude
         student.setLastName(request.getLastName());
         student.setUsername(request.getUsername());
         student.setPassword(request.getPassword());
-        student.setUserType(request.getUserType());
-        student.setRole(request.getRole());
+        student.setUserType(UserType.STUDENT);
         return student;
     }
 
@@ -47,8 +46,7 @@ public class StudentMapper implements ObjectMapper<Student, StudentReqDTO, Stude
                 .lastName(student.getLastName())
                 .username(student.getUsername())
                 .password(student.getPassword())
-                .userType(student.getUserType())
-                .role(student.getRole())
+                .userType(UserType.STUDENT)
                 .build();
     }
 

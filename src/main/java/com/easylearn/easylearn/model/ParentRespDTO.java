@@ -27,6 +27,4 @@ public class ParentRespDTO {
 
     private UserType userType;
 
-    private String role;
-
 }

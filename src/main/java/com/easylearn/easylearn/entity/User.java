@@ -6,8 +6,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+
 
 @Getter
 @Setter
@@ -38,19 +37,4 @@ public class User {
 
     @Column(nullable = false)
     protected String password;
-
-    protected String role = "ROLE_USER_2";
-    /*
-    @ManyToMany
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user.id"), inverseJoinColumns = @JoinColumn(name="role_id"))
-    */
-    /*
-    public void setPassword(String password)
-    {
-        this.password = encoder.encode(password);
-    }
-    */
-    //https://www.baeldung.com/spring-security-registration-password-encoding-bcrypt
-
-
 }

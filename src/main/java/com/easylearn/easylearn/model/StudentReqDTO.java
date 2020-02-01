@@ -24,6 +24,4 @@ public class StudentReqDTO {
     private String password;
     private UserType userType;
 
-    private String role;
-
 }

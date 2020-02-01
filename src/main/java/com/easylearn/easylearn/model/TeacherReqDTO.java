@@ -19,6 +19,4 @@ public class TeacherReqDTO {
 
     private UserType userType;
 
-    private String role;
-
 }

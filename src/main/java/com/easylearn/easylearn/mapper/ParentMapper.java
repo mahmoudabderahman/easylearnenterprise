@@ -4,6 +4,7 @@ import com.easylearn.easylearn.entity.Parent;
 import com.easylearn.easylearn.model.ParentReqDTO;
 import com.easylearn.easylearn.model.ParentRespDTO;
 
+import com.easylearn.easylearn.model.enums.UserType;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,8 +26,7 @@ public class ParentMapper implements ObjectMapper<Parent, ParentReqDTO, ParentRe
                 .username(request.getUsername())
                 .password(request.getPassword())
                 .type(request.getType())
-                .userType(request.getUserType())
-                .role(request.getRole())
+                .userType(UserType.PARENT)
                 .build();
     }
 
@@ -37,8 +37,7 @@ public class ParentMapper implements ObjectMapper<Parent, ParentReqDTO, ParentRe
         parent.setUsername(request.getUsername());
         parent.setPassword(request.getPassword());
         parent.setType(request.getType());
-        parent.setUserType(request.getUserType());
-        parent.setRole(request.getRole());
+        parent.setUserType(UserType.PARENT);
         return parent;
     }
 
@@ -51,8 +50,7 @@ public class ParentMapper implements ObjectMapper<Parent, ParentReqDTO, ParentRe
                 .username(parent.getUsername())
                 .password(parent.getPassword())
                 .type(parent.getType())
-                .userType(parent.getUserType())
-                .role(parent.getRole())
+                .userType(UserType.PARENT)
                 .build();
     }
 

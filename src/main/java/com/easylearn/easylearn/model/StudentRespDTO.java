@@ -17,6 +17,4 @@ public class StudentRespDTO {
     private String username;
     private String password;
     private UserType userType;
-    private String role;
-
 }
