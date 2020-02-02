@@ -1,12 +1,11 @@
 package com.easylearn.easylearn.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.*;
 
 @Entity
 public class Document {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto Increament
     private long id;
     private String nameOfFile;
     @Lob
