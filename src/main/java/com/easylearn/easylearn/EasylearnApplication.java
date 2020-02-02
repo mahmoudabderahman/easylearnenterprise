@@ -44,15 +44,21 @@ public class EasylearnApplication {
         Set<Student> students = studentRepository.findAll(Sort.by("lastName"));
         Set<Teacher> teachers = teacherRepository.findAll(Sort.by("lastName"));
 
-
-        for (Parent parent : parents) {
-            inMemoryUserList.add(new JwtUserDetails(parent.getId(), parent.getUsername(), encoder.encode(parent.getPassword()), "ROLE_USER_2", UserType.PARENT));
+        if (!parents.isEmpty()) {
+            for (Parent parent : parents) {
+                inMemoryUserList.add(new JwtUserDetails(parent.getId(), parent.getUsername(), encoder.encode(parent.getPassword()), "ROLE_USER_2", UserType.PARENT));
+            }
         }
-        for (Student student : students) {
-            inMemoryUserList.add(new JwtUserDetails(student.getId(), student.getUsername(), encoder.encode(student.getPassword()), "ROLE_USER_2", UserType.STUDENT));
+        if (!students.isEmpty())
+        {
+            for (Student student : students) {
+                inMemoryUserList.add(new JwtUserDetails(student.getId(), student.getUsername(), encoder.encode(student.getPassword()), "ROLE_USER_2", UserType.STUDENT));
+            }
         }
-        for (Teacher teacher : teachers) {
-            inMemoryUserList.add(new JwtUserDetails(teacher.getId(), teacher.getUsername(), encoder.encode(teacher.getPassword()), "ROLE_USER_2", UserType.TEACHER));
+        if (!teachers.isEmpty()) {
+            for (Teacher teacher : teachers) {
+                inMemoryUserList.add(new JwtUserDetails(teacher.getId(), teacher.getUsername(), encoder.encode(teacher.getPassword()), "ROLE_USER_2", UserType.TEACHER));
+            }
         }
 
         inMemoryUserList.add(new JwtUserDetails(999999L, "admin@easylearn.mis.com", encoder.encode("123456"), "ROLE_USER_1", UserType.ADMIN));

@@ -92,9 +92,13 @@ public class AppointmentService {
             appointments = appointmentRepository.findAllAppointmentsOfTeacherCourses(teacherId);
 
         }
+        else if (studentId != null && ideal != null && ideal) {
+            appointments = appointmentRepository.findAllAppointmentsOfStudent(studentId);
+        }
         else if (studentId != null) {
             appointments = appointmentRepository.findAllAppointmentsOfStudentCourses(studentId);
         }
+
         else if (ideal != null && ideal) {
             appointments = appointmentRepository.findAllByCourseIdNull(Sort.by("startDate"));
         } else {
