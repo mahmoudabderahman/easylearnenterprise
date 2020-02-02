@@ -59,8 +59,8 @@ final class AppointmentController {
      * @return list of appointments which were allocated to a course.
      */
     @GetMapping
-    public ResponseEntity findAllAppointments(@RequestParam(required = false) Long courseId,@RequestParam(required = false) Long studentId, @RequestParam(required = false) Boolean ideal) {
-        return appointmentService.findAllAppointments(courseId, studentId, ideal);
+    public ResponseEntity findAllAppointments(@RequestParam(required = false) Long courseId,@RequestParam(required = false) Long studentId,@RequestParam(required = false) Long teacherId, @RequestParam(required = false) Boolean ideal) {
+        return appointmentService.findAllAppointments(courseId, studentId, teacherId, ideal);
     }
 
 

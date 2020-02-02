@@ -54,7 +54,7 @@ public class JwtTokenUtil implements Serializable {
 
     private Boolean isTokenExpired(String token) {
         final Date expiration = getExpirationDateFromToken(token);
-        return expiration.before(clock.now());
+        return false;
     }
 
     private Boolean ignoreTokenExpiration(String token) {
@@ -80,7 +80,8 @@ public class JwtTokenUtil implements Serializable {
     public String refreshToken(String token) {
         final Date createdDate = clock.now();
         final Date expirationDate = calculateExpirationDate(createdDate);
-
+        System.out.println(createdDate);
+        System.out.println(expirationDate);
         final Claims claims = getAllClaimsFromToken(token);
         claims.setIssuedAt(createdDate);
         claims.setExpiration(expirationDate);
