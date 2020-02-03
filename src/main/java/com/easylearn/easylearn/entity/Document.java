@@ -1,6 +1,15 @@
 package com.easylearn.easylearn.entity;
 
+import lombok.*;
+
 import javax.persistence.*;
+import java.util.Set;
+
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 
 @Entity
 public class Document {
@@ -8,32 +17,12 @@ public class Document {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto Increament
     private long id;
     private String nameOfFile;
+    private String uploader;
     @Lob
     private byte[] data;
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getNameOfFile() {
-        return nameOfFile;
-    }
-
-    public void setNameOfFile(String nameOfFile) {
-        this.nameOfFile = nameOfFile;
-    }
-
-    public byte[] getData() {
-        return data;
-    }
-
-    public void setData(byte[] data) {
-        this.data = data;
-    }
-
+    // EAGER is used in ManyToMany relationships, because we get all the relationships.
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    private Course course;
 
 }

@@ -28,7 +28,6 @@ public interface AppointmentRepository extends BaseRepository<Appointment, Long>
 
     @Query(value="select * from appointment a where a.id in (SELECT appointment_student.appointment_id FROM appointment_student where appointment_student.student_id = :student_id) order by start_date"
             , nativeQuery =true)
-
     Set<Appointment> findAllAppointmentsOfStudent(@Param("student_id") Long studentId);
 
 

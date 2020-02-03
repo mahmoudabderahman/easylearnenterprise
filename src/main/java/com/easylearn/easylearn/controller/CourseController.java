@@ -2,9 +2,7 @@ package com.easylearn.easylearn.controller;
 
 import com.easylearn.easylearn.model.CourseReqDTO;
 import com.easylearn.easylearn.model.CourseRespDTO;
-import com.easylearn.easylearn.model.StudentRespDTO;
 import com.easylearn.easylearn.service.CourseService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
