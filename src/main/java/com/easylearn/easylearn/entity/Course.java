@@ -41,9 +41,6 @@ public class Course {
     @OneToMany(cascade = CascadeType.PERSIST)
     private Set<Appointment> appointments;
 
-    @JoinColumn(name = "course_id")
-    @OneToMany(cascade = CascadeType.PERSIST)
-    private Set<Document> documents;
 
     // EAGER is used in ManyToMany relationships, because we get all the relationships.
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)

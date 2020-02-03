@@ -21,8 +21,7 @@ public class Document {
     @Lob
     private byte[] data;
 
-    // EAGER is used in ManyToMany relationships, because we get all the relationships.
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    private Course course;
+    private long courseId;
+
 
 }
