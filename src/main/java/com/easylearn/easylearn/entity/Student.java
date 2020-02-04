@@ -1,3 +1,7 @@
+/**
+ * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * Student Entity is where all Student specifications are declared.
+ */
 package com.easylearn.easylearn.entity;
 
 import com.easylearn.easylearn.model.enums.UserType;
@@ -28,14 +32,5 @@ public class Student extends User {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Parent parent;
-
-    public void addAppointment(Appointment appointment) {
-        this.appointments.add(appointment);
-    }
-
-    public void addCourse(Course course) {
-        this.courses.add(course);
-    }
-
 
 }

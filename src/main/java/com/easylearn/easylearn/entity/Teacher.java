@@ -1,3 +1,7 @@
+/**
+ * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * Teacher Entity is where all Teacher specifications are declared.
+ */
 package com.easylearn.easylearn.entity;
 
 import com.easylearn.easylearn.model.enums.UserType;

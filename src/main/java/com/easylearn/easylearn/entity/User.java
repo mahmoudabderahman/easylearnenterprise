@@ -1,3 +1,7 @@
+/**
+ * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * User Entity is where all User specifications are declared.
+ */
 package com.easylearn.easylearn.entity;
 
 import lombok.*;
@@ -19,10 +23,7 @@ import java.util.Set;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public class User {
-    /*
-    @Autowired
-    private BCryptPasswordEncoder encoder;
-    */
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto Increament
     protected Long id;

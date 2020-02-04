@@ -1,3 +1,8 @@
+/**
+ * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * JwtUserDetails Class is a class, where UserDetails specifications for JwtSecurity is
+ * implemented.
+ */
 package com.easylearn.easylearn.jwt;
 
 import java.util.ArrayList;

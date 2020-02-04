@@ -1,3 +1,8 @@
+/**
+ * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * JwtTokenAuthorizationOncePerRequestFilter Class is a class, where the authorization
+ * process is implemented.
+ */
 package com.easylearn.easylearn.jwt;
 
 import java.io.IOException;

@@ -1,3 +1,9 @@
+/**
+ * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * RestExceptionHandler Exception class is where all RestException
+ * specifications are declared.
+ *
+ */
 package com.easylearn.easylearn.exception;
 
 import io.swagger.annotations.Api;

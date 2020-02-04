@@ -1,3 +1,7 @@
+/**
+ * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * JwtTokenRequest is a class, where the specifications of a JwtToken request is implemented.
+ */
 package com.easylearn.easylearn.jwt.resource;
 
 import java.io.Serializable;

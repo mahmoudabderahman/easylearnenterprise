@@ -1,3 +1,7 @@
+/**
+ * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * Student Repository Interface is where storage, retrieval and search behavior is declared.
+ */
 package com.easylearn.easylearn.repository;
 
 import com.easylearn.easylearn.entity.Student;
@@ -12,13 +16,6 @@ import java.util.Set;
 public interface StudentRepository extends BaseRepository<Student, Long> {
     Set<Student> findAll(Sort sort);
 
-    /*
-    @Query(value = "select * from student where parent_id = null order by student.last_name", nativeQuery = true)
-    Set<Student> findAllAvailableStudentsForParentAllocation();
-
-    @Query(value = "select * from student where parent_id != null and parent_id = :parentId order by student.last_name", nativeQuery = true)
-    Set<Student> findAllStudentsAllocatedToParent(@Param("parentId") Long parentId);
-        */
     Set<Student> findAllByParentId(Long parentId, Sort sort);
 
     Set<Student> findAllByParentIdNull(Sort sort);
@@ -34,4 +31,6 @@ public interface StudentRepository extends BaseRepository<Student, Long> {
 
     @Query(value = "select * from student s WHERE(s.id in (Select student_id from course_student where course_student.course_id = :courseId)) order by s.last_name", nativeQuery = true)
     Set<Student> findAllByCourseIdNotNull(@Param("courseId") Long courseId);
+
+
 }

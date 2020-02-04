@@ -1,6 +1,6 @@
 /**
  * @Author: Mahmoud Abdelrahman, Steve Titinang
- * Appointment Controller is the class, where all CRUD methods implemented.
+ * Appointment Controller is a class, where all CRUD methods implemented.
  */
 package com.easylearn.easylearn.controller;
 
@@ -51,21 +51,27 @@ final class AppointmentController {
 
 
     /**
-     * findAllAppointmentsAllocatedByCourse method, which is responsible for getting all appointments
-     * that are allocated to a course, while assigning courseId, it will return only the appointments
-     * that are assigned to this course.
+     * findAllAppointments method, which is responsible for getting all appointments,
+     * response is depending on the parameter which will be passed.
      *
-     * @param courseId is passed to get the appointments that are allocated to this course.
-     * @return list of appointments which were allocated to a course.
+     * @param courseId  by passing it, it will return the appointments,
+     *                  to which this course is allocated.
+     * @param studentId by passing it, it will return all appointments,
+     *                  to which this student is allocated.
+     * @param teacherId by passing it, it will return all appointments,
+     *                  to which courses of this teacher are allocated.
+     * @param ideal     by passing it, it will return all appointments, not looking at their
+     *                  relations with other entities.
+     * @return list of appointments which were gotten from the service instance.
      */
     @GetMapping
-    public ResponseEntity findAllAppointments(@RequestParam(required = false) Long courseId,@RequestParam(required = false) Long studentId,@RequestParam(required = false) Long teacherId, @RequestParam(required = false) Boolean ideal) {
+    public ResponseEntity findAllAppointments(@RequestParam(required = false) Long courseId, @RequestParam(required = false) Long studentId, @RequestParam(required = false) Long teacherId, @RequestParam(required = false) Boolean ideal) {
         return appointmentService.findAllAppointments(courseId, studentId, teacherId, ideal);
     }
 
 
     /**
-     * assignStudentsToAppointment method, which is responsible for assigning students to an appointment
+     * assignStudentsToAppointment method, which is responsible for assigning students to an appointment.
      *
      * @param appointmentId the id of the appointment, which these students will be assigned to
      * @param studentIds    list of student ids, which will be assigned to this appointment

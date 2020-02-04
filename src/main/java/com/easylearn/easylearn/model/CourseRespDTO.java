@@ -1,3 +1,7 @@
+/**
+ * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * Course Response Data Transfer Object is where the specifications required for responses declared.
+ */
 package com.easylearn.easylearn.model;
 
 import lombok.AllArgsConstructor;

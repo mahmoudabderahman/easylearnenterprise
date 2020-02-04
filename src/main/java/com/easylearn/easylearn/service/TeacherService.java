@@ -1,3 +1,8 @@
+/**
+ * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * Teacher Service class is where the code responsible for implementing the teacher controller methods
+ * implemented.
+ */
 package com.easylearn.easylearn.service;
 
 import com.easylearn.easylearn.entity.Course;

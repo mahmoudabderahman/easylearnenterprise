@@ -1,3 +1,8 @@
+/**
+ * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * Student Service class is where the code responsible for implementing the student controller methods
+ * implemented.
+ */
 package com.easylearn.easylearn.service;
 
 
@@ -67,7 +72,7 @@ public class StudentService {
                                                                 Boolean appointmentAllocated,
                                                                 Boolean courseAllocated
     ) {
-        log.info(" *** START OF FINDING ALL STUDENTS THAT ARE ALLOCATED TO PARENT *** ");
+        log.info(" *** START OF FINDING ALL STUDENTS *** ");
         Set<Student> students;
         if (parentId != null && (parentAllocated != null && parentAllocated)) {
             students = studentRepository.findAllByParentId(parentId, Sort.by("lastName"));
@@ -91,7 +96,7 @@ public class StudentService {
         students.forEach(student -> {
             studentsResponse.add(studentMapper.mapToDTO(student));
         });
-        log.info(" *** END OF FINDING ALL STUDENTS THAT ARE ALLOCATED TO PARENT *** ");
+        log.info(" *** END OF FINDING ALL STUDENTS *** ");
         return ResponseEntity.ok(studentsResponse);
     }
 

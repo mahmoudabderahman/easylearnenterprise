@@ -1,3 +1,8 @@
+/**
+ * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * JwtTokenResponse is a class, where the specifications of a JwtToken response
+ * are implemented.
+ */
 package com.easylearn.easylearn.jwt.resource;
 
 import com.easylearn.easylearn.model.enums.UserType;

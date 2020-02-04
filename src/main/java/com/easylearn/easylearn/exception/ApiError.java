@@ -1,3 +1,8 @@
+/**
+ * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * ApiError Exception class is where all ApiError specifications are declared.
+ *
+ */
 package com.easylearn.easylearn.exception;
 
 import com.fasterxml.jackson.annotation.JsonFormat;

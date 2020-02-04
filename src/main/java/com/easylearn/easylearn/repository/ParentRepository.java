@@ -1,3 +1,7 @@
+/**
+ * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * Parent Repository Interface is where storage, retrieval and search behavior is declared.
+ */
 package com.easylearn.easylearn.repository;
 
 import com.easylearn.easylearn.entity.Parent;

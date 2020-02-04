@@ -1,3 +1,9 @@
+/**
+ * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * Parent Validator class is where the code responsible for implementing the parent validator methods
+ * implemented.
+ * Extends the BaseValidator class.
+ */
 package com.easylearn.easylearn.validation;
 
 import com.easylearn.easylearn.entity.Parent;

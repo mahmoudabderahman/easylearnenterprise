@@ -1,3 +1,7 @@
+/**
+ * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * StudentMapper class is where the code required for mapping students declared.
+ */
 package com.easylearn.easylearn.mapper;
 
 import com.easylearn.easylearn.entity.Student;
@@ -10,13 +14,19 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.Set;
-// id, firstName, lastName, email, password
 
 @Component
 @Transactional
 public class StudentMapper implements ObjectMapper<Student, StudentReqDTO, StudentRespDTO> {
 
 
+    /**
+     * mapToEntity method, which is responsible for mapping requests to entities,
+     * used mainly for the creation of students.
+     *
+     * @param request is the request body, which will be passed to this method
+     * @return the student entity object after being built.
+     */
     @Override
     public Student mapToEntity(StudentReqDTO request) {
         return Student.builder()
@@ -28,6 +38,14 @@ public class StudentMapper implements ObjectMapper<Student, StudentReqDTO, Stude
                 .build();
     }
 
+    /**
+     * mapToEntity method, which is responsible for mapping requests to entities,
+     * used mainly for the update of students.
+     *
+     * @param student is the already created appointment entity, which will be modified.
+     * @param request is the body of the modifications.
+     * @return the student entity after being modified.
+     */
     @Override
     public Student mapToEntity(Student student, StudentReqDTO request) {
         student.setFirstName(request.getFirstName());
@@ -38,6 +56,13 @@ public class StudentMapper implements ObjectMapper<Student, StudentReqDTO, Stude
         return student;
     }
 
+    /**
+     * mapToDTO method, which is responsible for mapping entities to data transfer objects,
+     * used mainly for getting specific appointment
+     *
+     * @param student the student entity, that will be mapped
+     * @return the student entity object after being built.
+     */
     @Override
     public StudentRespDTO mapToDTO(Student student) {
         return StudentRespDTO.builder()
@@ -50,6 +75,13 @@ public class StudentMapper implements ObjectMapper<Student, StudentReqDTO, Stude
                 .build();
     }
 
+    /**
+     * mapToDTO method, which is responsible for mapping list of entities to data transfer objects,
+     * used mainly for getting several students.
+     *
+     * @param students is the list of students, that will be mapped.
+     * @return list of student entities.
+     */
     @Override
     public Set<StudentRespDTO> mapToDTOs(Set<Student> students) {
         if (students == null || students.isEmpty())

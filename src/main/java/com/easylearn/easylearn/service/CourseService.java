@@ -1,3 +1,8 @@
+/**
+ * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * Course Service class is where the code responsible for implementing the course controller methods
+ * implemented.
+ */
 package com.easylearn.easylearn.service;
 
 import com.easylearn.easylearn.entity.Appointment;
@@ -82,6 +87,8 @@ public class CourseService {
 
         List<CourseRespDTO> coursesResponse = new ArrayList<>(courses.size());
         courses.forEach(course -> coursesResponse.add(courseMapper.mapToDTO(course)));
+        log.info(" *** END OF FINDING ALL COURSES *** ");
+
         return ResponseEntity.ok(coursesResponse);
 
     }
@@ -97,21 +104,14 @@ public class CourseService {
     }
 
     public CourseRespDTO assignAppointmentsToCourse(Long courseId, Set<Long> appointmentIds) {
-        log.info(" *** START OF ASSIGNING COURSE TO APPOINTMENT BY ID *** ");
+        log.info(" *** START OF ASSIGNING APPOINTMENTS TO COURSE BY IDS *** ");
         Set<Appointment> appointments = new HashSet<>();
         Course course = courseValidator.validateExistence(courseId);
         appointmentIds.forEach(appointmentId -> appointments.add(appointmentValidator.validateExistence(appointmentId)));
         course.addAppointments(appointments);
-        /*
-        for (Appointment appointment: appointments) {
-            Appointment app = appointmentValidator.validateExistence(appointment);
-            app.setCourse(course);
-        }
-        */
-        //appointment.setCourse(course);
         courseRepository.save(course);
         CourseRespDTO response = courseMapper.mapToDTO(course);
-        log.info(" *** END OF ASSIGNING COURSE TO APPOINTMENT BY ID *** ");
+        log.info(" *** END OF ASSIGNING APPOINTMENTS TO COURSE BY IDS *** ");
         return response;
     }
 

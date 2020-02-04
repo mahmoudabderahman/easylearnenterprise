@@ -1,3 +1,8 @@
+/**
+ * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * Parent Service class is where the code responsible for implementing the parent controller methods
+ * implemented.
+ */
 package com.easylearn.easylearn.service;
 
 import com.easylearn.easylearn.entity.Parent;
@@ -89,10 +94,8 @@ public class ParentService {
         log.info(" *** START OF ASSIGNING STUDENTS TO PARENT BY ID *** ");
         Parent parent = parentValidator.validateExistence(parentId);
         Set<Student> students = new HashSet<>();
-        //Student student = studentValidator.validateExistence(studentId);
         studentIds.forEach(studentId -> students.add(studentValidator.validateExistence(studentId)));
         parent.addStudents(students);
-        //student.setParent(parent);
         parentRepository.save(parent);
         ParentRespDTO response = parentMapper.mapToDTO(parent);
         log.info(" *** END OF ASSIGNING STUDENTS TO PARENT BY ID *** ");

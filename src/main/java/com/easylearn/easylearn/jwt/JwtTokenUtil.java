@@ -1,9 +1,13 @@
+/**
+ * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * JwtTokenUtil Class is a class, where the util components of the JwtToken
+ * is implemented.
+ */
 package com.easylearn.easylearn.jwt;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+
 import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -16,7 +20,6 @@ import io.jsonwebtoken.Clock;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.DefaultClock;
-import java.io.Serializable;
 
 @Component
 public class JwtTokenUtil implements Serializable {

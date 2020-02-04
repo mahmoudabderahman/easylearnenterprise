@@ -1,3 +1,7 @@
+/**
+ * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * JWTWebSecurityConfig Class is a class, where the WebSecurityConfiguration is implemented.
+ */
 package com.easylearn.easylearn.jwt;
 
 import org.springframework.beans.factory.annotation.Autowired;

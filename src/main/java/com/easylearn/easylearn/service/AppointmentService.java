@@ -83,7 +83,7 @@ public class AppointmentService {
      * @return List of ResponseEntity<AppointmentRespDTO>
      */
     public ResponseEntity<List<AppointmentRespDTO>> findAllAppointments(Long courseId, Long studentId, Long teacherId,  Boolean ideal) {
-        log.info(" *** START OF FINDING ALL APPOINTMENTS ALLOCATED BY A COURSE *** ");
+        log.info(" *** START OF FINDING ALL APPOINTMENTS *** ");
         Set<Appointment> appointments;
         if (courseId != null) {
             System.out.println("While courseId is null");
@@ -108,7 +108,7 @@ public class AppointmentService {
             return ResponseEntity.noContent().build();
         List<AppointmentRespDTO> appointmentsResponse = new ArrayList<>(appointments.size());
         appointments.forEach(appointment -> appointmentsResponse.add(appointmentMapper.mapToDTO(appointment)));
-        log.info(" *** END OF FINDING ALL APPOINTMENTS ALLOCATED BY A COURSE*** ");
+        log.info(" *** END OF FINDING ALL APPOINTMENTS BY A COURSE*** ");
         return ResponseEntity.ok(appointmentsResponse);
     }
 

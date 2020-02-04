@@ -1,3 +1,8 @@
+/**
+ * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * JwtUnAuthorizedResponseAuthenticationEntryPoint Class is a class,
+ * which is the entry point of any unauthorized request.
+ */
 package com.easylearn.easylearn.jwt;
 
 import java.io.IOException;

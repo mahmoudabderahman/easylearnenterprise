@@ -1,3 +1,7 @@
+/**
+ * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * Parent Entity is where all Parent specifications are declared.
+ */
 package com.easylearn.easylearn.entity;
 
 import com.easylearn.easylearn.model.enums.ParentType;

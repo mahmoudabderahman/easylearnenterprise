@@ -1,3 +1,7 @@
+/**
+ * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * Course Entity is where all Course specifications are declared.
+ */
 package com.easylearn.easylearn.entity;
 
 import lombok.*;
@@ -51,17 +55,11 @@ public class Course {
     )
     private Set<Student> students;
 
-    public void addAppointment(Appointment appointment) {
-        this.appointments.add(appointment);
-    }
 
     public void addAppointments(Set<Appointment> appointments) {
         this.appointments.addAll(appointments);
     }
 
-    public void addStudent(Student student) {
-        this.students.add(student);
-    }
 
     public void addStudents(Set<Student> students) {
         this.students.addAll(students);

@@ -1,6 +1,10 @@
+/**
+ * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * JwtAuthentication Controller is a class, where all create, refresh
+ * and handle exceptions of tokens implemented.
+ */
 package com.easylearn.easylearn.jwt.resource;
 
-import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,7 +20,6 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 

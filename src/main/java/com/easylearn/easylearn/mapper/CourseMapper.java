@@ -1,3 +1,7 @@
+/**
+ * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * CourseMapper class is where the code required for mapping courses declared.
+ */
 package com.easylearn.easylearn.mapper;
 
 import com.easylearn.easylearn.entity.Course;
@@ -12,7 +16,14 @@ import java.util.Set;
 @Component
 @Transactional
 public class CourseMapper implements ObjectMapper<Course, CourseReqDTO, CourseRespDTO> {
-    // create
+
+    /**
+     * mapToEntity method, which is responsible for mapping requests to entities,
+     * used mainly for the creation of courses.
+     *
+     * @param request is the request body, which will be passed to this method
+     * @return the course entity object after being built.
+     */
     @Override
     public Course mapToEntity(CourseReqDTO request) {
         return Course.builder()
@@ -24,8 +35,15 @@ public class CourseMapper implements ObjectMapper<Course, CourseReqDTO, CourseRe
                 .build();
     }
 
-    // update
-// courseCode, name, grade, content, description
+
+    /**
+     * mapToEntity method, which is responsible for mapping requests to entities,
+     * used mainly for the update of courses.
+     *
+     * @param course is the already created appointment entity, which will be modified.
+     * @param request     is the body of the modifications.
+     * @return the course entity after being modified.
+     */
     @Override
     public Course mapToEntity(Course course, CourseReqDTO request) {
         course.setCourseCode(request.getCourseCode());
@@ -37,6 +55,13 @@ public class CourseMapper implements ObjectMapper<Course, CourseReqDTO, CourseRe
     }
 
 
+    /**
+     * mapToDTO method, which is responsible for mapping entities to data transfer objects,
+     * used mainly for getting specific appointment
+     *
+     * @param course the appointment entity, that will be mapped
+     * @return the course entity object after being built.
+     */
     @Override
     public CourseRespDTO mapToDTO(Course course) {
         return CourseRespDTO.builder()
@@ -49,6 +74,13 @@ public class CourseMapper implements ObjectMapper<Course, CourseReqDTO, CourseRe
                 .build();
     }
 
+    /**
+     * mapToDTO method, which is responsible for mapping list of entities to data transfer objects,
+     * used mainly for getting several appointments.
+     *
+     * @param courses is the list of appointments, that will be mapped.
+     * @return list of courses entities.
+     */
     @Override
     public Set<CourseRespDTO> mapToDTOs(Set<Course> courses) {
         if (courses == null || courses.isEmpty())

@@ -1,3 +1,7 @@
+/**
+ * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * Main Class
+ */
 package com.easylearn.easylearn;
 
 import com.easylearn.easylearn.entity.Parent;
@@ -37,6 +41,9 @@ public class EasylearnApplication {
         SpringApplication.run(EasylearnApplication.class, args);
     }
 
+    /**
+     * In this method, all users in the database will be created as JwtUserDetails Users
+     */
     @PostConstruct
     public void fillUsersList() {
         inMemoryUserList = new HashSet<>();
@@ -49,8 +56,7 @@ public class EasylearnApplication {
                 inMemoryUserList.add(new JwtUserDetails(parent.getId(), parent.getUsername(), encoder.encode(parent.getPassword()), "ROLE_USER_2", UserType.PARENT));
             }
         }
-        if (!students.isEmpty())
-        {
+        if (!students.isEmpty()) {
             for (Student student : students) {
                 inMemoryUserList.add(new JwtUserDetails(student.getId(), student.getUsername(), encoder.encode(student.getPassword()), "ROLE_USER_2", UserType.STUDENT));
             }
@@ -62,8 +68,6 @@ public class EasylearnApplication {
         }
 
         inMemoryUserList.add(new JwtUserDetails(999999L, "admin@easylearn.mis.com", encoder.encode("123456"), "ROLE_USER_1", UserType.ADMIN));
-
-        System.out.println("Number of users: " + inMemoryUserList.size());
 
     }
 
