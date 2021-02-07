@@ -1,5 +1,5 @@
 /**
- * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * @Author: Mahmoud Abdelrahman
  * Parent Validator class is where the code responsible for implementing the parent validator methods
  * implemented.
  * Extends the BaseValidator class.
