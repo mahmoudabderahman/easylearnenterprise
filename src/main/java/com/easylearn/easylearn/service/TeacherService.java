@@ -1,5 +1,5 @@
 /**
- * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * @Author: Mahmoud Abdelrahman
  * Teacher Service class is where the code responsible for implementing the teacher controller methods
  * implemented.
  */
