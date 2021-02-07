@@ -1,5 +1,5 @@
 /**
- * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * @Author: Mahmoud Abdelrahman
  * Result Controller is a class, where creating and getting results of course, student
  * is implemented.
  */
