@@ -1,5 +1,5 @@
 /**
- * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * @Author: Mahmoud Abdelrahman
  * Parent Service class is where the code responsible for implementing the parent controller methods
  * implemented.
  */
