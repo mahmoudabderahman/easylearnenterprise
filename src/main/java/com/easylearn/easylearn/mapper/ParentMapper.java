@@ -1,5 +1,5 @@
 /**
- * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * @Author: Mahmoud Abdelrahman
  * ParentMapper class is where the code required for mapping parents declared.
  */
 package com.easylearn.easylearn.mapper;
