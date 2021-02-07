@@ -1,5 +1,5 @@
 /**
- * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * @Author: Mahmoud Abdelrahman
  * JwtUserDetails Class is a class, where UserDetails specifications for JwtSecurity is
  * implemented.
  */
