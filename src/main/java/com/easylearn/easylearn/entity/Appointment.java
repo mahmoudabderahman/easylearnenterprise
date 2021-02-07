@@ -1,5 +1,5 @@
 /**
- * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * @Author: Mahmoud Abdelrahman
  * Appointment Entity is where all appointment specifications are declared.
  */
 package com.easylearn.easylearn.entity;
