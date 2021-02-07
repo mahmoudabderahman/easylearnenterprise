@@ -1,5 +1,5 @@
 /**
- * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * @Author: Mahmoud Abdelrahman
  * JwtTokenUtil Class is a class, where the util components of the JwtToken
  * is implemented.
  */
