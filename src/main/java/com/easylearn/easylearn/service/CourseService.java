@@ -1,5 +1,5 @@
 /**
- * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * @Author: Mahmoud Abdelrahman
  * Course Service class is where the code responsible for implementing the course controller methods
  * implemented.
  */
