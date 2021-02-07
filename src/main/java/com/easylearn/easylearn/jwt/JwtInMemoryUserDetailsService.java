@@ -1,5 +1,5 @@
 /**
- * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * @Author: Mahmoud Abdelrahman
  * JwtInMemoryUserDetailsService Class is a class, where the code for retrieving a
  * user by its username is implemented.
  */
