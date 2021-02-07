@@ -1,5 +1,5 @@
 /**
- * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * @Author: Mahmoud Abdelrahman
  * ObjectMapper Interface is where the code required for mapping objects declared.
  */
 package com.easylearn.easylearn.mapper;
