@@ -1,5 +1,5 @@
 /**
- * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * @Author: Mahmoud Abdelrahman
  * JwtAuthentication Controller is a class, where all create, refresh
  * and handle exceptions of tokens implemented.
  */
