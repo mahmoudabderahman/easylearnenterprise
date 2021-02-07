@@ -1,5 +1,5 @@
 /**
- * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * @Author: Mahmoud Abdelrahman
  * User Entity is where all User specifications are declared.
  */
 package com.easylearn.easylearn.entity;
