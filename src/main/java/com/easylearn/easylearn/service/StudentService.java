@@ -1,5 +1,5 @@
 /**
- * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * @Author: Mahmoud Abdelrahman
  * Student Service class is where the code responsible for implementing the student controller methods
  * implemented.
  */
