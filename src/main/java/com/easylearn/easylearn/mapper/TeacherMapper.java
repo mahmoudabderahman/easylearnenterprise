@@ -1,5 +1,5 @@
 /**
- * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * @Author: Mahmoud Abdelrahman
  * TeacherMapper class is where the code required for mapping teachers declared.
  */
 package com.easylearn.easylearn.mapper;
