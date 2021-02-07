@@ -1,5 +1,5 @@
 /**
- * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * @Author: Mahmoud Abdelrahman
  * RestExceptionHandler Exception class is where all RestException
  * specifications are declared.
  *
