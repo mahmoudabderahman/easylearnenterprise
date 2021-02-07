@@ -1,5 +1,5 @@
 /**
- * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * @Author: Mahmoud Abdelrahman
  * JWTWebSecurityConfig Class is a class, where the WebSecurityConfiguration is implemented.
  */
 package com.easylearn.easylearn.jwt;
