@@ -1,5 +1,5 @@
 /**
- * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * @Author: Mahmoud Abdelrahman
  * Parent Request Data Transfer Object is where the specifications required for requests declared.
  */
 package com.easylearn.easylearn.model;
