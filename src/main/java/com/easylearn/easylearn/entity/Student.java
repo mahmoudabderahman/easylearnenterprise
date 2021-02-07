@@ -1,5 +1,5 @@
 /**
- * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * @Author: Mahmoud Abdelrahman
  * Student Entity is where all Student specifications are declared.
  */
 package com.easylearn.easylearn.entity;
