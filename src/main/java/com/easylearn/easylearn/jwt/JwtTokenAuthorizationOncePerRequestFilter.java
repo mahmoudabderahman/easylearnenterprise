@@ -1,5 +1,5 @@
 /**
- * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * @Author: Mahmoud Abdelrahman
  * JwtTokenAuthorizationOncePerRequestFilter Class is a class, where the authorization
  * process is implemented.
  */
