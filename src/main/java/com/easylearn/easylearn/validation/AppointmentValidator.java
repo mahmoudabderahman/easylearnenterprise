@@ -1,5 +1,5 @@
 /**
- * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * @Author: Mahmoud Abdelrahman
  * Appointment Validator class is where the code responsible for implementing the appointment validator methods
  * implemented.
  * Extends the BaseValidator class.
