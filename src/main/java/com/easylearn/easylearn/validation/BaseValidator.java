@@ -1,5 +1,5 @@
 /**
- * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * @Author: Mahmoud Abdelrahman
  * Base Validator class is where the code responsible for implementing the validation implemented.
  */
 package com.easylearn.easylearn.validation;
