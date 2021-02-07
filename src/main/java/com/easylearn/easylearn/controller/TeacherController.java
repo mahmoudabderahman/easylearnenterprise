@@ -1,5 +1,5 @@
 /**
- * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * @Author: Mahmoud Abdelrahman
  * Teacher Controller is a class, where all CRUD methods implemented.
  */
 package com.easylearn.easylearn.controller;
