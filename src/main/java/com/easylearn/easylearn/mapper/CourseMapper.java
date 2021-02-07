@@ -1,5 +1,5 @@
 /**
- * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * @Author: Mahmoud Abdelrahman
  * CourseMapper class is where the code required for mapping courses declared.
  */
 package com.easylearn.easylearn.mapper;
