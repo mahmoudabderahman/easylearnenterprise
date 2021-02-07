@@ -1,5 +1,5 @@
 /**
- * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * @Author: Mahmoud Abdelrahman
  * Parent Entity is where all Parent specifications are declared.
  */
 package com.easylearn.easylearn.entity;
