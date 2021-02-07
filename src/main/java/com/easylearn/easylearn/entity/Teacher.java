@@ -1,5 +1,5 @@
 /**
- * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * @Author: Mahmoud Abdelrahman
  * Teacher Entity is where all Teacher specifications are declared.
  */
 package com.easylearn.easylearn.entity;
