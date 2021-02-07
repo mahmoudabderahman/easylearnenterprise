@@ -1,5 +1,5 @@
 /**
- * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * @Author: Mahmoud Abdelrahman
  * JwtTokenResponse is a class, where the specifications of a JwtToken response
  * are implemented.
  */
