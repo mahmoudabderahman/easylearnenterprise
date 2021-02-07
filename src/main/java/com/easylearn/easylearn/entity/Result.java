@@ -1,5 +1,5 @@
 /**
- * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * @Author: Mahmoud Abdelrahman
  * Result Entity is where all Result specifications are declared.
  */
 package com.easylearn.easylearn.entity;
