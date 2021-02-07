@@ -1,5 +1,5 @@
 /**
- * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * @Author: Mahmoud Abdelrahman
  * Base Repository Interface is where storage, retrieval and search behavior is declared.
  */
 package com.easylearn.easylearn.repository;
