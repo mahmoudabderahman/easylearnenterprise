@@ -1,5 +1,5 @@
 /**
- * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * @Author: Mahmoud Abdelrahman
  * JwtUnAuthorizedResponseAuthenticationEntryPoint Class is a class,
  * which is the entry point of any unauthorized request.
  */
