@@ -1,5 +1,5 @@
 /**
- * @Author: Mahmoud Abdelrahman, Steve Titinang
+ * @Author: Mahmoud Abdelrahman
  * AppointmentMapper class is where the code required for mapping appointments declared.
  */
 package com.easylearn.easylearn.mapper;
