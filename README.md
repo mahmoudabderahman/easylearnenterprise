@@ -6,4 +6,4 @@ This application was created using Spring Boot as a backend framework and Angula
 * [Setup](#setup)
 
 ## General info
-This project is a simple online learning platform application to allow students, parents, and teachers to interact together.
+This project is a simple online learning platform application for schools that simulates [moodle](https://moodle.org/) to allow students, parents, and teachers to interact together.
