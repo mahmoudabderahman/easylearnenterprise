@@ -6,7 +6,7 @@ This project is a simple online learning platform application for schools that s
     * Hibernate
     * Postgres
 * [Setup](#setup)
-The project can be imported in Intellij or Eclipse STS or can be cloned directly from the repo.
+   The project can be imported in Intellij or Eclipse STS or can be cloned directly from the repo.
 
 
 
