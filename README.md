@@ -1,5 +1,5 @@
-# EasyLearn - online learning platform
-This project is a simple online learning platform application for schools that simulates the [moodle](https://moodle.org/) platform to allow students, parents, and teachers to interact together.
+# EasyLearn - online learning management system
+This project is a simple online learning management system for schools. It simulates the [moodle](https://moodle.org/) platform to allow students, parents, and teachers to interact together.
 * Technologies
     * Spring Boot
     * Maven
