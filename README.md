@@ -14,5 +14,6 @@ The project can be imported in Intellij or Eclipse STS or can be cloned directly
    4. A Javascript Web Token will then be generated.
    5. Swagger API documentation was configured and can be accessed by heading to ``` http:\\localhost:8888\swagger-ui.html ``` and using the authorize method while giving ```BEARER ${generated JWT} ``` as an input.
    6. All the implemented features in the application can then be tested in the swagger api documentation.
-
-
+### Front-end
+For front-end an Angular application was created and can be accessed by navigating to the repo [easylearn-frontend](https://github.com/MahmoudAbderahman/easylearn-ui). 
+#### Sample images from the system
