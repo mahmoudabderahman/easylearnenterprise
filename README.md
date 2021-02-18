@@ -10,11 +10,11 @@ This project is a simple online learning management system for schools. It simul
   * [Login](#login)
   * [Admin related features](#admin-related-features)
     + [Profile](#profile)
-    + [Students panel](#students-panel)
-    + [Teachers panel](#teachers-panel)
-    + [Parents panel](#parents-panel)
-    + [Courses panel](#courses-panel)
-    + [Appointments panel](#appointments-panel)
+    + [Students panel](#admin-students-panel)
+    + [Teachers panel](#admin-teachers-panel)
+    + [Parents panel](#admin-parents-panel)
+    + [Courses panel](#admin-courses-panel)
+    + [Appointments panel](#admin-appointments-panel)
 ### Technologies
  * Spring Boot
  * Maven
@@ -40,13 +40,25 @@ For front-end an Angular application was created and can be accessed by navigati
 ### Admin related features
 #### Profile
 ![](images/admin-profile.png)
-#### Students panel
+#### Admin-Students panel
 ![](images/admin-profile-2.png)
-#### Teachers panel
+#### Admin-Teachers panel
 ![](images/admin-profile-3.png)
-#### Parents panel
+#### Admin-Parents panel
 ![](images/admin-profile-4.png)
-#### Courses panel
+#### Admin-Courses panel
 ![](images/admin-profile-5.png)
-#### Appointments panel
+#### Admin-Appointments panel
 ![](images/admin-profile-6.png)
+### Parent related features
+#### Profile
+![](images/parent-profile-1.png)
+#### Parents checking their childern
+![](images/parent-students.png)
+#### Parents checking the courses, to which their childern assigned
+![](images/parents-students-1.png)
+#### Parents checking evaluation of their childern
+![](images/parents-students-evaluation.png)
+#### Parents checking attendance of their childern
+![](images/parents-students-evaluation.png)
+
