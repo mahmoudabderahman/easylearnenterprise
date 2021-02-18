@@ -16,4 +16,22 @@ The project can be imported in Intellij or Eclipse STS or can be cloned directly
    6. All the implemented features in the application can then be tested in the swagger api documentation.
 ### Front-end
 For front-end an Angular application was created and can be accessed by navigating to the repository [easylearn-frontend](https://github.com/MahmoudAbderahman/easylearn-ui). 
-#### Sample images from the system
+## Images from the system
+### ER Diagram
+![](images/er-diagram.jpg)
+### Login
+![](images/login-page.png)
+![](images/login-page-2.png)
+### Admin related features
+#### Profile
+![](images/admin-profile.png)
+#### Students panel
+![](images/admin-profile-2.png)
+#### Teachers panel
+![](images/admin-profile-3.png)
+#### Parents panel
+![](images/admin-profile-4.png)
+#### Courses panel
+![](images/admin-profile-5.png)
+#### Appointments panel
+![](images/admin-profile-6.png)
