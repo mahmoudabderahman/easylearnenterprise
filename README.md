@@ -18,7 +18,7 @@ This project is a simple online learning management system for schools. It simul
   * [Parent related features](#parent-related-features)
     + [Profile](#profile-1)
     + [Parents checking their childern](#parents-checking-their-childern)
-    + [Parents checking the courses, to which their childern assigned](#parents-checking-the-courses--to-which-their-childern-assigned)
+    + [Parents checking the courses, to which their childern assigned](#parents-checking-the-courses-to-which-their-childern-assigned)
     + [Parents checking evaluation of their childern](#parents-checking-evaluation-of-their-childern)
     + [Parents checking attendance of their childern](#parents-checking-attendance-of-their-childern)
   * [Teacher related features](#teacher-related-features)
@@ -31,7 +31,7 @@ This project is a simple online learning management system for schools. It simul
     + [Courses that a student assigned to](#courses-that-a-student-assigned-to)
     + [Student seeing time plan for the courses](#student-seeing-time-plan-for-the-courses)
     + [Student seeing uploaded documents of a course](#student-seeing-uploaded-documents-of-a-course)
-    + [Student seeing his/her evaluation in a course](#student-seeing-his-her-evaluation-in-a-course)
+    + [Student seeing his/her evaluation in a course](#student-seeing-evaluation-in-a-course)
 ### Technologies
  * Spring Boot
  * Maven
@@ -96,5 +96,5 @@ For front-end an Angular application was created and can be accessed by navigati
 ![](images/student-appointments.png)
 #### Student seeing uploaded documents of a course
 ![](images/student-documents.png)
-#### Student seeing his/her evaluation in a course
+#### Student seeing evaluation in a course
 ![](images/student-evaluation.png)
