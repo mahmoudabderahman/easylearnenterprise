@@ -1,5 +1,20 @@
 # EasyLearn - online learning management system
 This project is a simple online learning management system for schools. It simulates the [moodle](https://moodle.org/) platform to allow students, parents, and teachers to interact together.
+## Table of contents
+   * [Technologies](#technologies)
+  * [Setup](#setup)
+  * [Run](#run)
+  * [Front-end](#front-end)
+- [Images from the system](#images-from-the-system)
+  * [ER Diagram](#er-diagram)
+  * [Login](#login)
+  * [Admin related features](#admin-related-features)
+    + [Profile](#profile)
+    + [Students panel](#students-panel)
+    + [Teachers panel](#teachers-panel)
+    + [Parents panel](#parents-panel)
+    + [Courses panel](#courses-panel)
+    + [Appointments panel](#appointments-panel)
 ### Technologies
  * Spring Boot
  * Maven
