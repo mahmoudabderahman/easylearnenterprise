@@ -60,5 +60,5 @@ For front-end an Angular application was created and can be accessed by navigati
 #### Parents checking evaluation of their childern
 ![](images/parents-students-evaluation.png)
 #### Parents checking attendance of their childern
-![](images/parents-students-evaluation.png)
+![](images/parents-students-attendance.png)
 
