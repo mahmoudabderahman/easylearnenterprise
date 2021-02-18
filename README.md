@@ -15,6 +15,23 @@ This project is a simple online learning management system for schools. It simul
     + [Parents panel](#admin-parents-panel)
     + [Courses panel](#admin-courses-panel)
     + [Appointments panel](#admin-appointments-panel)
+  * [Parent related features](#parent-related-features)
+    + [Profile](#profile-1)
+    + [Parents checking their childern](#parents-checking-their-childern)
+    + [Parents checking the courses, to which their childern assigned](#parents-checking-the-courses--to-which-their-childern-assigned)
+    + [Parents checking evaluation of their childern](#parents-checking-evaluation-of-their-childern)
+    + [Parents checking attendance of their childern](#parents-checking-attendance-of-their-childern)
+  * [Teacher related features](#teacher-related-features)
+    + [Profile](#profile-2)
+    + [Courses that a teacher teach](#courses-that-a-teacher-teach)
+    + [Teacher evaluating a student](#teacher-evaluating-a-student)
+    + [Teacher uploading documents to a course](#teacher-uploading-documents-to-a-course)
+  * [Student related features](#student-related-features)
+    + [Profile](#profile-3)
+    + [Courses that a student assigned to](#courses-that-a-student-assigned-to)
+    + [Student seeing time plan for the courses](#student-seeing-time-plan-for-the-courses)
+    + [Student seeing uploaded documents of a course](#student-seeing-uploaded-documents-of-a-course)
+    + [Student seeing his/her evaluation in a course](#student-seeing-his-her-evaluation-in-a-course)
 ### Technologies
  * Spring Boot
  * Maven
@@ -61,4 +78,23 @@ For front-end an Angular application was created and can be accessed by navigati
 ![](images/parents-students-evaluation.png)
 #### Parents checking attendance of their childern
 ![](images/parents-students-attendance.png)
-
+### Teacher related features
+#### Profile
+![](images/teacher-profile.png)
+#### Courses that a teacher teach
+![](images/teacher-profile-course.png)
+#### Teacher evaluating a student
+![](images/teacher-evaluate-2.png)
+#### Teacher uploading documents to a course
+![](images/teacher-profile-document.png)
+### Student related features
+#### Profile
+![](images/student-profile.png)
+#### Courses that a student assigned to
+![](images/student-courses.png)
+#### Student seeing time plan for the courses
+![](images/student-appointments.png)
+#### Student seeing uploaded documents of a course
+![](images/student-documents.png)
+#### Student seeing his/her evaluation in a course
+![](images/student-evaluation.png)
